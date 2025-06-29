@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inquiry & Order | AmekiColor - Rwanda's Premier Paint Manufacturer</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Request a quote or order premium paints from AmekiColor. Fast, friendly support for all your paint needs in Rwanda.">
+  <meta name="keywords" content="paint order, inquiry, contact, AmekiColor, Rwanda, request quote, buy paint">
+  <meta name="author" content="AmekiColor">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.amekicolor.rw/inquiry">
+  <meta property="og:title" content="Inquiry & Order | AmekiColor - Rwanda's Premier Paint Manufacturer">
+  <meta property="og:description" content="Request a quote or order premium paints from AmekiColor. Fast, friendly support for all your paint needs in Rwanda.">
+  <meta property="og:image" content="https://www.amekicolor.rw/assets/images/inquiry-og-image.jpg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://www.amekicolor.rw/inquiry">
+  <meta property="twitter:title" content="Inquiry & Order | AmekiColor - Rwanda's Premier Paint Manufacturer">
+  <meta property="twitter:description" content="Request a quote or order premium paints from AmekiColor. Fast, friendly support for all your paint needs in Rwanda.">
+  <meta property="twitter:image" content="https://www.amekicolor.rw/assets/images/inquiry-og-image.jpg">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.amekicolor.rw/inquiry">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="assets/icons/favicon.ico">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#005BAC',
+            accent: '#FFD700',
+            cta: '#E63946',
+            dark: '#222222',
+            background: '#FFFFFF',
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'Poppins', 'sans-serif'],
+            body: ['Open Sans', 'Inter', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'spin-slow': 'spin 20s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        },
+      },
+    }
+  </script>
+  
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "AmekiColor Inquiry & Order",
+    "url": "https://www.amekicolor.rw/inquiry.html",
+    "description": "Contact AmekiColor to request a quote, order paint, or ask a question.",
+    "contactOption": [
+      "Customer Service",
+      "Sales"
+    ]
+  }
+  </script>
+  
+  <style>
+    :root {
+      --color-primary: #005BAC;
+      --color-accent: #FFD700;
+      --color-cta: '#E63946';
+      --color-dark: '#222222';
+      --color-background: '#FFFFFF';
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html { 
+      scroll-behavior: smooth; 
+      overflow-x: hidden;
+    }
+    
+    body { 
+      font-family: 'Open Sans', 'Inter', sans-serif; 
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+      color: var(--color-dark);
+      line-height: 1.6;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-primary);
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #004a8c;
+    }
+    
+    /* Floating animation */
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+    
+    /* Paint stroke effect */
+    .paint-stroke {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .paint-stroke::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(0,91,172,0.2) 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      z-index: -1;
+    }
+    
+    /* Gradient Underline */
+    .gradient-underline {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .gradient-underline::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      border-radius: 2px;
+    }
+    
+    /* Mobile Menu Animation */
+    .mobile-menu {
+      max-height: 0;
+      transition: max-height 0.5s ease-out;
+      overflow: hidden;
+    }
+    
+    .mobile-menu.open {
+      max-height: 500px;
+      transition: max-height 0.5s ease-in;
+    }
+    
+    /* Particle Background */
+    .particles-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--color-primary);
+      opacity: 0.3;
+    }
+    
+    /* 3D Card Effect */
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease;
+    }
+    
+    .card-3d:hover {
+      transform: rotateY(10deg) rotateX(5deg);
+    }
+  </style>
+</head>
+<body class="bg-background text-dark min-h-screen flex flex-col overflow-x-hidden">
+  <!-- Navbar with animated paint drip -->
+  <header id="navbar" class="sticky top-0 z-50 bg-white shadow-lg transition-all duration-300">
+    <div class="absolute bottom-0 left-0 w-full h-2 overflow-hidden">
+      <div class="absolute bottom-0 left-0 w-full h-4 bg-gradient-to-r from-primary via-accent to-cta animate-pulse"></div>
+    </div>
+    
+    <nav class="container mx-auto flex items-center justify-between py-4 px-4 lg:px-0" aria-label="Main Navigation">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="h-12 w-12 rounded-lg bg-primary flex items-center justify-center text-white floating">🎨</div>
+        <span class="font-heading font-bold text-primary text-2xl gradient-underline">AmekiColor</span>
+      </a>
+      
+      <ul class="hidden md:flex gap-8 font-semibold" role="menubar">
+        <li><a href="index.html" class="hover:text-primary relative group" role="menuitem">
+          Home
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="about.html" class="hover:text-primary relative group" role="menuitem">
+          About Us
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="products.html" class="hover:text-primary relative group" role="menuitem">
+          Products
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="visualizer.html" class="hover:text-primary relative group" role="menuitem">
+          Color Visualizer
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="blog.html" class="hover:text-primary relative group" role="menuitem">
+          Blog
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="contact.html" class="hover:text-primary relative group" role="menuitem">
+          Contact
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+      </ul>
+      
+      <div class="flex items-center gap-4">
+        <a href="inquiry.html" class="px-6 py-2 bg-primary text-white rounded-full shadow-lg hover:bg-cta hover:scale-105 transition-all duration-300 font-bold focus:outline-none focus:ring-2 focus:ring-accent flex items-center gap-2" role="button">
+          <i class="fas fa-paint-roller"></i> Order Now
+        </a>
+        <button id="nav-toggle" class="md:hidden ml-4 text-2xl" aria-label="Open navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t">
+      <ul class="flex flex-col gap-4 p-4">
+        <li><a href="index.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Home</a></li>
+        <li><a href="about.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">About Us</a></li>
+        <li><a href="products.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Products</a></li>
+        <li><a href="visualizer.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Color Visualizer</a></li>
+        <li><a href="blog.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Blog</a></li>
+        <li><a href="contact.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Contact</a></li>
+        <li><a href="inquiry.html" class="block py-2 px-4 bg-primary text-white rounded-lg text-center font-semibold hover:bg-cta transition-colors">Order Now</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Inquiry Hero Section -->
+  <section class="relative flex flex-col items-center justify-center py-20 overflow-hidden min-h-[50vh]">
+    <!-- Particle Background -->
+    <div id="particles-container" class="particles-container"></div>
+    
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+      <div class="inline-block mb-6">
+        <span class="px-4 py-1 bg-accent/20 text-accent rounded-full text-sm font-bold animate-pulse">
+          Fast & Easy Ordering
+        </span>
+      </div>
+      
+      <h1 class="font-heading text-4xl md:text-6xl font-extrabold text-primary mb-6 leading-tight">
+        Inquiry & <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cta to-accent">Order</span>
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-dark mb-10 max-w-2xl mx-auto">
+        Request a quote, order paint, or ask us anything. Our team will respond quickly!
+      </p>
+    </div>
+    
+    <!-- Floating Paint Cans -->
+    <div class="absolute top-10 left-10 w-16 h-20 bg-cta rounded-lg floating" style="animation-delay: 0s;"></div>
+    <div class="absolute top-20 right-20 w-14 h-18 bg-accent rounded-lg floating" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-20 left-1/4 w-12 h-16 bg-primary rounded-lg floating" style="animation-delay: 2s;"></div>
+  </section>
+
+  <!-- Order Process -->
+  <section class="container mx-auto py-12 px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <!-- Step 1 -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center card-3d">
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+          <span class="text-primary font-heading font-bold text-2xl">1</span>
+        </div>
+        <h3 class="font-heading text-xl font-bold text-primary mb-3">Submit Request</h3>
+        <p class="mb-4">Fill out our simple inquiry form with your project details</p>
+      </div>
+      
+      <!-- Step 2 -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center card-3d">
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+          <span class="text-primary font-heading font-bold text-2xl">2</span>
+        </div>
+        <h3 class="font-heading text-xl font-bold text-primary mb-3">Expert Consultation</h3>
+        <p class="mb-4">Our team will contact you within 24 hours to discuss your needs</p>
+      </div>
+      
+      <!-- Step 3 -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center card-3d">
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+          <span class="text-primary font-heading font-bold text-2xl">3</span>
+        </div>
+        <h3 class="font-heading text-xl font-bold text-primary mb-3">Delivery & Support</h3>
+        <p class="mb-4">Get your premium paints delivered with ongoing expert support</p>
+      </div>
+    </div>
+    
+    <!-- Inquiry/Order Form -->
+    <div class="bg-white rounded-2xl shadow-xl p-8 max-w-3xl mx-auto card-3d">
+      <h3 class="font-heading text-2xl font-bold text-primary mb-8 text-center">
+        <span class="gradient-underline">Request a Quote or Place an Order</span>
+      </h3>
+      
+      <form id="inquiry-form" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="name" class="block font-semibold text-dark mb-2">Full Name <span class="text-cta">*</span></label>
+            <input type="text" id="name" name="name" required 
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent focus:outline-none"
+                   placeholder="Your name">
+          </div>
+          
+          <div>
+            <label for="email" class="block font-semibold text-dark mb-2">Email <span class="text-cta">*</span></label>
+            <input type="email" id="email" name="email" required 
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent focus:outline-none"
+                   placeholder="your.email@example.com">
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="phone" class="block font-semibold text-dark mb-2">Phone Number <span class="text-cta">*</span></label>
+            <input type="tel" id="phone" name="phone" required 
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent focus:outline-none"
+                   placeholder="+250 788 000 000">
+          </div>
+          
+          <div>
+            <label for="location" class="block font-semibold text-dark mb-2">Location <span class="text-cta">*</span></label>
+            <input type="text" id="location" name="location" required 
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent focus:outline-none"
+                   placeholder="City or District">
+          </div>
+        </div>
+        
+        <div>
+          <label for="product-type" class="block font-semibold text-dark mb-2">Product Type <span class="text-cta">*</span></label>
+          <select id="product-type" name="product-type" 
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent focus:outline-none">
+            <option value="" disabled selected>Select a product type</option>
+            <option value="wall">Wall Paints</option>
+            <option value="roof">Roof Paints</option>
+            <option value="wood">Wood Coatings</option>
+            <option value="metallic">Metallic Paints</option>
+            <option value="primers">Primers & Sealers</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="project-type" class="block font-semibold text-dark mb-2">Project Type <span class="text-cta">*</span></label>
+          <select id="project-type" name="project-type" 
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent focus:outline-none">
+            <option value="" disabled selected>Select project type</option>
+            <option value="residential">Residential</option>
+            <option value="commercial">Commercial</option>
+            <option value="industrial">Industrial</option>
+            <option value="government">Government</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="quantity" class="block font-semibold text-dark mb-2">Estimated Quantity</label>
+          <div class="flex items-center gap-4">
+            <input type="range" id="quantity" name="quantity" min="1" max="100" value="10" 
+                   class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+            <span id="quantity-value" class="font-bold text-primary">10 Liters</span>
+          </div>
+          <div class="flex justify-between text-xs text-gray-500 mt-1">
+            <span>1L</span>
+            <span>25L</span>
+            <span>50L</span>
+            <span>75L</span>
+            <span>100L+</span>
+          </div>
+        </div>
+        
+        <div>
+          <label for="message" class="block font-semibold text-dark mb-2">Project Details <span class="text-cta">*</span></label>
+          <textarea id="message" name="message" rows="5" required 
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent focus:outline-none"
+                    placeholder="Tell us about your project, color preferences, and any special requirements..."></textarea>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <input type="checkbox" id="quote" name="quote" class="mt-1">
+          <label for="quote" class="text-sm">I would like a detailed quote for my project</label>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <input type="checkbox" id="consultation" name="consultation" class="mt-1">
+          <label for="consultation" class="text-sm">I would like a free color consultation</label>
+        </div>
+        
+        <button type="submit" class="w-full px-6 py-4 bg-primary text-white font-bold rounded-lg hover:bg-cta transition-colors shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
+          <i class="fas fa-paper-plane"></i> Submit Inquiry
+        </button>
+        
+        <div id="form-success" class="hidden py-3 px-4 bg-green-100 text-green-700 rounded-lg text-center font-semibold mt-4">
+          <i class="fas fa-check-circle mr-2"></i> Thank you! Your inquiry has been received. We'll contact you within 24 hours.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Support Section -->
+  <section class="bg-gradient-to-br from-primary/5 to-accent/5 py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4 text-primary relative inline-block">
+          <span class="gradient-underline">Need Immediate Assistance?</span>
+        </h2>
+        <p class="text-lg text-dark/80 max-w-2xl mx-auto">
+          Our support team is ready to help with your paint selection and order
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <!-- Support Option 1 -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center text-center card-3d">
+          <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <i class="fas fa-phone-alt text-primary text-2xl"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-primary mb-2">Call Us</h3>
+          <p class="mb-4">Speak directly with our sales team</p>
+          <a href="tel:+250788000000" class="text-primary font-semibold hover:text-cta transition-colors">+250 788 000 000</a>
+        </div>
+        
+        <!-- Support Option 2 -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center text-center card-3d">
+          <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <i class="fab fa-whatsapp text-primary text-2xl"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-primary mb-2">WhatsApp</h3>
+          <p class="mb-4">Chat with us for quick assistance</p>
+          <a href="https://wa.me/250788000000" class="text-primary font-semibold hover:text-cta transition-colors">Message Us</a>
+        </div>
+        
+        <!-- Support Option 3 -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center text-center card-3d">
+          <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <i class="fas fa-store text-primary text-2xl"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-primary mb-2">Visit Store</h3>
+          <p class="mb-4">See our products in person</p>
+          <a href="contact.html" class="text-primary font-semibold hover:text-cta transition-colors">Find Locations</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="container mx-auto py-16 px-4">
+    <div class="text-center mb-16">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4 text-primary relative inline-block">
+        <span class="gradient-underline">What Our Customers Say</span>
+      </h2>
+      <p class="text-lg text-dark/80 max-w-2xl mx-auto">
+        Hear from professionals and homeowners who transformed their spaces with AmekiColor
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <!-- Testimonial 1 -->
+      <div class="bg-white rounded-2xl shadow-xl p-6 relative card-3d">
+        <div class="absolute -top-4 -left-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white">
+          <i class="fas fa-quote-left"></i>
+        </div>
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full"></div>
+          <div>
+            <h4 class="font-bold">John R.</h4>
+            <p class="text-sm text-gray-600">Professional Painter, Kigali</p>
+          </div>
+        </div>
+        <p class="italic">"The ordering process was seamless and the paint quality exceeded my expectations. My clients love the vibrant colors!"</p>
+        <div class="flex mt-4">
+          <i class="fas fa-star text-yellow-400"></i>
+          <i class="fas fa-star text-yellow-400"></i>
+          <i class="fas fa-star text-yellow-400"></i>
+          <i class="fas fa-star text-yellow-400"></i>
+          <i class="fas fa-star text-yellow-400"></i>
+        </div>
+      </div>
+      
+      <!-- Testimonial 2 -->
+      <div class="bg-white rounded-2xl shadow-xl p-6 relative card-3d">
+        <div class="absolute -top-4 -left-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white">
+          <i class="fas fa-quote-left"></i>
+        </div>
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full"></div>
+          <div>
+            <h4 class="font-bold">Sarah K.</h4>
+            <p class="text-sm text-gray-600">Homeowner, Gisenyi</p>
+          </div>
+        </div>
+        <p class="italic">"The color consultation service helped me choose perfect shades for my home. The paint arrived right on schedule."</p>
+        <div class="flex mt-4">
+          <i class="fas fa-star text-yellow-400"></i>
+          <i class="fas fa-star text-yellow-400"></i>
+          <i class="fas fa-star text-yellow-400"></i>
+          <i class="fas fa-star text-yellow-400"></i>
+          <i class="fas fa-star text-yellow-400"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white py-16">
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div>
+        <div class="flex items-center gap-2 mb-6">
+          <div class="h-10 w-10 rounded-lg bg-white/10 flex items-center justify-center text-white">🎨</div>
+          <span class="font-heading font-bold text-xl">AmekiColor</span>
+        </div>
+        <p class="text-sm mb-6 text-white/80">
+          Rwanda's premier paint manufacturer, delivering vibrant colors and unmatched quality since 2010.
+        </p>
+        <p class="text-sm">&copy; 2024 AmekiColor. All rights reserved.</p>
+      </div>
+      
+      <div>
+        <h3 class="font-heading font-bold mb-4 text-lg">Contact</h3>
+        <ul class="text-sm space-y-3">
+          <li class="flex items-start gap-3">
+            <i class="fas fa-phone-alt mt-1"></i>
+            <div>
+              <div class="font-medium">Sales & Support</div>
+              <div>+250 788 000 000</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-envelope mt-1"></i>
+            <div>info@amekicolor.rw</div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-map-marker-alt mt-1"></i>
+            <div>KG 123 St, Kigali, Rwanda</div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-clock mt-1"></i>
+            <div>
+              <div>Mon-Fri: 8AM - 6PM</div>
+              <div>Sat: 9AM - 4PM</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="font-heading font-bold mb-4 text-lg">Quick Links</h3>
+        <ul class="text-sm space-y-3">
+          <li><a href="about.html" class="hover:text-accent transition-colors">About Us</a></li>
+          <li><a href="products.html" class="hover:text-accent transition-colors">Products</a></li>
+          <li><a href="visualizer.html" class="hover:text-accent transition-colors">Color Visualizer</a></li>
+          <li><a href="blog.html" class="hover:text-accent transition-colors">Blog</a></li>
+          <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+          <li><a href="careers.html" class="hover:text-accent transition-colors">Careers</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="font-heading font-bold mb-4 text-lg">Stay Inspired</h3>
+        <p class="text-sm mb-4 text-white/80">
+          Subscribe to our newsletter for color trends, DIY tips, and exclusive offers.
+        </p>
+        <form class="flex flex-col gap-2 mb-6" autocomplete="off" aria-label="Newsletter Subscription">
+          <label for="newsletter-email" class="sr-only">Email address</label>
+          <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Your email" class="rounded-lg px-4 py-3 text-dark focus:outline-none focus:ring-2 focus:ring-accent" required>
+          <button type="submit" class="bg-accent text-dark font-bold rounded-lg px-4 py-3 hover:bg-cta hover:text-white transition-colors flex items-center justify-center gap-2">
+            <i class="fas fa-paper-plane"></i> Subscribe
+          </button>
+        </form>
+        <div class="flex gap-4">
+          <a href="https://facebook.com/amekicolor" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/amekicolor" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://twitter.com/amekicolor" aria-label="Twitter" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://youtube.com/amekicolor" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/250788000000" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="fixed bottom-24 right-8 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center text-3xl focus:outline-none focus:ring-2 focus:ring-green-300">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script>
+    // Enhanced GSAP Animations
+    window.addEventListener('DOMContentLoaded', () => {
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Initialize particles
+      function initParticles() {
+        const container = document.getElementById('particles-container');
+        const colors = ['#005BAC', '#FFD700', '#E63946', '#3498DB', '#2ECC71'];
+        
+        for (let i = 0; i < 30; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          
+          // Random properties
+          const size = Math.random() * 30 + 10;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const left = Math.random() * 100;
+          const top = Math.random() * 100;
+          const duration = Math.random() * 20 + 10;
+          const delay = Math.random() * 5;
+          
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.backgroundColor = color;
+          particle.style.left = `${left}%`;
+          particle.style.top = `${top}%`;
+          
+          // Animate with GSAP
+          gsap.to(particle, {
+            y: '+=100',
+            x: '+=50',
+            rotation: 360,
+            duration: duration,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+            delay: delay
+          });
+          
+          container.appendChild(particle);
+        }
+      }
+      
+      // Mobile nav toggle with animation
+      document.getElementById('nav-toggle').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('open');
+      });
+      
+      // Sticky Navbar Shrink on Scroll
+      const navbar = document.getElementById('navbar');
+      gsap.to(navbar, {
+        scrollTrigger: {
+          trigger: 'body',
+          start: 'top -80',
+          end: 99999,
+          toggleClass: {targets: navbar, className: 'shadow-lg py-2'}
+        }
+      });
+      
+      // Back to top button
+      const backToTop = document.getElementById('back-to-top');
+      ScrollTrigger.create({
+        trigger: 'body',
+        start: 'top 20%',
+        onEnter: () => gsap.to(backToTop, { opacity: 1, pointerEvents: 'auto', duration: 0.3 }),
+        onLeaveBack: () => gsap.to(backToTop, { opacity: 0, pointerEvents: 'none', duration: 0.3 })
+      });
+      
+      backToTop.addEventListener('click', () => {
+        gsap.to(window, { scrollTo: 0, duration: 1, ease: 'power2.out' });
+      });
+      
+      // Form submission
+      const inquiryForm = document.getElementById('inquiry-form');
+      const formSuccess = document.getElementById('form-success');
+      
+      inquiryForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Simulate form submission
+        formSuccess.classList.remove('hidden');
+        
+        // Scroll to success message
+        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          formSuccess.classList.add('hidden');
+        }, 5000);
+      });
+      
+      // Quantity slider
+      const quantitySlider = document.getElementById('quantity');
+      const quantityValue = document.getElementById('quantity-value');
+      
+      quantitySlider.addEventListener('input', function() {
+        quantityValue.textContent = `${this.value} Liters`;
+      });
+      
+      // Initialize particles
+      initParticles();
+    });
+
+    // Back to Top Button Logic
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.remove('opacity-0', 'pointer-events-none');
+        backToTop.classList.add('opacity-100');
+      } else {
+        backToTop.classList.add('opacity-0', 'pointer-events-none');
+        backToTop.classList.remove('opacity-100');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

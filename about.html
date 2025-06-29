@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | AmekiColor - Rwanda's Paint Innovators</title>
+  <meta name="description" content="Discover the story behind AmekiColor, Rwanda's premier paint manufacturer. Learn about our mission, values, and journey to transform Rwanda's spaces with color.">
+  <meta name="keywords" content="About AmekiColor, Rwanda paint company, paint manufacturer, company values, mission, vision">
+  <meta property="og:title" content="About AmekiColor - Rwanda's Paint Experts">
+  <meta property="og:description" content="Discover AmekiColor's story, mission, vision, and values.">
+  <meta property="og:image" content="assets/images/og-image-placeholder.jpg">
+  <meta property="og:url" content="https://www.amekicolor.rw/about.html">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://www.amekicolor.rw/about.html">
+  <link rel="icon" href="assets/icons/favicon.ico">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#005BAC',
+            accent: '#FFD700',
+            cta: '#E63946',
+            dark: '#222222',
+            background: '#FFFFFF',
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'Poppins', 'sans-serif'],
+            body: ['Open Sans', 'Inter', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'spin-slow': 'spin 20s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        },
+      },
+    }
+  </script>
+  
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AmekiColor",
+    "url": "https://www.amekicolor.rw/",
+    "logo": "https://www.amekicolor.rw/assets/images/logo.png",
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+250 788 000 000",
+      "contactType": "customer service",
+      "areaServed": "RW"
+    }],
+    "sameAs": [
+      "https://www.facebook.com/amekicolor",
+      "https://www.instagram.com/amekicolor"
+    ]
+  }
+  </script>
+  
+  <style>
+    :root {
+      --color-primary: #005BAC;
+      --color-accent: #FFD700;
+      --color-cta: #E63946;
+      --color-dark: #222222;
+      --color-background: #FFFFFF;
+    }
+    
+    html { 
+      scroll-behavior: smooth; 
+      overflow-x: hidden;
+    }
+    
+    body { 
+      font-family: 'Open Sans', 'Inter', sans-serif; 
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-primary);
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #004a8c;
+    }
+    
+    /* Floating animation */
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+    
+    /* Paint stroke effect */
+    .paint-stroke {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .paint-stroke::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(0,91,172,0.2) 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      z-index: -1;
+    }
+    
+    /* Gradient Underline */
+    .gradient-underline {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .gradient-underline::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      border-radius: 2px;
+    }
+    
+    /* Particle Background */
+    .particles-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--color-primary);
+      opacity: 0.3;
+    }
+    
+    /* 3D Card Effect */
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease;
+    }
+    
+    .card-3d:hover {
+      transform: rotateY(10deg) rotateX(5deg);
+    }
+    
+    /* Mobile Menu Animation */
+    .mobile-menu {
+      max-height: 0;
+      transition: max-height 0.5s ease-out;
+      overflow: hidden;
+    }
+    
+    .mobile-menu.open {
+      max-height: 500px;
+      transition: max-height 0.5s ease-in;
+    }
+    
+    /* Timeline Style */
+    .timeline-item {
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: 50px;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      border: 4px solid white;
+      box-shadow: 0 0 0 2px var(--color-primary);
+    }
+    
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: 20px;
+      height: calc(100% + 30px);
+      width: 2px;
+      background: var(--color-primary);
+    }
+    
+    .timeline-item:last-child::after {
+      display: none;
+    }
+    
+    /* Value Card */
+    .value-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+      perspective: 1000px;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .value-icon {
+      transition: transform 0.5s ease;
+    }
+    
+    .value-card:hover .value-icon {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body class="bg-background text-dark min-h-screen flex flex-col overflow-x-hidden">
+  <!-- Navbar with animated paint drip -->
+  <header id="navbar" class="sticky top-0 z-50 bg-white shadow-lg transition-all duration-300">
+    <div class="absolute bottom-0 left-0 w-full h-2 overflow-hidden">
+      <div class="absolute bottom-0 left-0 w-full h-4 bg-gradient-to-r from-primary via-accent to-cta animate-pulse"></div>
+    </div>
+    
+    <nav class="container mx-auto flex items-center justify-between py-4 px-4 lg:px-0" aria-label="Main Navigation">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/images/logo.png" alt="AmekiColor Logo" class="h-12 w-auto floating" loading="lazy">
+        <span class="font-heading font-bold text-primary text-2xl gradient-underline">AmekiColor</span>
+      </a>
+      
+      <ul class="hidden md:flex gap-8 font-semibold" role="menubar">
+        <li><a href="index.html" class="hover:text-primary relative group" role="menuitem">
+          Home
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="about.html" class="hover:text-primary relative group" role="menuitem">
+          About Us
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="products.html" class="hover:text-primary relative group" role="menuitem">
+          Products
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="visualizer.html" class="hover:text-primary relative group" role="menuitem">
+          Color Visualizer
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="blog.html" class="hover:text-primary relative group" role="menuitem">
+          Blog
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="contact.html" class="hover:text-primary relative group" role="menuitem">
+          Contact
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+      </ul>
+      
+      <div class="flex items-center gap-4">
+        <a href="inquiry.html" class="px-6 py-2 bg-primary text-white rounded-full shadow-lg hover:bg-cta hover:scale-105 transition-all duration-300 font-bold focus:outline-none focus:ring-2 focus:ring-accent flex items-center gap-2" role="button">
+          <i class="fas fa-paint-roller"></i> Order Now
+        </a>
+        <button id="nav-toggle" class="md:hidden ml-4 text-2xl" aria-label="Open navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t">
+      <ul class="flex flex-col gap-4 p-4">
+        <li><a href="index.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Home</a></li>
+        <li><a href="about.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">About Us</a></li>
+        <li><a href="products.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Products</a></li>
+        <li><a href="visualizer.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Color Visualizer</a></li>
+        <li><a href="blog.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Blog</a></li>
+        <li><a href="contact.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Contact</a></li>
+        <li><a href="inquiry.html" class="block py-2 px-4 bg-primary text-white rounded-lg text-center font-semibold hover:bg-cta transition-colors">Order Now</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- About Hero Section -->
+  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <!-- Particle Background -->
+    <div id="particles-container" class="particles-container"></div>
+    
+    <!-- Floating Elements -->
+    <div class="absolute top-10 left-10 w-16 h-20 bg-cta rounded-lg floating" style="animation-delay: 0s;"></div>
+    <div class="absolute top-20 right-20 w-14 h-18 bg-accent rounded-lg floating" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-20 left-1/4 w-12 h-16 bg-primary rounded-lg floating" style="animation-delay: 2s;"></div>
+    
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+      <h1 class="font-heading text-4xl md:text-6xl lg:text-7xl font-extrabold text-primary mb-6">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cta to-accent">Our Story</span>
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-dark mb-10 max-w-2xl mx-auto">
+        Pioneering color innovation and quality in Rwanda's paint industry since 2010
+      </p>
+      
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#mission" class="px-8 py-4 bg-primary text-white font-bold rounded-full shadow-lg hover:bg-cta hover:scale-105 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-accent text-lg flex items-center justify-center gap-2">
+          <i class="fas fa-bullseye"></i> Our Mission
+        </a>
+        <a href="#journey" class="px-8 py-4 bg-white text-primary border-2 border-primary font-bold rounded-full shadow-lg hover:bg-primary/10 hover:scale-105 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-accent text-lg flex items-center justify-center gap-2">
+          <i class="fas fa-history"></i> Our Journey
+        </a>
+      </div>
+    </div>
+    
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div class="w-8 h-12 rounded-full border-2 border-primary flex justify-center p-1">
+        <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section id="mission" class="container mx-auto py-20 px-4 relative">
+    <div class="absolute -top-20 left-0 w-full h-20 bg-gradient-to-b from-transparent to-background z-10"></div>
+    
+    <div class="flex flex-col lg:flex-row gap-12 items-center">
+      <div class="lg:w-1/2">
+        <div class="relative rounded-3xl overflow-hidden">
+          <div class="w-full h-96 bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl relative">
+            <div class="absolute inset-0 bg-grid-white/[0.05]"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="text-center p-8 bg-white/90 backdrop-blur-sm rounded-2xl max-w-xs">
+                <i class="fas fa-bullseye text-4xl text-primary mb-4"></i>
+                <h3 class="font-heading text-2xl font-bold text-primary">Our Mission</h3>
+                <p class="text-dark mt-2">To deliver vibrant, durable, and eco-friendly paints that inspire creativity and beautify Rwanda.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="lg:w-1/2">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-primary">
+          <span class="gradient-underline">Why We Exist</span>
+        </h2>
+        
+        <div class="space-y-6">
+          <p class="text-lg text-dark/80">
+            Founded in 2010, AmekiColor has grown from a small local business to Rwanda's leading paint manufacturer. Our commitment to quality, sustainability, and customer satisfaction drives everything we do.
+          </p>
+          
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-accent mt-1"></i>
+              <span>Locally manufactured, globally inspired</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-accent mt-1"></i>
+              <span>Innovative paint solutions for every surface</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-accent mt-1"></i>
+              <span>Trusted by professionals and homeowners</span>
+            </li>
+          </ul>
+          
+          <a href="products.html" class="inline-block mt-4 px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-cta transition-colors text-lg">
+            Explore Our Products <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Vision Section -->
+    <div class="mt-20 bg-gradient-to-br from-accent/10 to-primary/10 rounded-3xl p-8">
+      <div class="flex flex-col md:flex-row gap-8 items-center">
+        <div class="md:w-2/3">
+          <h3 class="font-heading text-2xl font-bold text-primary mb-4">
+            <i class="fas fa-eye mr-2"></i> Our Vision
+          </h3>
+          <p class="text-xl text-dark">
+            To be the most trusted and innovative paint brand in East Africa, transforming spaces and inspiring creativity across the region.
+          </p>
+        </div>
+        <div class="md:w-1/3 flex justify-center">
+          <div class="w-48 h-48 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white text-5xl">
+            <i class="fas fa-mountain"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="py-20 bg-gradient-to-r from-primary/5 to-accent/5">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4 text-primary relative inline-block">
+          <span class="gradient-underline">Our Core Values</span>
+        </h2>
+        <p class="text-lg text-dark/80 max-w-2xl mx-auto">
+          The principles that guide everything we do at AmekiColor
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Value 1 -->
+        <div class="value-card bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center">
+          <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-leaf value-icon text-4xl text-primary"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-dark mb-3">Sustainability</h3>
+          <p class="text-dark/80">We prioritize eco-friendly products and responsible manufacturing to protect Rwanda's beautiful environment.</p>
+        </div>
+        
+        <!-- Value 2 -->
+        <div class="value-card bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center">
+          <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-handshake value-icon text-4xl text-primary"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-dark mb-3">Integrity</h3>
+          <p class="text-dark/80">Honesty, transparency, and ethical business practices form the foundation of our relationships.</p>
+        </div>
+        
+        <!-- Value 3 -->
+        <div class="value-card bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center">
+          <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-lightbulb value-icon text-4xl text-primary"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-dark mb-3">Innovation</h3>
+          <p class="text-dark/80">We constantly improve and introduce new solutions to meet Rwanda's unique climate challenges.</p>
+        </div>
+        
+        <!-- Value 4 -->
+        <div class="value-card bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center">
+          <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-heart value-icon text-4xl text-primary"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-dark mb-3">Passion</h3>
+          <p class="text-dark/80">Our team is driven by a genuine love for color and transforming spaces across Rwanda.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Journey Timeline -->
+  <section id="journey" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4 text-primary relative inline-block">
+          <span class="gradient-underline">Our Journey</span>
+        </h2>
+        <p class="text-lg text-dark/80 max-w-2xl mx-auto">
+          Milestones that shaped AmekiColor into Rwanda's paint leader
+        </p>
+      </div>
+      
+      <div class="max-w-3xl mx-auto relative">
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary/20 rounded-full z-0"></div>
+        
+        <!-- Timeline Item 1 -->
+        <div class="timeline-item">
+          <div class="absolute -left-5 top-0 bg-primary rounded-full w-10 h-10 flex items-center justify-center text-white font-bold text-lg">2010</div>
+          <div class="ml-8 bg-white p-6 rounded-2xl shadow-lg relative z-10">
+            <h3 class="font-heading font-bold text-xl text-dark mb-2">The Beginning</h3>
+            <p class="text-dark/80 mb-4">AmekiColor is established in Kigali with a small team of 5 passionate individuals.</p>
+            <div class="flex gap-2">
+              <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold">Founded</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold">Kigali</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Timeline Item 2 -->
+        <div class="timeline-item">
+          <div class="absolute -left-5 top-0 bg-accent rounded-full w-10 h-10 flex items-center justify-center text-dark font-bold text-lg">2013</div>
+          <div class="ml-8 bg-white p-6 rounded-2xl shadow-lg relative z-10">
+            <h3 class="font-heading font-bold text-xl text-dark mb-2">First Major Contract</h3>
+            <p class="text-dark/80 mb-4">Secured our first government contract to supply paint for public schools across Rwanda.</p>
+            <div class="flex gap-2">
+              <span class="px-3 py-1 bg-accent/10 text-amber-800 rounded-full text-xs font-bold">Expansion</span>
+              <span class="px-3 py-1 bg-accent/10 text-amber-800 rounded-full text-xs font-bold">Partnership</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Timeline Item 3 -->
+        <div class="timeline-item">
+          <div class="absolute -left-5 top-0 bg-primary rounded-full w-10 h-10 flex items-center justify-center text-white font-bold text-lg">2015</div>
+          <div class="ml-8 bg-white p-6 rounded-2xl shadow-lg relative z-10">
+            <h3 class="font-heading font-bold text-xl text-dark mb-2">Factory Expansion</h3>
+            <p class="text-dark/80 mb-4">Opened a new manufacturing facility in Kigali, tripling our production capacity.</p>
+            <div class="flex gap-2">
+              <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold">Growth</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold">Investment</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Timeline Item 4 -->
+        <div class="timeline-item">
+          <div class="absolute -left-5 top-0 bg-cta rounded-full w-10 h-10 flex items-center justify-center text-white font-bold text-lg">2018</div>
+          <div class="ml-8 bg-white p-6 rounded-2xl shadow-lg relative z-10">
+            <h3 class="font-heading font-bold text-xl text-dark mb-2">Eco-Friendly Line</h3>
+            <p class="text-dark/80 mb-4">Launched our eco-friendly paint range with zero-VOC formula for healthier homes.</p>
+            <div class="flex gap-2">
+              <span class="px-3 py-1 bg-cta/10 text-cta rounded-full text-xs font-bold">Innovation</span>
+              <span class="px-3 py-1 bg-cta/10 text-cta rounded-full text-xs font-bold">Sustainability</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Timeline Item 5 -->
+        <div class="timeline-item">
+          <div class="absolute -left-5 top-0 bg-accent rounded-full w-10 h-10 flex items-center justify-center text-dark font-bold text-lg">2020</div>
+          <div class="ml-8 bg-white p-6 rounded-2xl shadow-lg relative z-10">
+            <h3 class="font-heading font-bold text-xl text-dark mb-2">Innovation Award</h3>
+            <p class="text-dark/80 mb-4">Recognized as Rwanda's most innovative manufacturer at the National Business Awards.</p>
+            <div class="flex gap-2">
+              <span class="px-3 py-1 bg-accent/10 text-amber-800 rounded-full text-xs font-bold">Award</span>
+              <span class="px-3 py-1 bg-accent/10 text-amber-800 rounded-full text-xs font-bold">Recognition</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Timeline Item 6 -->
+        <div class="timeline-item">
+          <div class="absolute -left-5 top-0 bg-primary rounded-full w-10 h-10 flex items-center justify-center text-white font-bold text-lg">2024</div>
+          <div class="ml-8 bg-white p-6 rounded-2xl shadow-lg relative z-10">
+            <h3 class="font-heading font-bold text-xl text-dark mb-2">Regional Expansion</h3>
+            <p class="text-dark/80 mb-4">Expanded operations to Uganda and Tanzania, bringing Rwandan quality to East Africa.</p>
+            <div class="flex gap-2">
+              <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold">Growth</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold">Regional</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-20 bg-gradient-to-br from-primary/5 to-accent/5">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4 text-primary relative inline-block">
+          <span class="gradient-underline">Leadership Team</span>
+        </h2>
+        <p class="text-lg text-dark/80 max-w-2xl mx-auto">
+          The passionate individuals driving AmekiColor forward
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Team Member 1 -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div class="h-64 bg-gradient-to-br from-blue-400 to-blue-600 relative">
+            <div class="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm p-4 text-center">
+              <h3 class="font-heading font-bold text-xl">Alexis Uwimana</h3>
+              <p class="text-primary">Founder & CEO</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-dark/80">With 20+ years in chemical engineering, Alexis founded AmekiColor to bring world-class paint solutions to Rwanda.</p>
+          </div>
+        </div>
+        
+        <!-- Team Member 2 -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div class="h-64 bg-gradient-to-br from-amber-400 to-amber-600 relative">
+            <div class="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm p-4 text-center">
+              <h3 class="font-heading font-bold text-xl">Marie Claire Imanishimwe</h3>
+              <p class="text-primary">Head of Product Development</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-dark/80">Marie Claire leads our innovation team in creating paints optimized for Rwanda's unique climate conditions.</p>
+          </div>
+        </div>
+        
+        <!-- Team Member 3 -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div class="h-64 bg-gradient-to-br from-emerald-400 to-emerald-600 relative">
+            <div class="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm p-4 text-center">
+              <h3 class="font-heading font-bold text-xl">James Mugisha</h3>
+              <p class="text-primary">Operations Director</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-dark/80">James ensures our manufacturing processes meet the highest standards of quality and sustainability.</p>
+          </div>
+        </div>
+        
+        <!-- Team Member 4 -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div class="h-64 bg-gradient-to-br from-rose-400 to-rose-600 relative">
+            <div class="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm p-4 text-center">
+              <h3 class="font-heading font-bold text-xl">Grace Uwase</h3>
+              <p class="text-primary">Marketing Director</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-dark/80">Grace connects AmekiColor with communities across Rwanda through impactful campaigns and partnerships.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="container mx-auto py-20 px-4">
+    <div class="bg-gradient-to-br from-primary to-cta rounded-3xl p-1">
+      <div class="bg-white rounded-2xl p-8 md:p-12">
+        <div class="flex flex-col md:flex-row gap-12 items-center">
+          <div class="md:w-1/2">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-primary">
+              Why Choose AmekiColor?
+            </h2>
+            <ul class="space-y-4 text-lg">
+              <li class="flex items-start gap-4">
+                <i class="fas fa-check-circle text-accent text-2xl mt-1"></i>
+                <span>Locally manufactured for Rwandan conditions</span>
+              </li>
+              <li class="flex items-start gap-4">
+                <i class="fas fa-check-circle text-accent text-2xl mt-1"></i>
+                <span>Wide range of vibrant, lasting colors</span>
+              </li>
+              <li class="flex items-start gap-4">
+                <i class="fas fa-check-circle text-accent text-2xl mt-1"></i>
+                <span>Eco-friendly and safe for your family</span>
+              </li>
+              <li class="flex items-start gap-4">
+                <i class="fas fa-check-circle text-accent text-2xl mt-1"></i>
+                <span>Expert support and color advice</span>
+              </li>
+              <li class="flex items-start gap-4">
+                <i class="fas fa-check-circle text-accent text-2xl mt-1"></i>
+                <span>Trusted by thousands of customers</span>
+              </li>
+            </ul>
+          </div>
+          <div class="md:w-1/2 flex justify-center">
+            <div class="relative">
+              <div class="w-64 h-64 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white text-8xl">
+                <i class="fas fa-house"></i>
+              </div>
+              <div class="absolute -top-4 -right-4 w-32 h-32 bg-accent rounded-full flex items-center justify-center text-dark text-4xl">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-cta rounded-full flex items-center justify-center text-white text-4xl">
+                <i class="fas fa-heart"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-primary to-cta">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-white">
+        Ready to Transform Your Space?
+      </h2>
+      <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+        Experience the AmekiColor difference with premium paints made for Rwanda
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="products.html" class="px-8 py-4 bg-white text-primary font-bold rounded-full shadow-lg hover:bg-accent hover:text-white transition-all duration-300 text-lg">
+          Explore Products
+        </a>
+        <a href="contact.html" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full shadow-lg hover:bg-white/10 transition-all duration-300 text-lg">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white py-16">
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div>
+        <div class="flex items-center gap-2 mb-6">
+          <img src="assets/images/logo.png" alt="AmekiColor Logo" class="h-10" loading="lazy">
+          <span class="font-heading font-bold text-xl">AmekiColor</span>
+        </div>
+        <p class="text-sm mb-6 text-white/80">
+          Rwanda's premier paint manufacturer, delivering vibrant colors and unmatched quality since 2010.
+        </p>
+        <p class="text-sm">&copy; 2024 AmekiColor. All rights reserved.</p>
+      </div>
+      
+      <div>
+        <h3 class="font-heading font-bold mb-4 text-lg">Contact</h3>
+        <ul class="text-sm space-y-3">
+          <li class="flex items-start gap-3">
+            <i class="fas fa-phone-alt mt-1"></i>
+            <div>
+              <div class="font-medium">Sales & Support</div>
+              <div>+250 788 000 000</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-envelope mt-1"></i>
+            <div>info@amekicolor.rw</div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-map-marker-alt mt-1"></i>
+            <div>KG 123 St, Kigali, Rwanda</div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-clock mt-1"></i>
+            <div>
+              <div>Mon-Fri: 8AM - 6PM</div>
+              <div>Sat: 9AM - 4PM</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="font-heading font-bold mb-4 text-lg">Quick Links</h3>
+        <ul class="text-sm space-y-3">
+          <li><a href="about.html" class="hover:text-accent transition-colors">About Us</a></li>
+          <li><a href="products.html" class="hover:text-accent transition-colors">Product Catalog</a></li>
+          <li><a href="visualizer.html" class="hover:text-accent transition-colors">Color Visualizer</a></li>
+          <li><a href="blog.html" class="hover:text-accent transition-colors">Inspiration Blog</a></li>
+          <li><a href="contact.html" class="hover:text-accent transition-colors">Contact Us</a></li>
+          <li><a href="careers.html" class="hover:text-accent transition-colors">Careers</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="font-heading font-bold mb-4 text-lg">Stay Inspired</h3>
+        <p class="text-sm mb-4 text-white/80">
+          Subscribe to our newsletter for color trends, DIY tips, and exclusive offers.
+        </p>
+        <form class="flex flex-col gap-2 mb-6" autocomplete="off" aria-label="Newsletter Subscription">
+          <label for="newsletter-email" class="sr-only">Email address</label>
+          <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Your email" class="rounded-lg px-4 py-3 text-dark focus:outline-none focus:ring-2 focus:ring-accent" required>
+          <button type="submit" class="bg-accent text-dark font-bold rounded-lg px-4 py-3 hover:bg-cta hover:text-white transition-colors flex items-center justify-center gap-2">
+            <i class="fas fa-paper-plane"></i> Subscribe
+          </button>
+        </form>
+        <div class="flex gap-4">
+          <a href="https://facebook.com/amekicolor" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/amekicolor" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://twitter.com/amekicolor" aria-label="Twitter" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://youtube.com/amekicolor" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script>
+    // Enhanced GSAP Animations
+    window.addEventListener('DOMContentLoaded', () => {
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+      
+      // Initialize particles
+      function initParticles() {
+        const container = document.getElementById('particles-container');
+        const colors = ['#005BAC', '#FFD700', '#E63946', '#3498DB', '#2ECC71'];
+        
+        for (let i = 0; i < 30; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          
+          // Random properties
+          const size = Math.random() * 30 + 10;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const left = Math.random() * 100;
+          const top = Math.random() * 100;
+          const duration = Math.random() * 20 + 10;
+          const delay = Math.random() * 5;
+          
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.backgroundColor = color;
+          particle.style.left = `${left}%`;
+          particle.style.top = `${top}%`;
+          
+          // Animate with GSAP
+          gsap.to(particle, {
+            y: '+=100',
+            x: '+=50',
+            rotation: 360,
+            duration: duration,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+            delay: delay
+          });
+          
+          container.appendChild(particle);
+        }
+      }
+      
+      // Mobile nav toggle with animation
+      document.getElementById('nav-toggle').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('open');
+      });
+      
+      // Sticky Navbar Shrink on Scroll
+      const navbar = document.getElementById('navbar');
+      gsap.to(navbar, {
+        scrollTrigger: {
+          trigger: 'body',
+          start: 'top -80',
+          end: 99999,
+          toggleClass: {targets: navbar, className: 'shadow-lg py-2'}
+        }
+      });
+      
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            gsap.to(window, { 
+              scrollTo: {
+                y: target,
+                offsetY: 80
+              },
+              duration: 1, 
+              ease: 'power2.out' 
+            });
+          }
+        });
+      });
+      
+      // Back to top button
+      const backToTop = document.getElementById('back-to-top');
+      ScrollTrigger.create({
+        trigger: 'body',
+        start: 'top 20%',
+        onEnter: () => gsap.to(backToTop, { opacity: 1, pointerEvents: 'auto', duration: 0.3 }),
+        onLeaveBack: () => gsap.to(backToTop, { opacity: 0, pointerEvents: 'none', duration: 0.3 })
+      });
+      
+      backToTop.addEventListener('click', () => {
+        gsap.to(window, { scrollTo: 0, duration: 1, ease: 'power2.out' });
+      });
+      
+      // Timeline animations
+      gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+        gsap.from(item, {
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          delay: i * 0.2,
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 90%',
+            toggleActions: 'play none none none'
+          }
+        });
+      });
+      
+      // Value card animations
+      gsap.utils.toArray('.value-card').forEach((card, i) => {
+        gsap.from(card, {
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          delay: i * 0.1,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 90%',
+            toggleActions: 'play none none none'
+          }
+        });
+      });
+      
+      // Team section animations
+      gsap.utils.toArray('.bg-white.rounded-2xl.shadow-lg').forEach((card, i) => {
+        gsap.from(card, {
+          opacity: 0,
+          x: i % 2 === 0 ? -50 : 50,
+          duration: 0.8,
+          delay: i * 0.1,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          }
+        });
+      });
+      
+      // Initialize particles
+      initParticles();
+    });
+
+    // Back to Top Button Logic
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.remove('opacity-0', 'pointer-events-none');
+        backToTop.classList.add('opacity-100');
+      } else {
+        backToTop.classList.add('opacity-0', 'pointer-events-none');
+        backToTop.classList.remove('opacity-100');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

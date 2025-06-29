@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Color Visualizer | AmekiColor</title>
+  <meta name="description" content="Experience AmekiColor's advanced color visualizer tool. Preview paint colors on multiple room scenes, save your designs, and request samples.">
+  <meta name="keywords" content="color visualizer, paint color tool, AmekiColor, Rwanda, color picker, preview paint">
+  <meta property="og:title" content="AmekiColor Advanced Color Visualizer">
+  <meta property="og:description" content="Preview AmekiColor paint colors on multiple room scenes with our advanced visualizer.">
+  <meta property="og:image" content="assets/images/visualizer-og.jpg">
+  <meta property="og:url" content="https://www.amekicolor.rw/visualizer.html">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://www.amekicolor.rw/visualizer.html">
+  <link rel="icon" href="assets/icons/favicon.ico">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#005BAC',
+            accent: '#FFD700',
+            cta: '#E63946',
+            dark: '#222222',
+            background: '#FFFFFF',
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'Poppins', 'sans-serif'],
+            body: ['Open Sans', 'Inter', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        },
+      },
+    }
+  </script>
+  
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <style>
+    :root {
+      --color-primary: #005BAC;
+      --color-accent: #FFD700;
+      --color-cta: #E63946;
+      --color-dark: #222222;
+      --color-background: #FFFFFF;
+    }
+    
+    html { 
+      scroll-behavior: smooth; 
+      overflow-x: hidden;
+    }
+    
+    body { 
+      font-family: 'Open Sans', 'Inter', sans-serif; 
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-primary);
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #004a8c;
+    }
+    
+    /* Floating animation */
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+    
+    /* Paint stroke effect */
+    .paint-stroke {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .paint-stroke::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(0,91,172,0.2) 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      z-index: -1;
+    }
+    
+    /* Gradient Underline */
+    .gradient-underline {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .gradient-underline::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      border-radius: 2px;
+    }
+    
+    /* Visualizer Canvas */
+    .visualizer-canvas {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+      background: #f0f0f0;
+    }
+    
+    /* Color Swatches */
+    .color-swatch {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .color-swatch:hover {
+      transform: scale(1.2);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    /* Toolbar Button */
+    .toolbar-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .toolbar-btn.active {
+      background: var(--color-primary);
+      color: white;
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* Mobile Menu Animation */
+    .mobile-menu {
+      max-height: 0;
+      transition: max-height 0.5s ease-out;
+      overflow: hidden;
+    }
+    
+    .mobile-menu.open {
+      max-height: 500px;
+      transition: max-height 0.5s ease-in;
+    }
+    
+    /* Surface Highlight */
+    .surface-highlight {
+      transition: all 0.3s ease;
+      box-shadow: 0 0 0 3px transparent;
+    }
+    
+    .surface-highlight.active {
+      box-shadow: 0 0 0 3px var(--color-accent);
+    }
+  </style>
+</head>
+<body class="bg-background text-dark min-h-screen flex flex-col overflow-x-hidden">
+  <!-- Navbar with animated paint drip -->
+  <header id="navbar" class="sticky top-0 z-50 bg-white shadow-lg transition-all duration-300">
+    <div class="absolute bottom-0 left-0 w-full h-2 overflow-hidden">
+      <div class="absolute bottom-0 left-0 w-full h-4 bg-gradient-to-r from-primary via-accent to-cta animate-pulse"></div>
+    </div>
+    
+    <nav class="container mx-auto flex items-center justify-between py-4 px-4 lg:px-0" aria-label="Main Navigation">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/images/logo.png" alt="AmekiColor Logo" class="h-12 w-auto floating" loading="lazy">
+        <span class="font-heading font-bold text-primary text-2xl gradient-underline">AmekiColor</span>
+      </a>
+      
+      <ul class="hidden md:flex gap-8 font-semibold" role="menubar">
+        <li><a href="index.html" class="hover:text-primary relative group" role="menuitem">
+          Home
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="about.html" class="hover:text-primary relative group" role="menuitem">
+          About Us
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="products.html" class="hover:text-primary relative group" role="menuitem">
+          Products
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="visualizer.html" class="hover:text-primary relative group" role="menuitem">
+          Color Visualizer
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="blog.html" class="hover:text-primary relative group" role="menuitem">
+          Blog
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="contact.html" class="hover:text-primary relative group" role="menuitem">
+          Contact
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+      </ul>
+      
+      <div class="flex items-center gap-4">
+        <a href="inquiry.html" class="px-6 py-2 bg-primary text-white rounded-full shadow-lg hover:bg-cta hover:scale-105 transition-all duration-300 font-bold focus:outline-none focus:ring-2 focus:ring-accent flex items-center gap-2" role="button">
+          <i class="fas fa-paint-roller"></i> Order Now
+        </a>
+        <button id="nav-toggle" class="md:hidden ml-4 text-2xl" aria-label="Open navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t">
+      <ul class="flex flex-col gap-4 p-4">
+        <li><a href="index.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Home</a></li>
+        <li><a href="about.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">About Us</a></li>
+        <li><a href="products.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Products</a></li>
+        <li><a href="visualizer.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Color Visualizer</a></li>
+        <li><a href="blog.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Blog</a></li>
+        <li><a href="contact.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Contact</a></li>
+        <li><a href="inquiry.html" class="block py-2 px-4 bg-primary text-white rounded-lg text-center font-semibold hover:bg-cta transition-colors">Order Now</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <!-- Visualizer Hero -->
+  <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/10 to-white z-0"></div>
+    
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+      <h1 class="font-heading text-4xl md:text-6xl lg:text-7xl font-extrabold text-primary mb-6">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cta to-accent">Color Visualizer</span>
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-dark mb-10 max-w-2xl mx-auto">
+        Experiment with colors in realistic room settings. Visualize before you paint!
+      </p>
+      
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#visualizer-tool" class="px-8 py-4 bg-cta text-white font-bold rounded-full shadow-lg hover:bg-primary hover:scale-105 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-accent text-lg flex items-center justify-center gap-2">
+          <i class="fas fa-paint-brush"></i> Start Visualizing
+        </a>
+        <a href="products.html" class="px-8 py-4 bg-white text-primary border-2 border-primary font-bold rounded-full shadow-lg hover:bg-primary/10 hover:scale-105 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-accent text-lg flex items-center justify-center gap-2">
+          <i class="fas fa-palette"></i> Browse Colors
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visualizer Tool -->
+  <section id="visualizer-tool" class="container mx-auto py-16 px-4">
+    <div class="text-center mb-16">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4 text-primary relative inline-block">
+        <span class="gradient-underline">Interactive Color Visualizer</span>
+      </h2>
+      <p class="text-lg text-dark/80 max-w-2xl mx-auto">
+        Select a room scene, choose colors for different surfaces, and see your vision come to life
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Controls Panel -->
+      <div class="bg-white rounded-2xl shadow-xl p-6">
+        <div class="mb-8">
+          <h3 class="font-heading font-bold text-lg text-primary mb-4">Room Scenes</h3>
+          <div class="grid grid-cols-2 gap-4">
+            <button class="scene-btn toolbar-btn p-4 bg-primary/10 rounded-lg text-center border-2 border-transparent hover:border-primary transition-all" data-scene="living">
+              <i class="fas fa-couch text-2xl mb-2 text-primary"></i>
+              <div>Living Room</div>
+            </button>
+            <button class="scene-btn toolbar-btn p-4 bg-primary/10 rounded-lg text-center border-2 border-transparent hover:border-primary transition-all" data-scene="bedroom">
+              <i class="fas fa-bed text-2xl mb-2 text-primary"></i>
+              <div>Bedroom</div>
+            </button>
+            <button class="scene-btn toolbar-btn p-4 bg-primary/10 rounded-lg text-center border-2 border-transparent hover:border-primary transition-all" data-scene="kitchen">
+              <i class="fas fa-utensils text-2xl mb-2 text-primary"></i>
+              <div>Kitchen</div>
+            </button>
+            <button class="scene-btn toolbar-btn p-4 bg-primary/10 rounded-lg text-center border-2 border-transparent hover:border-primary transition-all" data-scene="exterior">
+              <i class="fas fa-home text-2xl mb-2 text-primary"></i>
+              <div>Exterior</div>
+            </button>
+          </div>
+        </div>
+        
+        <div class="mb-8">
+          <h3 class="font-heading font-bold text-lg text-primary mb-4">Color Surfaces</h3>
+          <div class="grid grid-cols-3 gap-4">
+            <button class="surface-btn toolbar-btn p-3 bg-primary/10 rounded-lg text-center border-2 border-transparent hover:border-primary transition-all" data-surface="walls">
+              <i class="fas fa-border-all text-xl mb-1 text-primary"></i>
+              <div class="text-sm">Walls</div>
+            </button>
+            <button class="surface-btn toolbar-btn p-3 bg-primary/10 rounded-lg text-center border-2 border-transparent hover:border-primary transition-all" data-surface="ceiling">
+              <i class="fas fa-grip-lines text-xl mb-1 text-primary"></i>
+              <div class="text-sm">Ceiling</div>
+            </button>
+            <button class="surface-btn toolbar-btn p-3 bg-primary/10 rounded-lg text-center border-2 border-transparent hover:border-primary transition-all" data-surface="trim">
+              <i class="fas fa-border-style text-xl mb-1 text-primary"></i>
+              <div class="text-sm">Trim</div>
+            </button>
+          </div>
+        </div>
+        
+        <div class="mb-8">
+          <h3 class="font-heading font-bold text-lg text-primary mb-4">Choose Color</h3>
+          <div class="flex items-center gap-4 mb-4">
+            <input type="color" id="color-picker" name="color-picker" value="#005BAC" class="w-16 h-16 rounded-full border-4 border-accent shadow-lg focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
+            <div>
+              <div class="font-mono text-sm">HEX: <span id="hex-code">#005BAC</span></div>
+              <div class="font-mono text-sm">RGB: <span id="rgb-code">0, 91, 172</span></div>
+            </div>
+          </div>
+          
+          <h4 class="font-bold text-dark mb-3">Popular Colors</h4>
+          <div class="grid grid-cols-5 gap-2">
+            <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #005BAC;" title="Primary Blue" data-color="#005BAC"></div>
+            <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #FFD700;" title="Accent Yellow" data-color="#FFD700"></div>
+            <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #E63946;" title="CTA Red" data-color="#E63946"></div>
+            <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #3498DB;" title="Sky Blue" data-color="#3498DB"></div>
+            <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #2ECC71;" title="Emerald Green" data-color="#2ECC71"></div>
+            <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #F1C40F;" title="Sunshine Yellow" data-color="#F1C40F"></div>
+            <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #9B59B6;" title="Royal Purple" data-color="#9B59B6"></div>
+            <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #34495E;" title="Midnight Blue" data-color="#34495E"></div>
+            <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #E74C3C;" title="Coral Red" data-color="#E74C3C"></div>
+            <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #16A085;" title="Forest Green" data-color="#16A085"></div>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-3">
+          <button id="save-design" class="px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-cta transition-colors flex items-center gap-2">
+            <i class="fas fa-save"></i> Save Design
+          </button>
+          <button id="reset-design" class="px-4 py-2 bg-accent text-dark rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors flex items-center gap-2">
+            <i class="fas fa-undo"></i> Reset
+          </button>
+          <button id="request-sample" class="px-4 py-2 bg-cta text-white rounded-lg font-semibold hover:bg-primary transition-colors flex items-center gap-2">
+            <i class="fas fa-paint-roller"></i> Request Sample
+          </button>
+        </div>
+      </div>
+      
+      <!-- Visualizer Canvas -->
+      <div class="lg:col-span-2">
+        <div class="visualizer-canvas w-full h-[500px] relative overflow-hidden">
+          <div id="room-container" class="w-full h-full flex items-center justify-center">
+            <!-- Living Room Scene (Default) -->
+            <div id="living-room" class="scene w-full h-full relative">
+              <!-- Room structure -->
+              <div class="absolute inset-0 bg-gray-100"></div>
+              <div class="absolute bottom-0 left-0 right-0 h-16 bg-gray-800"></div>
+              
+              <!-- Walls -->
+              <div id="walls" class="surface surface-highlight absolute top-0 left-0 right-0 h-3/4 bg-gradient-to-br from-blue-200 to-blue-400"></div>
+              
+              <!-- Ceiling -->
+              <div id="ceiling" class="surface surface-highlight absolute top-0 left-0 right-0 h-16 bg-gray-300"></div>
+              
+              <!-- Trim -->
+              <div id="trim" class="surface surface-highlight absolute bottom-16 left-0 right-0 h-4 bg-amber-700"></div>
+              
+              <!-- Furniture -->
+              <div class="absolute bottom-4 left-4 w-12 h-24 bg-amber-700 rounded"></div>
+              <div class="absolute bottom-4 right-4 w-16 h-24 bg-emerald-600 rounded"></div>
+              <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-yellow-300 rounded-full"></div>
+            </div>
+            
+            <!-- Other scenes are hidden by default -->
+            <div id="bedroom" class="scene hidden w-full h-full relative">
+              <!-- Bedroom scene structure -->
+            </div>
+            <div id="kitchen" class="scene hidden w-full h-full relative">
+              <!-- Kitchen scene structure -->
+            </div>
+            <div id="exterior" class="scene hidden w-full h-full relative">
+              <!-- Exterior scene structure -->
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-6 bg-white rounded-2xl shadow-xl p-6">
+          <h3 class="font-heading font-bold text-lg text-primary mb-4">Your Design</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="p-3 bg-primary/10 rounded-lg">
+              <div class="text-sm font-semibold">Walls</div>
+              <div class="flex items-center gap-2 mt-2">
+                <div class="w-6 h-6 rounded-full border border-gray-300" id="walls-color-preview" style="background: #005BAC;"></div>
+                <span class="text-xs" id="walls-color-code">#005BAC</span>
+              </div>
+            </div>
+            <div class="p-3 bg-primary/10 rounded-lg">
+              <div class="text-sm font-semibold">Ceiling</div>
+              <div class="flex items-center gap-2 mt-2">
+                <div class="w-6 h-6 rounded-full border border-gray-300" id="ceiling-color-preview" style="background: #cbd5e1;"></div>
+                <span class="text-xs" id="ceiling-color-code">#CBD5E1</span>
+              </div>
+            </div>
+            <div class="p-3 bg-primary/10 rounded-lg">
+              <div class="text-sm font-semibold">Trim</div>
+              <div class="flex items-center gap-2 mt-2">
+                <div class="w-6 h-6 rounded-full border border-gray-300" id="trim-color-preview" style="background: #b45309;"></div>
+                <span class="text-xs" id="trim-color-code">#B45309</span>
+              </div>
+            </div>
+            <div class="p-3 bg-primary/10 rounded-lg">
+              <div class="text-sm font-semibold">Scene</div>
+              <div class="mt-2 text-sm">Living Room</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Color Inspiration -->
+  <section class="py-20 bg-gradient-to-r from-primary/5 to-accent/5">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4 text-primary relative inline-block">
+          <span class="gradient-underline">Color Inspiration</span>
+        </h2>
+        <p class="text-lg text-dark/80 max-w-2xl mx-auto">
+          Explore popular color combinations curated by our design experts
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Palette 1 -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-r from-blue-400 to-blue-600 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="text-white text-center p-4">
+                <h3 class="font-heading text-xl font-bold">Coastal Breeze</h3>
+                <p class="text-sm">Calming blues and sandy neutrals</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex gap-1 mb-4">
+              <div class="h-12 flex-1" style="background: #3498DB;"></div>
+              <div class="h-12 flex-1" style="background: #2ECC71;"></div>
+              <div class="h-12 flex-1" style="background: #F1C40F;"></div>
+              <div class="h-12 flex-1" style="background: #E74C3C;"></div>
+            </div>
+            <button class="apply-palette w-full px-4 py-2 bg-primary/10 text-primary rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors" data-palette='{"walls": "#3498DB", "ceiling": "#F1C40F", "trim": "#2ECC71"}'>
+              Apply This Palette
+            </button>
+          </div>
+        </div>
+        
+        <!-- Palette 2 -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-r from-amber-500 to-amber-700 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="text-white text-center p-4">
+                <h3 class="font-heading text-xl font-bold">Sunset Glow</h3>
+                <p class="text-sm">Warm oranges and golden accents</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex gap-1 mb-4">
+              <div class="h-12 flex-1" style="background: #E67E22;"></div>
+              <div class="h-12 flex-1" style="background: #D35400;"></div>
+              <div class="h-12 flex-1" style="background: #F39C12;"></div>
+              <div class="h-12 flex-1" style="background: #F1C40F;"></div>
+            </div>
+            <button class="apply-palette w-full px-4 py-2 bg-primary/10 text-primary rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors" data-palette='{"walls": "#E67E22", "ceiling": "#F1C40F", "trim": "#D35400"}'>
+              Apply This Palette
+            </button>
+          </div>
+        </div>
+        
+        <!-- Palette 3 -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div class="h-48 bg-gradient-to-r from-green-400 to-green-600 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="text-white text-center p-4">
+                <h3 class="font-heading text-xl font-bold">Forest Retreat</h3>
+                <p class="text-sm">Earthy greens and natural wood tones</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex gap-1 mb-4">
+              <div class="h-12 flex-1" style="background: #27AE60;"></div>
+              <div class="h-12 flex-1" style="background: #16A085;"></div>
+              <div class="h-12 flex-1" style="background: #8B4513;"></div>
+              <div class="h-12 flex-1" style="background: #D35400;"></div>
+            </div>
+            <button class="apply-palette w-full px-4 py-2 bg-primary/10 text-primary rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors" data-palette='{"walls": "#27AE60", "ceiling": "#16A085", "trim": "#8B4513"}'>
+              Apply This Palette
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-primary to-cta">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-white">
+        Ready to Bring Your Vision to Life?
+      </h2>
+      <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+        Get expert color consultation and premium AmekiColor paints
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="inquiry.html" class="px-8 py-4 bg-white text-primary font-bold rounded-full shadow-lg hover:bg-accent hover:text-white transition-all duration-300 text-lg">
+          Request a Quote
+        </a>
+        <a href="contact.html" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full shadow-lg hover:bg-white/10 transition-all duration-300 text-lg">
+          Find a Store
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+ <!-- Footer -->
+ <footer class="bg-primary text-white py-16">
+  <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-2 mb-6">
+        <img src="assets/images/logo.png" alt="AmekiColor Logo" class="h-10" loading="lazy">
+        <span class="font-heading font-bold text-xl">AmekiColor</span>
+      </div>
+      <p class="text-sm mb-6 text-white/80">
+        Rwanda's premier paint manufacturer, delivering vibrant colors and unmatched quality since 2010.
+      </p>
+      <p class="text-sm">&copy; 2024 AmekiColor. All rights reserved.</p>
+    </div>
+    
+    <div>
+      <h3 class="font-heading font-bold mb-4 text-lg">Contact</h3>
+      <ul class="text-sm space-y-3">
+        <li class="flex items-start gap-3">
+          <i class="fas fa-phone-alt mt-1"></i>
+          <div>
+            <div class="font-medium">Sales & Support</div>
+            <div>+250 788 000 000</div>
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fas fa-envelope mt-1"></i>
+          <div>info@amekicolor.rw</div>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fas fa-map-marker-alt mt-1"></i>
+          <div>KG 123 St, Kigali, Rwanda</div>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fas fa-clock mt-1"></i>
+          <div>
+            <div>Mon-Fri: 8AM - 6PM</div>
+            <div>Sat: 9AM - 4PM</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+    <div>
+      <h3 class="font-heading font-bold mb-4 text-lg">Quick Links</h3>
+      <ul class="text-sm space-y-3">
+        <li><a href="about.html" class="hover:text-accent transition-colors">About Us</a></li>
+        <li><a href="products.html" class="hover:text-accent transition-colors">Product Catalog</a></li>
+        <li><a href="visualizer.html" class="hover:text-accent transition-colors">Color Visualizer</a></li>
+        <li><a href="blog.html" class="hover:text-accent transition-colors">Inspiration Blog</a></li>
+        <li><a href="contact.html" class="hover:text-accent transition-colors">Contact Us</a></li>
+        <li><a href="careers.html" class="hover:text-accent transition-colors">Careers</a></li>
+      </ul>
+    </div>
+    
+    <div>
+      <h3 class="font-heading font-bold mb-4 text-lg">Stay Inspired</h3>
+      <p class="text-sm mb-4 text-white/80">
+        Subscribe to our newsletter for color trends, DIY tips, and exclusive offers.
+      </p>
+      <form class="flex flex-col gap-2 mb-6" autocomplete="off" aria-label="Newsletter Subscription">
+        <label for="newsletter-email" class="sr-only">Email address</label>
+        <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Your email" class="rounded-lg px-4 py-3 text-dark focus:outline-none focus:ring-2 focus:ring-accent" required>
+        <button type="submit" class="bg-accent text-dark font-bold rounded-lg px-4 py-3 hover:bg-cta hover:text-white transition-colors flex items-center justify-center gap-2">
+          <i class="fas fa-paper-plane"></i> Subscribe
+        </button>
+      </form>
+      <div class="flex gap-4">
+        <a href="https://facebook.com/amekicolor" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com/amekicolor" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://twitter.com/amekicolor" aria-label="Twitter" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://youtube.com/amekicolor" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script>
+    // Enhanced GSAP Animations
+    window.addEventListener('DOMContentLoaded', () => {
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Mobile nav toggle with animation
+      document.getElementById('nav-toggle').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('open');
+      });
+      
+      // Sticky Navbar Shrink on Scroll
+      const navbar = document.getElementById('navbar');
+      gsap.to(navbar, {
+        scrollTrigger: {
+          trigger: 'body',
+          start: 'top -80',
+          end: 99999,
+          toggleClass: {targets: navbar, className: 'shadow-lg py-2'}
+        }
+      });
+      
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            gsap.to(window, { 
+              scrollTo: {
+                y: target,
+                offsetY: 80
+              },
+              duration: 1, 
+              ease: 'power2.out' 
+            });
+          }
+        });
+      });
+      
+      // Back to top button
+      const backToTop = document.getElementById('back-to-top');
+      ScrollTrigger.create({
+        trigger: 'body',
+        start: 'top 20%',
+        onEnter: () => gsap.to(backToTop, { opacity: 1, pointerEvents: 'auto', duration: 0.3 }),
+        onLeaveBack: () => gsap.to(backToTop, { opacity: 0, pointerEvents: 'none', duration: 0.3 })
+      });
+      
+      backToTop.addEventListener('click', () => {
+        gsap.to(window, { scrollTo: 0, duration: 1, ease: 'power2.out' });
+      });
+      
+      // Color Visualizer Logic
+      const colorPicker = document.getElementById('color-picker');
+      const hexCode = document.getElementById('hex-code');
+      const rgbCode = document.getElementById('rgb-code');
+      let currentSurface = 'walls';
+      
+      // Function to convert hex to RGB
+      function hexToRgb(hex) {
+        hex = hex.replace('#', '');
+        if (hex.length === 3) {
+          hex = hex.split('').map(x => x + x).join('');
+        }
+        const num = parseInt(hex, 16);
+        return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
+      }
+      
+      // Update color codes
+      function updateColorCodes(color) {
+        hexCode.textContent = color.toUpperCase();
+        const rgb = hexToRgb(color);
+        rgbCode.textContent = rgb.join(', ');
+      }
+      
+      // Apply color to surface
+      function applyColorToSurface(color) {
+        const surfaceElement = document.getElementById(currentSurface);
+        if (surfaceElement) {
+          gsap.to(surfaceElement, { backgroundColor: color, duration: 0.5 });
+          
+          // Update design preview
+          document.getElementById(`${currentSurface}-color-preview`).style.backgroundColor = color;
+          document.getElementById(`${currentSurface}-color-code`).textContent = color.toUpperCase();
+        }
+      }
+      
+      // Color picker event
+      colorPicker.addEventListener('input', function() {
+        const color = this.value;
+        updateColorCodes(color);
+        applyColorToSurface(color);
+      });
+      
+      // Surface selection
+      document.querySelectorAll('.surface-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const surface = this.dataset.surface;
+          
+          // Update active button
+          document.querySelectorAll('.surface-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Update active surface highlight
+          document.querySelectorAll('.surface').forEach(s => s.classList.remove('active'));
+          document.getElementById(surface).classList.add('active');
+          
+          currentSurface = surface;
+        });
+      });
+      
+      // Set default active surface
+      document.querySelector('.surface-btn[data-surface="walls"]').classList.add('active');
+      document.getElementById('walls').classList.add('active');
+      
+      // Scene selection
+      document.querySelectorAll('.scene-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const scene = this.dataset.scene;
+          
+          // Update active button
+          document.querySelectorAll('.scene-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Show selected scene
+          document.querySelectorAll('.scene').forEach(s => s.classList.add('hidden'));
+          document.getElementById(scene).classList.remove('hidden');
+        });
+      });
+      
+      // Set default active scene
+      document.querySelector('.scene-btn[data-scene="living"]').classList.add('active');
+      
+      // Color swatch selection
+      document.querySelectorAll('.color-swatch').forEach(swatch => {
+        swatch.addEventListener('click', function() {
+          const color = this.dataset.color;
+          colorPicker.value = color;
+          updateColorCodes(color);
+          applyColorToSurface(color);
+        });
+      });
+      
+      // Apply palette
+      document.querySelectorAll('.apply-palette').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const palette = JSON.parse(this.dataset.palette);
+          
+          // Apply each color
+          for (const [surface, color] of Object.entries(palette)) {
+            const surfaceElement = document.getElementById(surface);
+            if (surfaceElement) {
+              gsap.to(surfaceElement, { backgroundColor: color, duration: 0.5 });
+              
+              // Update design preview
+              document.getElementById(`${surface}-color-preview`).style.backgroundColor = color;
+              document.getElementById(`${surface}-color-code`).textContent = color.toUpperCase();
+            }
+          }
+          
+          // Show success message
+          const successMsg = document.createElement('div');
+          successMsg.textContent = 'Palette applied!';
+          successMsg.classList.add('fixed', 'top-20', 'right-4', 'bg-accent', 'text-dark', 'px-4', 'py-2', 'rounded-lg', 'font-bold', 'shadow-lg', 'z-50');
+          document.body.appendChild(successMsg);
+          
+          setTimeout(() => {
+            gsap.to(successMsg, {
+              opacity: 0,
+              y: -20,
+              duration: 0.5,
+              onComplete: () => successMsg.remove()
+            });
+          }, 2000);
+        });
+      });
+      
+      // Save design
+      document.getElementById('save-design').addEventListener('click', function() {
+        // Show success message
+        const successMsg = document.createElement('div');
+        successMsg.textContent = 'Design saved!';
+        successMsg.classList.add('fixed', 'top-20', 'right-4', 'bg-accent', 'text-dark', 'px-4', 'py-2', 'rounded-lg', 'font-bold', 'shadow-lg', 'z-50');
+        document.body.appendChild(successMsg);
+        
+        setTimeout(() => {
+          gsap.to(successMsg, {
+            opacity: 0,
+            y: -20,
+            duration: 0.5,
+            onComplete: () => successMsg.remove()
+          });
+        }, 2000);
+      });
+      
+      // Reset design
+      document.getElementById('reset-design').addEventListener('click', function() {
+        // Reset all surfaces to default colors
+        gsap.to('#walls', { backgroundColor: '#cbd5e1', duration: 0.5 });
+        gsap.to('#ceiling', { backgroundColor: '#f1f5f9', duration: 0.5 });
+        gsap.to('#trim', { backgroundColor: '#b45309', duration: 0.5 });
+        
+        // Reset color picker
+        colorPicker.value = '#005BAC';
+        updateColorCodes('#005BAC');
+        
+        // Update design preview
+        document.getElementById('walls-color-preview').style.backgroundColor = '#cbd5e1';
+        document.getElementById('walls-color-code').textContent = '#CBD5E1';
+        document.getElementById('ceiling-color-preview').style.backgroundColor = '#f1f5f9';
+        document.getElementById('ceiling-color-code').textContent = '#F1F5F9';
+        document.getElementById('trim-color-preview').style.backgroundColor = '#b45309';
+        document.getElementById('trim-color-code').textContent = '#B45309';
+      });
+    });
+  </script>
+  <script>
+    // Back to Top Button Logic
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.remove('opacity-0', 'pointer-events-none');
+        backToTop.classList.add('opacity-100');
+      } else {
+        backToTop.classList.add('opacity-0', 'pointer-events-none');
+        backToTop.classList.remove('opacity-100');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

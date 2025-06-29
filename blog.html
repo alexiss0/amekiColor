@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog & Inspiration | AmekiColor</title>
+  <meta name="description" content="Discover paint trends, DIY tips, and design inspiration from AmekiColor - Rwanda's premier paint manufacturer.">
+  <meta name="keywords" content="paint blog, color inspiration, DIY painting, Rwanda home design, AmekiColor">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#005BAC',
+            accent: '#FFD700',
+            cta: '#E63946',
+            dark: '#222222',
+            background: '#FFFFFF',
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'Poppins', 'sans-serif'],
+            body: ['Open Sans', 'Inter', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'spin-slow': 'spin 20s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        },
+      },
+    }
+  </script>
+  
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- SEO: Twitter Card, Open Graph, robots, manifest, preload fonts -->
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="AmekiColor">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AmekiColor Blog & News">
+  <meta name="twitter:description" content="Latest news, tips, and stories from AmekiColor.">
+  <meta name="twitter:image" content="assets/images/og-image-placeholder.jpg">
+  <meta name="twitter:site" content="@amekicolor">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap">
+  
+  <style>
+    :root {
+      --color-primary: #005BAC;
+      --color-accent: #FFD700;
+      --color-cta: '#E63946';
+      --color-dark: '#222222';
+      --color-background: '#FFFFFF';
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html { 
+      scroll-behavior: smooth; 
+      overflow-x: hidden;
+    }
+    
+    body { 
+      font-family: 'Open Sans', 'Inter', sans-serif; 
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+      color: var(--color-dark);
+      line-height: 1.6;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-primary);
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #004a8c;
+    }
+    
+    /* Floating animation */
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+    
+    /* Paint stroke effect */
+    .paint-stroke {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .paint-stroke::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(0,91,172,0.2) 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      z-index: -1;
+    }
+    
+    /* Blog Card Hover */
+    .blog-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+      perspective: 1000px;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .blog-card:hover .blog-image {
+      transform: scale(1.05);
+    }
+    
+    .blog-image {
+      transition: transform 0.5s ease;
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+    
+    /* Gradient Underline */
+    .gradient-underline {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .gradient-underline::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      border-radius: 2px;
+    }
+    
+    /* Category Tags */
+    .category-tag {
+      transition: all 0.3s ease;
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    
+    .category-tag:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* Mobile Menu Animation */
+    .mobile-menu {
+      max-height: 0;
+      transition: max-height 0.5s ease-out;
+      overflow: hidden;
+    }
+    
+    .mobile-menu.open {
+      max-height: 500px;
+      transition: max-height 0.5s ease-in;
+    }
+    
+    /* Featured Post */
+    .featured-post {
+      background: linear-gradient(135deg, rgba(0,91,172,0.1) 0%, rgba(255,215,0,0.1) 100%);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    
+    /* Particle Background */
+    .particles-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--color-primary);
+      opacity: 0.3;
+    }
+    
+    /* 3D Card Effect */
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease;
+    }
+    
+    .card-3d:hover {
+      transform: rotateY(10deg) rotateX(5deg);
+    }
+    
+    /* Search Highlight */
+    .highlight {
+      background-color: rgba(255, 215, 0, 0.4);
+      padding: 0 2px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="bg-background text-dark min-h-screen flex flex-col overflow-x-hidden">
+  <!-- Navbar with animated paint drip -->
+  <header id="navbar" class="sticky top-0 z-50 bg-white shadow-lg transition-all duration-300">
+    <div class="absolute bottom-0 left-0 w-full h-2 overflow-hidden">
+      <div class="absolute bottom-0 left-0 w-full h-4 bg-gradient-to-r from-primary via-accent to-cta animate-pulse"></div>
+    </div>
+    
+    <nav class="container mx-auto flex items-center justify-between py-4 px-4 lg:px-0" aria-label="Main Navigation">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="h-12 w-12 rounded-lg bg-primary flex items-center justify-center text-white floating">🎨</div>
+        <span class="font-heading font-bold text-primary text-2xl gradient-underline">AmekiColor</span>
+      </a>
+      
+      <ul class="hidden md:flex gap-8 font-semibold" role="menubar">
+        <li><a href="index.html" class="hover:text-primary relative group" role="menuitem">
+          Home
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="about.html" class="hover:text-primary relative group" role="menuitem">
+          About Us
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="products.html" class="hover:text-primary relative group" role="menuitem">
+          Products
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="visualizer.html" class="hover:text-primary relative group" role="menuitem">
+          Color Visualizer
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="blog.html" class="hover:text-primary relative group" role="menuitem">
+          Blog
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="contact.html" class="hover:text-primary relative group" role="menuitem">
+          Contact
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+      </ul>
+      
+      <div class="flex items-center gap-4">
+        <a href="inquiry.html" class="px-6 py-2 bg-primary text-white rounded-full shadow-lg hover:bg-cta hover:scale-105 transition-all duration-300 font-bold focus:outline-none focus:ring-2 focus:ring-accent flex items-center gap-2" role="button">
+          <i class="fas fa-paint-roller"></i> Order Now
+        </a>
+        <button id="nav-toggle" class="md:hidden ml-4 text-2xl" aria-label="Open navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t">
+      <ul class="flex flex-col gap-4 p-4">
+        <li><a href="index.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Home</a></li>
+        <li><a href="about.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">About Us</a></li>
+        <li><a href="products.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Products</a></li>
+        <li><a href="visualizer.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Color Visualizer</a></li>
+        <li><a href="blog.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Blog</a></li>
+        <li><a href="contact.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Contact</a></li>
+        <li><a href="inquiry.html" class="block py-2 px-4 bg-primary text-white rounded-lg text-center font-semibold hover:bg-cta transition-colors">Order Now</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Blog Hero Section -->
+  <section class="relative flex flex-col items-center justify-center py-20 overflow-hidden min-h-[70vh]">
+    <!-- Particle Background -->
+    <div id="particles-container" class="particles-container"></div>
+    
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+      <div class="inline-block mb-6">
+        <span class="px-4 py-1 bg-accent/20 text-accent rounded-full text-sm font-bold animate-pulse">
+          Inspiration & Knowledge
+        </span>
+      </div>
+      
+      <h1 class="font-heading text-4xl md:text-6xl lg:text-7xl font-extrabold text-primary mb-6 leading-tight">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cta to-accent">AmekiColor</span> 
+        Blog
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-dark mb-10 max-w-2xl mx-auto">
+        Discover paint trends, DIY tips, and design inspiration from Rwanda's premier paint manufacturer
+      </p>
+      
+      <div class="relative max-w-2xl mx-auto">
+        <input type="text" placeholder="Search articles..." class="w-full px-6 py-4 rounded-full border-0 shadow-lg focus:ring-2 focus:ring-primary focus:outline-none text-lg" id="search-input">
+        <button class="absolute right-3 top-3 bg-primary text-white rounded-full p-3 hover:bg-cta transition-colors" id="search-button">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Floating Paint Cans -->
+    <div class="absolute top-10 left-10 w-16 h-20 bg-cta rounded-lg floating" style="animation-delay: 0s;"></div>
+    <div class="absolute top-20 right-20 w-14 h-18 bg-accent rounded-lg floating" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-20 left-1/4 w-12 h-16 bg-primary rounded-lg floating" style="animation-delay: 2s;"></div>
+  </section>
+
+  <!-- Blog Content -->
+  <section class="container mx-auto py-10 px-4 relative">
+    <div class="flex flex-col lg:flex-row gap-10">
+      <!-- Main Content -->
+      <main class="lg:w-2/3">
+        <div class="flex flex-wrap justify-between items-center mb-10 gap-4">
+          <div class="flex flex-wrap gap-2">
+            <button class="category-btn px-4 py-2 bg-primary/10 text-primary rounded-full hover:bg-primary hover:text-white transition-colors font-semibold active" data-category="all">All Topics</button>
+            <button class="category-btn px-4 py-2 bg-primary/10 text-primary rounded-full hover:bg-primary hover:text-white transition-colors font-semibold" data-category="trends">Color Trends</button>
+            <button class="category-btn px-4 py-2 bg-primary/10 text-primary rounded-full hover:bg-primary hover:text-white transition-colors font-semibold" data-category="diy">DIY Tips</button>
+            <button class="category-btn px-4 py-2 bg-primary/10 text-primary rounded-full hover:bg-primary hover:text-white transition-colors font-semibold" data-category="eco">Eco-Friendly</button>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <span class="font-semibold">Sort by:</span>
+            <select class="px-4 py-2 rounded-full border border-gray-300 focus:ring-2 focus:ring-primary focus:outline-none" id="sort-select">
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="popular">Most Popular</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="blog-grid">
+          <!-- Blog cards will be rendered here -->
+        </div>
+        
+        <div class="mt-12 flex justify-center">
+          <div class="flex gap-2">
+            <button class="px-5 py-3 bg-primary text-white rounded-full shadow-lg hover:bg-cta transition-colors font-bold">1</button>
+            <button class="px-5 py-3 bg-white text-primary rounded-full shadow-lg hover:bg-primary/10 transition-colors font-bold">2</button>
+            <button class="px-5 py-3 bg-white text-primary rounded-full shadow-lg hover:bg-primary/10 transition-colors font-bold">3</button>
+            <button class="px-5 py-3 bg-white text-primary rounded-full shadow-lg hover:bg-primary/10 transition-colors font-bold">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </main>
+      
+      <!-- Sidebar -->
+      <aside class="lg:w-1/3">
+        <div class="bg-white rounded-2xl shadow-xl p-6 mb-8 card-3d">
+          <h3 class="font-heading text-xl font-bold text-primary mb-6 relative pb-3">
+            <span class="gradient-underline">Categories</span>
+          </h3>
+          <ul class="space-y-3">
+            <li class="flex justify-between py-3 border-b border-gray-100">
+              <a href="#" class="hover:text-primary transition-colors font-medium">Color Trends</a>
+              <span class="bg-primary text-white text-sm px-2 py-1 rounded-full">12</span>
+            </li>
+            <li class="flex justify-between py-3 border-b border-gray-100">
+              <a href="#" class="hover:text-primary transition-colors font-medium">DIY Tips</a>
+              <span class="bg-primary text-white text-sm px-2 py-1 rounded-full">18</span>
+            </li>
+            <li class="flex justify-between py-3 border-b border-gray-100">
+              <a href="#" class="hover:text-primary transition-colors font-medium">Eco-Friendly</a>
+              <span class="bg-primary text-white text-sm px-2 py-1 rounded-full">9</span>
+            </li>
+            <li class="flex justify-between py-3 border-b border-gray-100">
+              <a href="#" class="hover:text-primary transition-colors font-medium">Project Ideas</a>
+              <span class="bg-primary text-white text-sm px-2 py-1 rounded-full">15</span>
+            </li>
+            <li class="flex justify-between py-3">
+              <a href="#" class="hover:text-primary transition-colors font-medium">Company News</a>
+              <span class="bg-primary text-white text-sm px-2 py-1 rounded-full">7</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-xl p-6 mb-8 card-3d">
+          <h3 class="font-heading text-xl font-bold text-primary mb-6 relative pb-3">
+            <span class="gradient-underline">Popular Posts</span>
+          </h3>
+          <div class="space-y-5">
+            <div class="flex gap-4">
+              <div class="w-20 h-20 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex-shrink-0"></div>
+              <div>
+                <h4 class="font-semibold hover:text-primary transition-colors cursor-pointer">How to Choose Paint Colors for Your Home</h4>
+                <p class="text-sm text-gray-600 mt-1">April 5, 2024</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="w-20 h-20 rounded-xl bg-gradient-to-br from-green-400 to-green-600 flex-shrink-0"></div>
+              <div>
+                <h4 class="font-semibold hover:text-primary transition-colors cursor-pointer">The Ultimate Guide to Eco-Friendly Painting</h4>
+                <p class="text-sm text-gray-600 mt-1">March 18, 2024</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="w-20 h-20 rounded-xl bg-gradient-to-br from-red-400 to-red-600 flex-shrink-0"></div>
+              <div>
+                <h4 class="font-semibold hover:text-primary transition-colors cursor-pointer">5 Common Painting Mistakes and How to Avoid Them</h4>
+                <p class="text-sm text-gray-600 mt-1">February 28, 2024</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-gradient-to-br from-primary to-cta rounded-2xl shadow-xl p-6 text-white card-3d">
+          <h3 class="font-heading text-xl font-bold text-white mb-4">Stay Inspired</h3>
+          <p class="mb-5 opacity-90">Subscribe to our newsletter for the latest color trends, DIY tips, and exclusive offers.</p>
+          <form class="space-y-3">
+            <input type="email" placeholder="Your email" class="w-full px-4 py-3 rounded-lg border-0 focus:outline-none text-gray-800">
+            <button class="w-full px-4 py-3 bg-accent text-gray-900 font-bold rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2">
+              <i class="fas fa-paper-plane"></i> Subscribe
+            </button>
+          </form>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white py-16">
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div>
+        <div class="flex items-center gap-2 mb-6">
+          <div class="h-10 w-10 rounded-lg bg-white/10 flex items-center justify-center text-white">🎨</div>
+          <span class="font-heading font-bold text-xl">AmekiColor</span>
+        </div>
+        <p class="text-sm mb-6 text-white/80">
+          Rwanda's premier paint manufacturer, delivering vibrant colors and unmatched quality since 2010.
+        </p>
+        <p class="text-sm">&copy; 2024 AmekiColor. All rights reserved.</p>
+      </div>
+      
+      <div>
+        <h3 class="font-heading font-bold mb-4 text-lg">Contact</h3>
+        <ul class="text-sm space-y-3">
+          <li class="flex items-start gap-3">
+            <i class="fas fa-phone-alt mt-1"></i>
+            <div>
+              <div class="font-medium">Sales & Support</div>
+              <div>+250 788 000 000</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-envelope mt-1"></i>
+            <div>info@amekicolor.rw</div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-map-marker-alt mt-1"></i>
+            <div>KG 123 St, Kigali, Rwanda</div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-clock mt-1"></i>
+            <div>
+              <div>Mon-Fri: 8AM - 6PM</div>
+              <div>Sat: 9AM - 4PM</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="font-heading font-bold mb-4 text-lg">Quick Links</h3>
+        <ul class="text-sm space-y-3">
+          <li><a href="about.html" class="hover:text-accent transition-colors">About Us</a></li>
+          <li><a href="products.html" class="hover:text-accent transition-colors">Products</a></li>
+          <li><a href="visualizer.html" class="hover:text-accent transition-colors">Color Visualizer</a></li>
+          <li><a href="blog.html" class="hover:text-accent transition-colors">Blog</a></li>
+          <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+          <li><a href="careers.html" class="hover:text-accent transition-colors">Careers</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="font-heading font-bold mb-4 text-lg">Stay Inspired</h3>
+        <p class="text-sm mb-4 text-white/80">
+          Subscribe to our newsletter for color trends, DIY tips, and exclusive offers.
+        </p>
+        <form class="flex flex-col gap-2 mb-6" autocomplete="off" aria-label="Newsletter Subscription">
+          <label for="newsletter-email" class="sr-only">Email address</label>
+          <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Your email" class="rounded-lg px-4 py-3 text-dark focus:outline-none focus:ring-2 focus:ring-accent" required>
+          <button type="submit" class="bg-accent text-dark font-bold rounded-lg px-4 py-3 hover:bg-cta hover:text-white transition-colors flex items-center justify-center gap-2">
+            <i class="fas fa-paper-plane"></i> Subscribe
+          </button>
+        </form>
+        <div class="flex gap-4">
+          <a href="https://facebook.com/amekicolor" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/amekicolor" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://twitter.com/amekicolor" aria-label="Twitter" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://youtube.com/amekicolor" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script>
+    // Enhanced GSAP Animations
+    window.addEventListener('DOMContentLoaded', () => {
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Initialize particles
+      function initParticles() {
+        const container = document.getElementById('particles-container');
+        const colors = ['#005BAC', '#FFD700', '#E63946', '#3498DB', '#2ECC71'];
+        
+        for (let i = 0; i < 30; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          
+          // Random properties
+          const size = Math.random() * 30 + 10;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const left = Math.random() * 100;
+          const top = Math.random() * 100;
+          const duration = Math.random() * 20 + 10;
+          const delay = Math.random() * 5;
+          
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.backgroundColor = color;
+          particle.style.left = `${left}%`;
+          particle.style.top = `${top}%`;
+          
+          // Animate with GSAP
+          gsap.to(particle, {
+            y: '+=100',
+            x: '+=50',
+            rotation: 360,
+            duration: duration,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+            delay: delay
+          });
+          
+          container.appendChild(particle);
+        }
+      }
+      
+      // Mobile nav toggle with animation
+      document.getElementById('nav-toggle').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('open');
+      });
+      
+      // Sticky Navbar Shrink on Scroll
+      const navbar = document.getElementById('navbar');
+      gsap.to(navbar, {
+        scrollTrigger: {
+          trigger: 'body',
+          start: 'top -80',
+          end: 99999,
+          toggleClass: {targets: navbar, className: 'shadow-lg py-2'}
+        }
+      });
+      
+      // Back to top button
+      const backToTop = document.getElementById('back-to-top');
+      ScrollTrigger.create({
+        trigger: 'body',
+        start: 'top 20%',
+        onEnter: () => gsap.to(backToTop, { opacity: 1, pointerEvents: 'auto', duration: 0.3 }),
+        onLeaveBack: () => gsap.to(backToTop, { opacity: 0, pointerEvents: 'none', duration: 0.3 })
+      });
+      
+      backToTop.addEventListener('click', () => {
+        gsap.to(window, { scrollTo: 0, duration: 1, ease: 'power2.out' });
+      });
+      
+      // Blog card animations
+      gsap.utils.toArray('.blog-card').forEach((card, i) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 90%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          delay: i * 0.1,
+          ease: 'back.out(1.7)'
+        });
+      });
+      
+      // Initialize particles
+      initParticles();
+      
+      // Blog data
+      const blogPosts = [
+        {
+          id: 1,
+          title: "Top 5 Color Trends Transforming Rwandan Homes in 2024",
+          excerpt: "Discover the colors that are redefining Rwandan interior design this year. From earthy tones to vibrant accents, see what's trending in Kigali and beyond.",
+          date: "May 15, 2024",
+          categories: ["trends", "tips"],
+          color: "linear-gradient(135deg, #3498db, #2980b9)",
+          popularity: 95
+        },
+        {
+          id: 2,
+          title: "Eco-Friendly Paints: What You Need to Know",
+          excerpt: "Learn about the benefits of low-VOC paints and how AmekiColor is leading Rwanda's sustainable paint revolution.",
+          date: "April 28, 2024",
+          categories: ["eco", "tips"],
+          color: "linear-gradient(135deg, #2ecc71, #27ae60)",
+          popularity: 87
+        },
+        {
+          id: 3,
+          title: "How to Paint Like a Pro: 10 Essential Tips",
+          excerpt: "Transform your painting projects with these professional techniques that deliver flawless results every time.",
+          date: "April 15, 2024",
+          categories: ["diy", "how-to"],
+          color: "linear-gradient(135deg, #e67e22, #d35400)",
+          popularity: 92
+        },
+        {
+          id: 4,
+          title: "Choosing Colors for Small Spaces: Expert Advice",
+          excerpt: "Make your compact spaces feel larger and brighter with our expert color selection strategies.",
+          date: "April 2, 2024",
+          categories: ["trends", "inspiration"],
+          color: "linear-gradient(135deg, #9b59b6, #8e44ad)",
+          popularity: 78
+        },
+        {
+          id: 5,
+          title: "Transform Your Outdoor Space with These Painting Ideas",
+          excerpt: "Revitalize your patio, garden walls, and exterior spaces with creative painting projects perfect for Rwanda's climate.",
+          date: "March 20, 2024",
+          categories: ["projects", "how-to"],
+          color: "linear-gradient(135deg, #e74c3c, #c0392b)",
+          popularity: 84
+        },
+        {
+          id: 6,
+          title: "AmekiColor Wins Rwanda Sustainability Award 2024",
+          excerpt: "We're proud to announce our recognition for sustainable manufacturing practices and eco-friendly product innovation.",
+          date: "March 8, 2024",
+          categories: ["news", "eco"],
+          color: "linear-gradient(135deg, #34495e, #2c3e50)",
+          popularity: 91
+        }
+      ];
+      
+      // Render blog posts
+      const blogGrid = document.getElementById('blog-grid');
+      
+      blogPosts.forEach(post => {
+        const categoriesHTML = post.categories.map(cat => 
+          `<span class="category-tag px-3 py-1 text-xs rounded-full" style="background: ${getCategoryColor(cat)}">${getCategoryName(cat)}</span>`
+        ).join('');
+        
+        const blogCard = document.createElement('article');
+        blogCard.className = 'blog-card bg-white rounded-2xl overflow-hidden shadow-lg';
+        blogCard.innerHTML = `
+          <div class="h-48" style="background: ${post.color};"></div>
+          <div class="p-6">
+            <div class="flex flex-wrap gap-2 mb-4">
+              ${categoriesHTML}
+            </div>
+            <h3 class="font-heading text-xl font-bold text-primary mb-3">${post.title}</h3>
+            <p class="text-gray-600 mb-4">${post.excerpt}</p>
+            <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+              <span class="text-sm text-gray-500">${post.date}</span>
+              <a href="#" class="text-primary font-semibold hover:text-cta transition-colors flex items-center gap-2">
+                Read More <i class="fas fa-arrow-right text-sm"></i>
+              </a>
+            </div>
+          </div>
+        `;
+        
+        blogGrid.appendChild(blogCard);
+      });
+      
+      // Helper functions
+      function getCategoryName(category) {
+        const names = {
+          'trends': 'Color Trends',
+          'diy': 'DIY Tips',
+          'eco': 'Eco-Friendly',
+          'projects': 'Project Ideas',
+          'news': 'Company News',
+          'tips': 'Tips',
+          'how-to': 'How-To',
+          'inspiration': 'Inspiration',
+          'maintenance': 'Maintenance'
+        };
+        return names[category] || category;
+      }
+      
+      function getCategoryColor(category) {
+        const colors = {
+          'trends': 'rgba(52, 152, 219, 0.1)',
+          'diy': 'rgba(230, 126, 34, 0.1)',
+          'eco': 'rgba(46, 204, 113, 0.1)',
+          'projects': 'rgba(231, 76, 60, 0.1)',
+          'news': 'rgba(52, 73, 94, 0.1)',
+          'tips': 'rgba(241, 196, 15, 0.1)',
+          'how-to': 'rgba(155, 89, 182, 0.1)',
+          'inspiration': 'rgba(26, 188, 156, 0.1)',
+          'maintenance': 'rgba(149, 165, 166, 0.1)'
+        };
+        return colors[category] || 'rgba(0, 91, 172, 0.1)';
+      }
+    });
+
+    // Back to Top Button Logic
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.remove('opacity-0', 'pointer-events-none');
+        backToTop.classList.add('opacity-100');
+      } else {
+        backToTop.classList.add('opacity-0', 'pointer-events-none');
+        backToTop.classList.remove('opacity-100');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

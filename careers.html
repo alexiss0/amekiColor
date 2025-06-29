@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers | AmekiColor</title>
+  <meta name="description" content="Join the AmekiColor team! Explore career opportunities and help us color Rwanda.">
+  <meta property="og:title" content="Careers at AmekiColor">
+  <meta property="og:description" content="Join the AmekiColor team! Explore career opportunities and help us color Rwanda.">
+  <meta property="og:image" content="assets/images/og-image-placeholder.jpg">
+  <meta property="og:url" content="https://www.amekicolor.rw/careers.html">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://www.amekicolor.rw/careers.html">
+  <link rel="icon" href="assets/icons/favicon.ico">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#005BAC',
+            accent: '#FFD700',
+            cta: '#E63946',
+            dark: '#222222',
+            background: '#FFFFFF',
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'Poppins', 'sans-serif'],
+            body: ['Open Sans', 'Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Open Sans', 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-dark min-h-screen flex flex-col">
+  <!-- Navbar (reuse from index.html) -->
+  <header id="navbar" class="sticky top-0 z-50 bg-white shadow transition-all">
+    <nav class="container mx-auto flex items-center justify-between py-4 px-4 lg:px-0" aria-label="Main Navigation">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/images/logo.png" alt="AmekiColor Logo" class="h-10 w-auto" loading="lazy">
+        <span class="font-heading font-bold text-primary text-xl">AmekiColor</span>
+      </a>
+      <ul class="hidden md:flex gap-8 font-semibold" role="menubar">
+        <li><a href="index.html" class="hover:text-primary" role="menuitem">Home</a></li>
+        <li><a href="about.html" class="hover:text-primary" role="menuitem">About Us</a></li>
+        <li><a href="products.html" class="hover:text-primary" role="menuitem">Products</a></li>
+        <li><a href="visualizer.html" class="hover:text-primary" role="menuitem">Color Visualizer</a></li>
+        <li><a href="blog.html" class="hover:text-primary" role="menuitem">Blog</a></li>
+        <li><a href="contact.html" class="hover:text-primary" role="menuitem">Contact</a></li>
+      </ul>
+      <a href="inquiry.html" class="ml-4 px-4 py-2 bg-primary text-white rounded-lg shadow hover:bg-cta transition-colors font-bold focus:outline-none focus:ring-2 focus:ring-accent" role="button">Order Now</a>
+      <button id="nav-toggle" class="md:hidden ml-4 text-2xl" aria-label="Open navigation menu"><i class="fas fa-bars"></i></button>
+    </nav>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+      <ul class="flex flex-col gap-4 p-4">
+        <li><a href="index.html" class="hover:text-primary">Home</a></li>
+        <li><a href="about.html" class="hover:text-primary">About Us</a></li>
+        <li><a href="products.html" class="hover:text-primary">Products</a></li>
+        <li><a href="visualizer.html" class="hover:text-primary">Color Visualizer</a></li>
+        <li><a href="blog.html" class="hover:text-primary">Blog</a></li>
+        <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
+        <li><a href="inquiry.html" class="hover:text-primary">Order Now</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Careers Hero -->
+  <section class="bg-gradient-to-br from-primary via-accent to-white py-16 text-center">
+    <h1 class="font-heading text-4xl md:text-5xl font-extrabold text-primary mb-4">Careers at AmekiColor</h1>
+    <p class="text-lg md:text-xl text-dark max-w-2xl mx-auto">Join our team and help us color Rwanda! We're always looking for passionate, creative, and driven people.</p>
+  </section>
+
+  <!-- Job Listings Placeholder -->
+  <section class="container mx-auto py-16 px-4 text-center">
+    <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
+      <h2 class="font-heading text-2xl font-bold text-primary mb-4">Current Openings</h2>
+      <p class="text-dark/80 mb-6">We currently have no open positions. Please check back soon or send your CV to <a href="mailto:careers@amekicolor.rw" class="text-primary underline">careers@amekicolor.rw</a>.</p>
+      <!-- Add job listings here in the future -->
+    </div>
+  </section>
+
+  <!-- Footer (reuse from index.html) -->
+  <footer class="bg-primary text-white py-10 mt-auto">
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <img src="assets/images/logo.png" alt="AmekiColor Logo" class="h-10 mb-4" loading="lazy">
+        <p class="text-sm">&copy; 2024 AmekiColor. All rights reserved.</p>
+      </div>
+      <div>
+        <h3 class="font-heading font-bold mb-2">Contact</h3>
+        <ul class="text-sm">
+          <li><i class="fas fa-phone-alt mr-2"></i>+250 788 000 000</li>
+          <li><i class="fas fa-envelope mr-2"></i>info@amekicolor.rw</li>
+          <li><i class="fas fa-map-marker-alt mr-2"></i>Kigali, Rwanda</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-heading font-bold mb-2">Quick Links</h3>
+        <ul class="text-sm space-y-1">
+          <li><a href="about.html" class="hover:underline">About Us</a></li>
+          <li><a href="products.html" class="hover:underline">Products</a></li>
+          <li><a href="visualizer.html" class="hover:underline">Color Visualizer</a></li>
+          <li><a href="blog.html" class="hover:underline">Blog</a></li>
+          <li><a href="contact.html" class="hover:underline">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-heading font-bold mb-2">Newsletter</h3>
+        <form class="flex flex-col gap-2" autocomplete="off" aria-label="Newsletter Subscription">
+          <label for="newsletter-email" class="sr-only">Email address</label>
+          <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Your email" class="rounded px-3 py-2 text-dark focus:outline-none focus:ring-2 focus:ring-accent" required>
+          <button type="submit" class="bg-accent text-dark font-bold rounded px-3 py-2 hover:bg-cta hover:text-white transition-colors">Subscribe</button>
+        </form>
+        <div class="flex gap-4 mt-4">
+          <a href="https://facebook.com/amekicolor" aria-label="Facebook" class="hover:text-accent"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/amekicolor" aria-label="Instagram" class="hover:text-accent"><i class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com/amekicolor" aria-label="Twitter" class="hover:text-accent"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <script>
+    // Mobile nav toggle
+    document.getElementById('nav-toggle').addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    // Back to Top Button Logic
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.remove('opacity-0', 'pointer-events-none');
+        backToTop.classList.add('opacity-100');
+      } else {
+        backToTop.classList.add('opacity-0', 'pointer-events-none');
+        backToTop.classList.remove('opacity-100');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html> 

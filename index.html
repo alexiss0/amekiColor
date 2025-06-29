@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AmekiColor - Premium Paint Solutions for Rwanda</title>
+  <meta name="description" content="Rwanda's premier paint manufacturer offering vibrant colors, innovative products, and professional service for all surfaces.">
+  <meta name="keywords" content="Rwanda paint, AmekiColor, wall paint, roof paint, wood coatings, metallic paints, buy paint Rwanda">
+  <meta property="og:title" content="AmekiColor - Rwandan Paints for Every Surface">
+  <meta property="og:description" content="Discover AmekiColor's vibrant, high-quality paints for every project in Rwanda.">
+  <meta property="og:image" content="assets/images/og-image-placeholder.jpg">
+  <meta property="og:url" content="https://www.amekicolor.rw/">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="AmekiColor">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AmekiColor - Rwandan Paints for Every Surface">
+  <meta name="twitter:description" content="Discover AmekiColor's vibrant, high-quality paints for every project in Rwanda.">
+  <meta name="twitter:image" content="assets/images/og-image-placeholder.jpg">
+  <meta name="twitter:site" content="@amekicolor">
+  <link rel="canonical" href="https://www.amekicolor.rw/">
+  <link rel="icon" href="assets/icons/favicon.ico">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#005BAC',
+            accent: '#FFD700',
+            cta: '#E63946',
+            dark: '#222222',
+            background: '#FFFFFF',
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'Poppins', 'sans-serif'],
+            body: ['Open Sans', 'Inter', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'spin-slow': 'spin 20s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        },
+      },
+    }
+  </script>
+  
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AmekiColor",
+    "url": "https://www.amekicolor.rw/",
+    "logo": "https://www.amekicolor.rw/assets/images/logo.png",
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+250 788 000 000",
+      "contactType": "customer service",
+      "areaServed": "RW"
+    }],
+    "sameAs": [
+      "https://www.facebook.com/amekicolor",
+      "https://www.instagram.com/amekicolor",
+      "https://twitter.com/amekicolor",
+      "https://youtube.com/amekicolor",
+      "https://wa.me/250788000000"
+    ]
+  }
+  </script>
+  
+  <style>
+    :root {
+      --color-primary: #005BAC;
+      --color-accent: #FFD700;
+      --color-cta: #E63946;
+      --color-dark: #222222;
+      --color-background: #FFFFFF;
+    }
+    
+    html { 
+      scroll-behavior: smooth; 
+      overflow-x: hidden;
+    }
+    
+    body { 
+      font-family: 'Open Sans', 'Inter', sans-serif; 
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-primary);
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #004a8c;
+    }
+    
+    /* Floating animation */
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+    
+    /* Paint stroke effect */
+    .paint-stroke {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .paint-stroke::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(0,91,172,0.2) 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      z-index: -1;
+    }
+    
+    /* Color Swatch Hover Effect */
+    .color-swatch {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .color-swatch:hover {
+      transform: scale(1.2);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    /* Product Card Hover */
+    .product-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+      perspective: 1000px;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+    
+    .product-image {
+      transition: transform 0.5s ease;
+    }
+    
+    /* Gradient Underline */
+    .gradient-underline {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .gradient-underline::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      border-radius: 2px;
+    }
+    
+    /* Particle Background */
+    .particles-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--color-primary);
+      opacity: 0.3;
+    }
+    
+    /* 3D Card Effect */
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease;
+    }
+    
+    .card-3d:hover {
+      transform: rotateY(10deg) rotateX(5deg);
+    }
+    
+    /* Mobile Menu Animation */
+    .mobile-menu {
+      max-height: 0;
+      transition: max-height 0.5s ease-out;
+      overflow: hidden;
+    }
+    
+    .mobile-menu.open {
+      max-height: 500px;
+      transition: max-height 0.5s ease-in;
+    }
+    
+    /* Color Visualizer Preview */
+    .visualizer-preview {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: rotate3d(1, 1, 0, 10deg);
+      transition: transform 0.4s ease;
+    }
+    
+    .visualizer-preview:hover {
+      transform: rotate3d(1, 1, 0, 5deg);
+    }
+  </style>
+</head>
+<body class="bg-background text-dark min-h-screen flex flex-col overflow-x-hidden">
+  <!-- Navbar with animated paint drip -->
+  <header id="navbar" class="sticky top-0 z-50 bg-white shadow-lg transition-all duration-300">
+    <div class="absolute bottom-0 left-0 w-full h-2 overflow-hidden">
+      <div class="absolute bottom-0 left-0 w-full h-4 bg-gradient-to-r from-primary via-accent to-cta animate-pulse"></div>
+    </div>
+    
+    <nav class="container mx-auto flex items-center justify-between py-4 px-4 lg:px-0" aria-label="Main Navigation">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/images/logo.png" alt="AmekiColor Logo" class="h-12 w-auto floating" loading="lazy">
+        <span class="font-heading font-bold text-primary text-2xl gradient-underline">AmekiColor</span>
+      </a>
+      
+      <ul class="hidden md:flex gap-8 font-semibold" role="menubar">
+        <li><a href="index.html" class="hover:text-primary relative group" role="menuitem">
+          Home
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="about.html" class="hover:text-primary relative group" role="menuitem">
+          About Us
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="products.html" class="hover:text-primary relative group" role="menuitem">
+          Products
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="visualizer.html" class="hover:text-primary relative group" role="menuitem">
+          Color Visualizer
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="blog.html" class="hover:text-primary relative group" role="menuitem">
+          Blog
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+        <li><a href="contact.html" class="hover:text-primary relative group" role="menuitem">
+          Contact
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a></li>
+      </ul>
+      
+      <div class="flex items-center gap-4">
+        <a href="inquiry.html" class="px-6 py-2 bg-primary text-white rounded-full shadow-lg hover:bg-cta hover:scale-105 transition-all duration-300 font-bold focus:outline-none focus:ring-2 focus:ring-accent flex items-center gap-2" role="button">
+          <i class="fas fa-paint-roller"></i> Order Now
+        </a>
+        <button id="nav-toggle" class="md:hidden ml-4 text-2xl" aria-label="Open navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t">
+      <ul class="flex flex-col gap-4 p-4">
+        <li><a href="index.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Home</a></li>
+        <li><a href="about.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">About Us</a></li>
+        <li><a href="products.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Products</a></li>
+        <li><a href="visualizer.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Color Visualizer</a></li>
+        <li><a href="blog.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Blog</a></li>
+        <li><a href="contact.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Contact</a></li>
+        <li><a href="inquiry.html" class="block py-2 px-4 bg-primary text-white rounded-lg text-center font-semibold hover:bg-cta transition-colors">Order Now</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section with advanced animations -->
+  <section class="relative flex flex-col items-center justify-center min-h-screen py-16 overflow-hidden">
+    <!-- Particle Background -->
+    <div id="particles-container" class="particles-container"></div>
+    
+    <!-- Floating Paint Cans -->
+    <div class="absolute top-10 left-10 w-16 h-20 bg-cta rounded-lg floating" style="animation-delay: 0s;"></div>
+    <div class="absolute top-20 right-20 w-14 h-18 bg-accent rounded-lg floating" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-20 left-1/4 w-12 h-16 bg-primary rounded-lg floating" style="animation-delay: 2s;"></div>
+    
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+      <div class="inline-block mb-6">
+        <span class="px-4 py-1 bg-accent/20 text-accent rounded-full text-sm font-bold animate-pulse">
+          Rwanda's #1 Paint Brand
+        </span>
+      </div>
+      
+      <h1 class="font-heading text-4xl md:text-6xl lg:text-7xl font-extrabold text-primary mb-6 leading-tight">
+        <span class="inline-block transform -rotate-3 bg-primary text-white px-4 py-2 rounded-lg mr-2">Transform</span> 
+        Your Space with 
+        <span class="relative">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cta to-accent">Vibrant</span>
+          <svg class="absolute -bottom-4 left-0 w-full" viewBox="0 0 400 20">
+            <path d="M0,10 Q100,0 200,10 T400,10" fill="none" stroke="#005BAC" stroke-width="3" stroke-dasharray="10,5" />
+          </svg>
+        </span>
+        Colors
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-dark mb-10 max-w-2xl mx-auto">
+        Premium quality paints designed for Rwanda's climate. Experience unmatched durability and breathtaking color that lasts.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#products" class="px-8 py-4 bg-cta text-white font-bold rounded-full shadow-lg hover:bg-primary hover:scale-105 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-accent text-lg flex items-center justify-center gap-2">
+          <i class="fas fa-palette"></i> Explore Colors
+        </a>
+        <a href="visualizer.html" class="px-8 py-4 bg-white text-primary border-2 border-primary font-bold rounded-full shadow-lg hover:bg-primary/10 hover:scale-105 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-accent text-lg flex items-center justify-center gap-2">
+          <i class="fas fa-vr-cardboard"></i> Try Visualizer
+        </a>
+      </div>
+      
+      <div class="mt-16 flex justify-center">
+        <div class="visualizer-preview w-64 h-48 md:w-80 md:h-60 bg-white relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-200 to-blue-400"></div>
+          <div class="absolute bottom-0 left-0 right-0 h-16 bg-gray-800"></div>
+          <div class="absolute bottom-4 left-4 w-12 h-24 bg-amber-700 rounded"></div>
+          <div class="absolute bottom-4 right-4 w-16 h-24 bg-emerald-600 rounded"></div>
+          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-yellow-300 rounded-full"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div class="w-8 h-12 rounded-full border-2 border-primary flex justify-center p-1">
+        <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section id="products" class="container mx-auto py-20 px-4 relative">
+    <div class="absolute -top-20 left-0 w-full h-20 bg-gradient-to-b from-transparent to-background z-10"></div>
+    
+    <div class="text-center mb-16">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4 text-primary relative inline-block">
+        <span class="gradient-underline">Premium Paint Collection</span>
+      </h2>
+      <p class="text-lg text-dark/80 max-w-2xl mx-auto">
+        Discover our range of high-performance paints engineered for Rwanda's unique climate conditions
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Product Card 1 -->
+      <div class="product-card bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center text-center overflow-hidden card-3d">
+        <div class="w-full h-48 mb-6 overflow-hidden rounded-xl">
+          <div class="product-image w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl transform transition-transform"></div>
+        </div>
+        <h3 class="font-heading text-xl font-bold text-dark mb-2">WallMaster Pro</h3>
+        <p class="text-sm text-dark/80 mb-4">Premium interior and exterior wall paints for vibrant, durable finishes.</p>
+        <div class="flex gap-2 mb-4">
+          <div class="w-6 h-6 rounded-full bg-blue-500 border-2 border-white shadow"></div>
+          <div class="w-6 h-6 rounded-full bg-green-400 border-2 border-white shadow"></div>
+          <div class="w-6 h-6 rounded-full bg-yellow-300 border-2 border-white shadow"></div>
+          <div class="w-6 h-6 rounded-full bg-red-400 border-2 border-white shadow"></div>
+        </div>
+        <a href="products.html#wall-paints" class="mt-auto px-6 py-2 bg-primary/10 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors w-full">
+          View Details
+        </a>
+      </div>
+      
+      <!-- Product Card 2 -->
+      <div class="product-card bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center text-center overflow-hidden card-3d">
+        <div class="w-full h-48 mb-6 overflow-hidden rounded-xl">
+          <div class="product-image w-full h-full bg-gradient-to-br from-red-500 to-red-700 rounded-xl transform transition-transform"></div>
+        </div>
+        <h3 class="font-heading text-xl font-bold text-dark mb-2">RoofGuard Elite</h3>
+        <p class="text-sm text-dark/80 mb-4">Weather-resistant roof paints for long-lasting protection and color.</p>
+        <div class="flex gap-2 mb-4">
+          <div class="w-6 h-6 rounded-full bg-red-600 border-2 border-white shadow"></div>
+          <div class="w-6 h-6 rounded-full bg-gray-700 border-2 border-white shadow"></div>
+          <div class="w-6 h-6 rounded-full bg-orange-500 border-2 border-white shadow"></div>
+          <div class="w-6 h-6 rounded-full bg-green-600 border-2 border-white shadow"></div>
+        </div>
+        <a href="products.html#roof-paints" class="mt-auto px-6 py-2 bg-primary/10 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors w-full">
+          View Details
+        </a>
+      </div>
+      
+      <!-- Product Card 3 -->
+      <div class="product-card bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center text-center overflow-hidden card-3d">
+        <div class="w-full h-48 mb-6 overflow-hidden rounded-xl">
+          <div class="product-image w-full h-full bg-gradient-to-br from-amber-600 to-amber-800 rounded-xl transform transition-transform"></div>
+        </div>
+        <h3 class="font-heading text-xl font-bold text-dark mb-2">WoodLux Finish</h3>
+        <p class="text-sm text-dark/80 mb-4">Protective and decorative coatings for all wood surfaces.</p>
+        <div class="flex gap-2 mb-4">
+          <div class="w-6 h-6 rounded-full bg-amber-700 border-2 border-white shadow"></div>
+          <div class="w-6 h-6 rounded-full bg-brown-600 border-2 border-white shadow"></div>
+          <div class="w-6 h-6 rounded-full bg-rose-300 border-2 border-white shadow"></div>
+          <div class="w-6 h-6 rounded-full bg-cyan-200 border-2 border-white shadow"></div>
+        </div>
+        <a href="products.html#wood-coatings" class="mt-auto px-6 py-2 bg-primary/10 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors w-full">
+          View Details
+        </a>
+      </div>
+      
+      <!-- Product Card 4 -->
+      <div class="product-card bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center text-center overflow-hidden card-3d">
+        <div class="w-full h-48 mb-6 overflow-hidden rounded-xl">
+          <div class="product-image w-full h-full bg-gradient-to-br from-gray-600 to-gray-800 rounded-xl transform transition-transform"></div>
+        </div>
+        <h3 class="font-heading text-xl font-bold text-dark mb-2">MetalShine Pro</h3>
+        <p class="text-sm text-dark/80 mb-4">Shimmering metallic finishes for a modern, elegant look.</p>
+        <div class="flex gap-2 mb-4">
+          <div class="w-6 h-6 rounded-full bg-gray-300 border-2 border-white shadow"></div>
+          <div class="w-6 h-6 rounded-full bg-gold-500 border-2 border-white shadow"></div>
+          <div class="w-6 h-6 rounded-full bg-silver-400 border-2 border-white shadow"></div>
+          <div class="w-6 h-6 rounded-full bg-bronze-600 border-2 border-white shadow"></div>
+        </div>
+        <a href="products.html#metallic-paints" class="mt-auto px-6 py-2 bg-primary/10 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors w-full">
+          View Details
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Color Technology Section -->
+  <section class="py-20 bg-gradient-to-br from-primary/5 to-accent/5">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row items-center gap-12">
+        <div class="lg:w-1/2">
+          <div class="relative">
+            <div class="w-full h-96 bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl overflow-hidden relative">
+              <div class="absolute inset-0 bg-grid-white/[0.05]"></div>
+              <div class="absolute bottom-0 left-0 right-0 h-24 bg-gray-800"></div>
+              <div class="absolute top-8 left-8 w-32 h-32 bg-white rounded-lg transform rotate-6"></div>
+              <div class="absolute top-12 left-12 w-32 h-32 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-lg"></div>
+              <div class="absolute bottom-16 right-8 w-24 h-32 bg-gradient-to-b from-green-400 to-emerald-600 rounded-lg"></div>
+            </div>
+            
+            <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-gradient-to-br from-cta to-cta/70 rounded-2xl transform rotate-12 z-10 flex items-center justify-center p-4">
+              <div class="text-white text-center">
+                <div class="text-3xl font-bold">200+</div>
+                <div class="text-sm">Colors Available</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="lg:w-1/2">
+          <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-primary">
+            Advanced Color Technology
+          </h2>
+          
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-sun text-primary text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg mb-1">UV Resistance</h3>
+                <p class="text-dark/80">Our proprietary formula prevents color fading even under Rwanda's intense sunlight.</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-tint-slash text-primary text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg mb-1">Waterproof</h3>
+                <p class="text-dark/80">Advanced hydrophobic technology repels water and prevents moisture damage.</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-leaf text-primary text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg mb-1">Eco-Friendly</h3>
+                <p class="text-dark/80">Low VOC formula that's safe for your family and the environment.</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-bolt text-primary text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg mb-1">Quick Dry</h3>
+                <p class="text-dark/80">Dries to touch in 30 minutes, recoat in 2 hours. Get projects done faster.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colors of the Month Carousel -->
+  <section class="py-20 bg-gradient-to-r from-primary/5 to-accent/5">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4 text-primary relative inline-block">
+          <span class="gradient-underline">Trending Colors</span>
+        </h2>
+        <p class="text-lg text-dark/80 max-w-2xl mx-auto">
+          Discover this month's most popular colors chosen by Rwanda's top designers
+        </p>
+      </div>
+      
+      <div class="relative">
+        <div id="color-carousel" class="flex overflow-x-auto pb-12 scrollbar-hide" style="scroll-snap-type: x mandatory;">
+          <div class="flex gap-8 px-4">
+            <!-- Color Swatch 1 -->
+            <div class="color-swatch w-64 flex-shrink-0 bg-white rounded-2xl shadow-lg overflow-hidden scroll-snap-align-start">
+              <div class="h-40 bg-gradient-to-br from-blue-400 to-blue-600"></div>
+              <div class="p-6">
+                <h3 class="font-bold text-lg mb-1">Ocean Breeze</h3>
+                <p class="text-sm text-dark/80 mb-4">#3498DB</p>
+                <div class="flex justify-between items-center">
+                  <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-bold">WallMaster Pro</span>
+                  <button class="text-primary hover:text-cta">
+                    <i class="fas fa-plus-circle"></i> Add to Project
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Color Swatch 2 -->
+            <div class="color-swatch w-64 flex-shrink-0 bg-white rounded-2xl shadow-lg overflow-hidden scroll-snap-align-start">
+              <div class="h-40 bg-gradient-to-br from-emerald-400 to-emerald-600"></div>
+              <div class="p-6">
+                <h3 class="font-bold text-lg mb-1">Emerald Forest</h3>
+                <p class="text-sm text-dark/80 mb-4">#2ECC71</p>
+                <div class="flex justify-between items-center">
+                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-bold">WoodLux Finish</span>
+                  <button class="text-primary hover:text-cta">
+                    <i class="fas fa-plus-circle"></i> Add to Project
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Color Swatch 3 -->
+            <div class="color-swatch w-64 flex-shrink-0 bg-white rounded-2xl shadow-lg overflow-hidden scroll-snap-align-start">
+              <div class="h-40 bg-gradient-to-br from-amber-400 to-amber-600"></div>
+              <div class="p-6">
+                <h3 class="font-bold text-lg mb-1">Golden Hour</h3>
+                <p class="text-sm text-dark/80 mb-4">#F39C12</p>
+                <div class="flex justify-between items-center">
+                  <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-bold">MetalShine Pro</span>
+                  <button class="text-primary hover:text-cta">
+                    <i class="fas fa-plus-circle"></i> Add to Project
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Color Swatch 4 -->
+            <div class="color-swatch w-64 flex-shrink-0 bg-white rounded-2xl shadow-lg overflow-hidden scroll-snap-align-start">
+              <div class="h-40 bg-gradient-to-br from-rose-400 to-rose-600"></div>
+              <div class="p-6">
+                <h3 class="font-bold text-lg mb-1">Coral Bloom</h3>
+                <p class="text-sm text-dark/80 mb-4">#E74C3C</p>
+                <div class="flex justify-between items-center">
+                  <span class="px-3 py-1 bg-rose-100 text-rose-800 rounded-full text-xs font-bold">WallMaster Pro</span>
+                  <button class="text-primary hover:text-cta">
+                    <i class="fas fa-plus-circle"></i> Add to Project
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Color Swatch 5 -->
+            <div class="color-swatch w-64 flex-shrink-0 bg-white rounded-2xl shadow-lg overflow-hidden scroll-snap-align-start">
+              <div class="h-40 bg-gradient-to-br from-violet-400 to-violet-600"></div>
+              <div class="p-6">
+                <h3 class="font-bold text-lg mb-1">Royal Amethyst</h3>
+                <p class="text-sm text-dark/80 mb-4">#9B59B6</p>
+                <div class="flex justify-between items-center">
+                  <span class="px-3 py-1 bg-violet-100 text-violet-800 rounded-full text-xs font-bold">RoofGuard Elite</span>
+                  <button class="text-primary hover:text-cta">
+                    <i class="fas fa-plus-circle"></i> Add to Project
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <button id="color-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white text-primary rounded-full p-3 shadow-lg hover:bg-primary hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Previous color">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="color-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white text-primary rounded-full p-3 shadow-lg hover:bg-primary hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Next color">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Carousel -->
+  <section class="container mx-auto py-20 px-4">
+    <div class="text-center mb-16">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4 text-primary relative inline-block">
+        <span class="gradient-underline">Customer Experiences</span>
+      </h2>
+      <p class="text-lg text-dark/80 max-w-2xl mx-auto">
+        Hear from homeowners and professionals who transformed their spaces with AmekiColor
+      </p>
+    </div>
+    
+    <div id="testimonials-carousel" class="relative max-w-4xl mx-auto">
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-cta p-1">
+        <div class="bg-white rounded-2xl p-8">
+          <!-- Testimonial Slides -->
+          <div class="testimonial-slides flex transition-transform duration-500">
+            <!-- Slide 1 -->
+            <div class="testimonial-slide w-full flex-shrink-0 flex flex-col md:flex-row gap-8">
+              <div class="md:w-1/3 flex justify-center">
+                <div class="relative">
+                  <img src="assets/images/user1-placeholder.jpg" alt="Customer Humura Josue" class="w-48 h-48 rounded-full object-cover border-4 border-white shadow-xl" loading="lazy">
+                  <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-accent rounded-full flex items-center justify-center text-3xl">
+                    <i class="fas fa-quote-left text-white"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="md:w-2/3">
+                <div class="flex mb-4">
+                  <i class="fas fa-star text-yellow-400"></i>
+                  <i class="fas fa-star text-yellow-400"></i>
+                  <i class="fas fa-star text-yellow-400"></i>
+                  <i class="fas fa-star text-yellow-400"></i>
+                  <i class="fas fa-star text-yellow-400"></i>
+                </div>
+                <p class="text-xl text-dark mb-6 italic relative pl-6">
+                  <span class="absolute left-0 top-0 text-4xl text-primary opacity-30">"</span>
+                  AmekiColor's paints transformed my home! The colors are stunning and the quality is unmatched. After two rainy seasons, the exterior still looks freshly painted.
+                </p>
+                <div class="font-semibold text-primary">Humura Josue</div>
+                <div class="text-sm text-dark/80">Homeowner, Burera</div>
+              </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="testimonial-slide w-full flex-shrink-0 flex flex-col md:flex-row gap-8">
+              <div class="md:w-1/3 flex justify-center">
+                <div class="relative">
+                  <img src="assets/images/user2-placeholder.jpg" alt="Customer Uwiringiyimana Simeon" class="w-48 h-48 rounded-full object-cover border-4 border-white shadow-xl" loading="lazy">
+                  <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-accent rounded-full flex items-center justify-center text-3xl">
+                    <i class="fas fa-quote-left text-white"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="md:w-2/3">
+                <div class="flex mb-4">
+                  <i class="fas fa-star text-yellow-400"></i>
+                  <i class="fas fa-star text-yellow-400"></i>
+                  <i class="fas fa-star text-yellow-400"></i>
+                  <i class="fas fa-star text-yellow-400"></i>
+                  <i class="fas fa-star text-yellow-400"></i>
+                </div>
+                <p class="text-xl text-dark mb-6 italic relative pl-6">
+                  <span class="absolute left-0 top-0 text-4xl text-primary opacity-30">"</span>
+                  As a professional painter, I've used many brands. AmekiColor stands out for its coverage and durability. The Color Visualizer tool is a game-changer for client presentations.
+                </p>
+                <div class="font-semibold text-primary">Uwiringiyimana Simeon</div>
+                <div class="text-sm text-dark/80">Professional Painter, Gisenyi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex justify-center gap-2 mt-8">
+        <button class="testimonial-dot w-3 h-3 rounded-full bg-primary/30 hover:bg-primary transition-colors" data-index="0"></button>
+        <button class="testimonial-dot w-3 h-3 rounded-full bg-primary/30 hover:bg-primary transition-colors" data-index="1"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-primary to-cta">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-white">
+        Ready to Transform Your Space?
+      </h2>
+      <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+        Get expert color consultation and premium paint delivered across Rwanda
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="inquiry.html" class="px-8 py-4 bg-white text-primary font-bold rounded-full shadow-lg hover:bg-accent hover:text-white transition-all duration-300 text-lg">
+          Request a Quote
+        </a>
+        <a href="contact.html" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full shadow-lg hover:bg-white/10 transition-all duration-300 text-lg">
+          Find a Store
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white py-16">
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div>
+        <div class="flex items-center gap-2 mb-6">
+          <img src="assets/images/logo.png" alt="AmekiColor Logo" class="h-10" loading="lazy">
+          <span class="font-heading font-bold text-xl">AmekiColor</span>
+        </div>
+        <p class="text-sm mb-6 text-white/80">
+          Rwanda's premier paint manufacturer, delivering vibrant colors and unmatched quality since 2010.
+        </p>
+        <p class="text-sm">&copy; 2024 AmekiColor. All rights reserved.</p>
+      </div>
+      
+      <div>
+        <h3 class="font-heading font-bold mb-4 text-lg">Contact</h3>
+        <ul class="text-sm space-y-3">
+          <li class="flex items-start gap-3">
+            <i class="fas fa-phone-alt mt-1"></i>
+            <div>
+              <div class="font-medium">Sales & Support</div>
+              <div>+250 788 000 000</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-envelope mt-1"></i>
+            <div>info@amekicolor.rw</div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-map-marker-alt mt-1"></i>
+            <div>KG 123 St, Kigali, Rwanda</div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-clock mt-1"></i>
+            <div>
+              <div>Mon-Fri: 8AM - 6PM</div>
+              <div>Sat: 9AM - 4PM</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="font-heading font-bold mb-4 text-lg">Quick Links</h3>
+        <ul class="text-sm space-y-3">
+          <li><a href="about.html" class="hover:text-accent transition-colors">About Us</a></li>
+          <li><a href="products.html" class="hover:text-accent transition-colors">Product Catalog</a></li>
+          <li><a href="visualizer.html" class="hover:text-accent transition-colors">Color Visualizer</a></li>
+          <li><a href="blog.html" class="hover:text-accent transition-colors">Inspiration Blog</a></li>
+          <li><a href="contact.html" class="hover:text-accent transition-colors">Contact Us</a></li>
+          <li><a href="careers.html" class="hover:text-accent transition-colors">Careers</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="font-heading font-bold mb-4 text-lg">Stay Inspired</h3>
+        <p class="text-sm mb-4 text-white/80">
+          Subscribe to our newsletter for color trends, DIY tips, and exclusive offers.
+        </p>
+        <form class="flex flex-col gap-2 mb-6" autocomplete="off" aria-label="Newsletter Subscription">
+          <label for="newsletter-email" class="sr-only">Email address</label>
+          <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Your email" class="rounded-lg px-4 py-3 text-dark focus:outline-none focus:ring-2 focus:ring-accent" required>
+          <button type="submit" class="bg-accent text-dark font-bold rounded-lg px-4 py-3 hover:bg-cta hover:text-white transition-colors flex items-center justify-center gap-2">
+            <i class="fas fa-paper-plane"></i> Subscribe
+          </button>
+        </form>
+        <div class="flex gap-4">
+          <a href="https://facebook.com/amekicolor" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/amekicolor" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://twitter.com/amekicolor" aria-label="Twitter" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://youtube.com/amekicolor" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script>
+    // Enhanced GSAP Animations
+    window.addEventListener('DOMContentLoaded', () => {
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+      
+      // Initialize particles
+      function initParticles() {
+        const container = document.getElementById('particles-container');
+        const colors = ['#005BAC', '#FFD700', '#E63946', '#3498DB', '#2ECC71'];
+        
+        for (let i = 0; i < 30; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          
+          // Random properties
+          const size = Math.random() * 30 + 10;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const left = Math.random() * 100;
+          const top = Math.random() * 100;
+          const duration = Math.random() * 20 + 10;
+          const delay = Math.random() * 5;
+          
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.backgroundColor = color;
+          particle.style.left = `${left}%`;
+          particle.style.top = `${top}%`;
+          
+          // Animate with GSAP
+          gsap.to(particle, {
+            y: '+=100',
+            x: '+=50',
+            rotation: 360,
+            duration: duration,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+            delay: delay
+          });
+          
+          container.appendChild(particle);
+        }
+      }
+      
+      // Mobile nav toggle with animation
+      document.getElementById('nav-toggle').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('open');
+      });
+      
+      // Sticky Navbar Shrink on Scroll
+      const navbar = document.getElementById('navbar');
+      gsap.to(navbar, {
+        scrollTrigger: {
+          trigger: 'body',
+          start: 'top -80',
+          end: 99999,
+          toggleClass: {targets: navbar, className: 'shadow-lg py-2'}
+        }
+      });
+      
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            gsap.to(window, { 
+              scrollTo: {
+                y: target,
+                offsetY: 80
+              },
+              duration: 1, 
+              ease: 'power2.out' 
+            });
+          }
+        });
+      });
+      
+      // Back to top button
+      const backToTop = document.getElementById('back-to-top');
+      ScrollTrigger.create({
+        trigger: 'body',
+        start: 'top 20%',
+        onEnter: () => gsap.to(backToTop, { opacity: 1, pointerEvents: 'auto', duration: 0.3 }),
+        onLeaveBack: () => gsap.to(backToTop, { opacity: 0, pointerEvents: 'none', duration: 0.3 })
+      });
+      
+      backToTop.addEventListener('click', () => {
+        gsap.to(window, { scrollTo: 0, duration: 1, ease: 'power2.out' });
+      });
+      
+      // Color Carousel
+      const colorCarousel = document.getElementById('color-carousel');
+      const colorSlides = colorCarousel.querySelector('div');
+      const colorPrev = document.getElementById('color-prev');
+      const colorNext = document.getElementById('color-next');
+      
+      let colorPosition = 0;
+      const colorSlideWidth = 288; // 64px * 4 + gap
+      
+      colorNext.addEventListener('click', () => {
+        colorPosition = Math.min(colorPosition + 1, 1);
+        gsap.to(colorSlides, { x: -colorPosition * colorSlideWidth, duration: 0.5, ease: 'power2.out' });
+      });
+      
+      colorPrev.addEventListener('click', () => {
+        colorPosition = Math.max(colorPosition - 1, 0);
+        gsap.to(colorSlides, { x: -colorPosition * colorSlideWidth, duration: 0.5, ease: 'power2.out' });
+      });
+      
+      // Testimonials Carousel
+      const testimonialSlides = document.querySelector('.testimonial-slides');
+      const testimonialDots = document.querySelectorAll('.testimonial-dot');
+      let currentTestimonial = 0;
+      
+      function showTestimonial(idx) {
+        currentTestimonial = idx;
+        gsap.to(testimonialSlides, { 
+          x: -idx * 100 + '%', 
+          duration: 0.5,
+          ease: 'power2.out'
+        });
+        
+        testimonialDots.forEach((dot, i) => {
+          if (i === idx) {
+            dot.classList.add('bg-primary');
+            dot.classList.remove('bg-primary/30');
+          } else {
+            dot.classList.remove('bg-primary');
+            dot.classList.add('bg-primary/30');
+          }
+        });
+      }
+      
+      testimonialDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          showTestimonial(parseInt(dot.dataset.index));
+        });
+      });
+      
+      // Auto-advance testimonials
+      setInterval(() => {
+        const nextIndex = (currentTestimonial + 1) % testimonialDots.length;
+        showTestimonial(nextIndex);
+      }, 7000);
+      
+      // Product Card Animations
+      gsap.utils.toArray('.product-card').forEach((card, i) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 90%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          delay: i * 0.1,
+          ease: 'back.out(1.7)'
+        });
+      });
+      
+      // Hero Section Animations
+      gsap.from('.visualizer-preview', {
+        scrollTrigger: {
+          trigger: '.visualizer-preview',
+          start: 'top bottom',
+          toggleActions: 'play none none none'
+        },
+        y: 100,
+        opacity: 0,
+        rotation: 10,
+        duration: 1.2,
+        ease: 'elastic.out(1, 0.8)'
+      });
+      
+      // Initialize particles
+      initParticles();
+    });
+
+    // Back to Top Button Logic
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.remove('opacity-0', 'pointer-events-none');
+        backToTop.classList.add('opacity-100');
+      } else {
+        backToTop.classList.add('opacity-0', 'pointer-events-none');
+        backToTop.classList.remove('opacity-100');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
