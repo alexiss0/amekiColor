@@ -67,6 +67,8 @@
   </script>
   
   <!-- Font Awesome CDN -->
+   <link rel="shortcut icon" href="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/logo_krzkdw.jpg" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- GSAP CDN -->
@@ -104,666 +106,1352 @@
   <meta name="google-site-verification" content="rarEBXQizxlQiH5ly-ThWBWNSCueUN7a0p7KHY0D3IQ" />
   
   <style>
-    :root {
-      --color-primary: #005BAC;
-      --color-accent: #FFD700;
-      --color-cta: '#E63946';
-      --color-dark: '#222222';
-      --color-background: '#FFFFFF';
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    html { 
-      scroll-behavior: smooth; 
-      overflow-x: hidden;
-    }
-    
-    body { 
-      font-family: 'Open Sans', 'Inter', sans-serif; 
-      background-color: #f8f9fa;
-      overflow-x: hidden;
-      color: var(--color-dark);
-      line-height: 1.6;
-    }
-    
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: var(--color-primary);
-      border-radius: 5px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background: #004a8c;
-    }
-    
-    /* Floating animation */
-    @keyframes floating {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0px); }
-    }
-    
-    .floating {
-      animation: floating 6s ease-in-out infinite;
-    }
-    
-    /* Paint stroke effect */
-    .paint-stroke {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .paint-stroke::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(0,91,172,0.2) 100%);
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-      z-index: -1;
-    }
-    
-    /* Gradient Underline */
-    .gradient-underline {
-      position: relative;
-      display: inline-block;
-    }
-    
-    .gradient-underline::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-      border-radius: 2px;
-    }
-    
-    /* Mobile Menu Animation */
-    .mobile-menu {
-      max-height: 0;
-      transition: max-height 0.5s ease-out;
-      overflow: hidden;
-    }
-    
-    .mobile-menu.open {
-      max-height: 500px;
-      transition: max-height 0.5s ease-in;
-    }
-    
-    /* Particle Background */
-    .particles-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      overflow: hidden;
-    }
-    
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--color-primary);
-      opacity: 0.3;
-    }
-    
-    /* 3D Card Effect */
-    .card-3d {
-      transform-style: preserve-3d;
-      transition: transform 0.5s ease;
-    }
-    
-    .card-3d:hover {
-      transform: rotateY(10deg) rotateX(5deg);
-    }
-  </style>
+        :root {
+            --ameki-blue: #1a3a8f;
+            --ameki-light-blue: #2d55b7;
+            --ameki-purple: #6a4c93;
+            --ameki-gold: #d4af37;
+            --ameki-light-gold: #f0d87a;
+            --ameki-light: #f8f9fa;
+            --ameki-dark: #0d1b3a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(13, 27, 58, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 30px rgba(13, 27, 58, 0.15);
+            padding: 10px 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ameki-light-gold);
+            font-weight: 700;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(26, 58, 143, 0.3);
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--ameki-dark);
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--ameki-dark);
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--ameki-blue), var(--ameki-purple));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--ameki-blue);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--ameki-blue);
+        }
+        
+        .nav-links a.active:after {
+            width: 100%;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            color: white;
+            box-shadow: 0 10px 20px rgba(26, 58, 143, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(26, 58, 143, 0.4);
+            background: linear-gradient(135deg, var(--ameki-light-blue), var(--ameki-purple));
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--ameki-blue);
+            color: var(--ameki-blue);
+        }
+        
+        .btn-outline:hover {
+            background: var(--ameki-blue);
+            color: white;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--ameki-dark);
+        }
+        
+        /* Hero Section for Contact Page */
+        .contact-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(13, 27, 58, 0.7), rgba(13, 27, 58, 0.7)), 
+                        url('https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858159/support_bgiang.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .contact-hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Contact Sections */
+        section {
+            padding: 100px 30px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--ameki-gold);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 30px auto 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Contact Methods */
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--ameki-blue);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(26, 58, 143, 0.15);
+        }
+        
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 8px 20px rgba(26, 58, 143, 0.2);
+        }
+        
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--ameki-dark);
+        }
+        
+        .contact-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .contact-card .btn {
+            margin-top: 15px;
+        }
+        
+        /* Contact Form Section */
+        .contact-form-section {
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.9), rgba(240, 244, 255, 0.9));
+        }
+        
+        .form-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .form-info {
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            border-radius: 20px;
+            padding: 50px;
+            color: white;
+            box-shadow: 0 20px 40px rgba(26, 58, 143, 0.2);
+        }
+        
+        .form-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .form-info h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--ameki-gold);
+            border-radius: 2px;
+        }
+        
+        .form-info p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .contact-details {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .contact-details li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .contact-details i {
+            color: var(--ameki-light-gold);
+            font-size: 20px;
+            min-width: 30px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: white;
+            color: var(--ameki-blue);
+            transform: translateY(-5px);
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--ameki-dark);
+        }
+        
+        .contact-form h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--ameki-gold);
+            border-radius: 2px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--ameki-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 58, 143, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        /* Live Chat Section */
+        .live-chat {
+            background: var(--ameki-dark);
+            color: white;
+        }
+        
+        .chat-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .chat-content {
+            padding-right: 30px;
+        }
+        
+        .chat-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--ameki-light-gold);
+        }
+        
+        .chat-content p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .chat-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .chat-features li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .chat-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--ameki-gold);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .chat-widget {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            height: 400px;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .chat-header-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .chat-header-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .chat-header-text p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .chat-messages {
+            height: 260px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .message {
+            max-width: 80%;
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            border-radius: 15px;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .received {
+            background: #f1f1f1;
+            margin-right: auto;
+        }
+        
+        .sent {
+            background: var(--ameki-blue);
+            color: white;
+            margin-left: auto;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+        }
+        
+        .chat-input button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--ameki-blue);
+            color: white;
+            border: none;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-input button:hover {
+            background: var(--ameki-light-blue);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.95), rgba(240, 244, 255, 0.95));
+        }
+        
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            background: white;
+            padding: 20px 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--ameki-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-answer {
+            background: white;
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-answer p {
+            padding: 0 0 20px;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .faq-item.active .faq-question {
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            color: white;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        
+        /* Callback Section */
+        .callback-section {
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            color: white;
+            text-align: center;
+        }
+        
+        .callback-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .callback-form {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+        
+        .form-row-callback {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .callback-form .btn {
+            width: 100%;
+            max-width: 300px;
+            margin-top: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--ameki-dark);
+            color: white;
+            padding: 80px 0 0;
+            position: relative;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--ameki-gold);
+        }
+        
+        .footer-col p {
+            color: #bbb;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .form-container,
+            .chat-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row, .form-row-callback {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+        }
+        
+        /* Animations */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .logo-icons{
+            width: 4rem;
+            height: 3rem;
+        }
+        .logo-icons img{
+            width: 4rem;
+            height: 3rem;
+        }
+    </style>
 </head>
-<body class="bg-background text-dark min-h-screen flex flex-col overflow-x-hidden">
-  <!-- Navbar with animated paint drip -->
-  <header id="navbar" class="sticky top-0 z-50 bg-white shadow-lg transition-all duration-300">
-    <div class="absolute bottom-0 left-0 w-full h-2 overflow-hidden">
-      <div class="absolute bottom-0 left-0 w-full h-4 bg-gradient-to-r from-primary via-accent to-cta animate-pulse"></div>
-    </div>
-    
-    <nav class="container mx-auto flex items-center justify-between py-4 px-4 lg:px-0" aria-label="Main Navigation">
-      <a href="index.html" class="flex items-center gap-2">
-        <div class="h-12 w-12 rounded-lg bg-primary flex items-center justify-center text-white floating">🎨</div>
-        <span class="font-heading font-bold text-primary text-2xl gradient-underline">AmekiColor</span>
-      </a>
-      
-      <ul class="hidden md:flex gap-8 font-semibold" role="menubar">
-        <li><a href="index.html" class="hover:text-primary relative group" role="menuitem">
-          Home
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a></li>
-        <li><a href="about.html" class="hover:text-primary relative group" role="menuitem">
-          About Us
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a></li>
-        <li><a href="products.html" class="hover:text-primary relative group" role="menuitem">
-          Products
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a></li>
-        <li><a href="visualizer.html" class="hover:text-primary relative group" role="menuitem">
-          Color Visualizer
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a></li>
-        <li><a href="blog.html" class="hover:text-primary relative group" role="menuitem">
-          Blog
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a></li>
-        <li><a href="contact.html" class="hover:text-primary relative group" role="menuitem">
-          Contact
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a></li>
-      </ul>
-      
-      <div class="flex items-center gap-4">
-        <a href="inquiry.html" class="px-6 py-2 bg-primary text-white rounded-full shadow-lg hover:bg-cta hover:scale-105 transition-all duration-300 font-bold focus:outline-none focus:ring-2 focus:ring-accent flex items-center gap-2" role="button">
-          <i class="fas fa-paint-roller"></i> Order Now
-        </a>
-        <button id="nav-toggle" class="md:hidden ml-4 text-2xl" aria-label="Open navigation menu">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-    </nav>
-    
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t">
-      <ul class="flex flex-col gap-4 p-4">
-        <li><a href="index.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Home</a></li>
-        <li><a href="about.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">About Us</a></li>
-        <li><a href="products.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Products</a></li>
-        <li><a href="visualizer.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Color Visualizer</a></li>
-        <li><a href="blog.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Blog</a></li>
-        <li><a href="contact.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Contact</a></li>
-        <li><a href="inquiry.html" class="block py-2 px-4 bg-primary text-white rounded-lg text-center font-semibold hover:bg-cta transition-colors">Order Now</a></li>
-      </ul>
-    </div>
-  </header>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="navbar">
+            <div class="logo">
+                <div class="logo-icons"><img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/logo_krzkdw.jpg" alt="Logo" width="40" height="40"></div>
+                <div class="logo-text"><a href="index.html">Amekicolor</a></div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="products.html">Products</a>
+                <a href="Location.html">Locations</a>
+                <a href="contact.html" class="active">Contact</a>
+            </div>
+            
+            <a href="order.html" class="btn btn-primary">Order Now</a>
+            
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
 
-  <!-- Contact Hero Section -->
-  <section class="relative flex flex-col items-center justify-center py-20 overflow-hidden min-h-[50vh]">
-    <!-- Particle Background -->
-    <div id="particles-container" class="particles-container"></div>
-    
-    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
-      <div class="inline-block mb-6">
-        <span class="px-4 py-1 bg-accent/20 text-accent rounded-full text-sm font-bold animate-pulse">
-          We're Here to Help
-        </span>
-      </div>
-      
-      <h1 class="font-heading text-4xl md:text-6xl font-extrabold text-primary mb-6 leading-tight">
-        Contact <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cta to-accent">AmekiColor</span>
-      </h1>
-      
-      <p class="text-xl md:text-2xl text-dark mb-10 max-w-2xl mx-auto">
-        Get in touch with Rwanda's premier paint manufacturer for orders, support, or business inquiries
-      </p>
-    </div>
-    
-    <!-- Floating Paint Cans -->
-    <div class="absolute top-10 left-10 w-16 h-20 bg-cta rounded-lg floating" style="animation-delay: 0s;"></div>
-    <div class="absolute top-20 right-20 w-14 h-18 bg-accent rounded-lg floating" style="animation-delay: 1s;"></div>
-    <div class="absolute bottom-20 left-1/4 w-12 h-16 bg-primary rounded-lg floating" style="animation-delay: 2s;"></div>
-  </section>
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="contact-hero-content">
+            <h1>We're Here to Help</h1>
+            <p>Contact our team for product information, technical support, or any inquiries about Amekicolor paints</p>
+            <a href="#contact-form" class="btn btn-outline">Send a Message</a>
+        </div>
+    </section>
 
-  <!-- Contact Information Section -->
-  <section class="container mx-auto py-12 px-4">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <!-- Contact Card 1 -->
-      <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center card-3d">
-        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-          <i class="fas fa-map-marker-alt text-primary text-2xl"></i>
-        </div>
-        <h3 class="font-heading text-xl font-bold text-primary mb-3">Visit Us</h3>
-        <p class="mb-4">KG 123 St, Kigali, Rwanda</p>
-        <a href="#map" class="px-4 py-2 bg-primary/10 text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-colors">
-          View on Map
-        </a>
-      </div>
-      
-      <!-- Contact Card 2 -->
-      <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center card-3d">
-        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-          <i class="fas fa-phone-alt text-primary text-2xl"></i>
-        </div>
-        <h3 class="font-heading text-xl font-bold text-primary mb-3">Call Us</h3>
-        <p class="mb-4">+250 788 000 000</p>
-        <a href="tel:+250788000000" class="px-4 py-2 bg-primary/10 text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-colors">
-          Call Now
-        </a>
-      </div>
-      
-      <!-- Contact Card 3 -->
-      <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center card-3d">
-        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-          <i class="fas fa-envelope text-primary text-2xl"></i>
-        </div>
-        <h3 class="font-heading text-xl font-bold text-primary mb-3">Email Us</h3>
-        <p class="mb-4">info@amekicolor.rw</p>
-        <a href="mailto:info@amekicolor.rw" class="px-4 py-2 bg-primary/10 text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-colors">
-          Send Email
-        </a>
-      </div>
-    </div>
-    
-    <!-- Business Hours -->
-    <div class="bg-white rounded-2xl shadow-xl p-8 max-w-2xl mx-auto mt-12 card-3d">
-      <h3 class="font-heading text-2xl font-bold text-primary mb-6 text-center">
-        <span class="gradient-underline">Business Hours</span>
-      </h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="flex justify-between items-center py-3 border-b border-gray-100">
-          <span class="font-medium">Monday - Friday</span>
-          <span class="font-semibold">8:00 AM - 6:00 PM</span>
-        </div>
-        <div class="flex justify-between items-center py-3 border-b border-gray-100">
-          <span class="font-medium">Saturday</span>
-          <span class="font-semibold">9:00 AM - 4:00 PM</span>
-        </div>
-        <div class="flex justify-between items-center py-3 border-b border-gray-100">
-          <span class="font-medium">Sunday</span>
-          <span class="font-semibold">Closed</span>
-        </div>
-        <div class="flex justify-between items-center py-3 border-b border-gray-100">
-          <span class="font-medium">Public Holidays</span>
-          <span class="font-semibold">Closed</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Map and Contact Form Section -->
-  <section class="bg-gradient-to-br from-primary/5 to-accent/5 py-16">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <!-- Map -->
-        <div id="map" class="bg-white rounded-2xl shadow-xl overflow-hidden h-[500px] card-3d">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.365347276199!2d30.05122681534311!3d-1.9847745370053528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca5b4332d0b99%3A0x7a4ce1f0b3b3c5a5!2sKigali%2C%20Rwanda!5e0!3m2!1sen!2sus!4v1651234567890!5m2!1sen!2sus" 
-                  width="100%" 
-                  height="100%" 
-                  style="border:0;" 
-                  allowfullscreen="" 
-                  loading="lazy" 
-                  referrerpolicy="no-referrer-when-downgrade"
-                  title="AmekiColor Location in Kigali, Rwanda"></iframe>
+    <!-- Contact Methods -->
+    <section>
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>Choose your preferred method to get in touch with our team</p>
         </div>
         
-        <!-- Contact Form -->
-        <div class="bg-white rounded-2xl shadow-xl p-8 card-3d">
-          <h3 class="font-heading text-2xl font-bold text-primary mb-6 text-center">
-            <span class="gradient-underline">Send Us a Message</span>
-          </h3>
-          
-          <form id="contact-form" class="space-y-6">
-            <div>
-              <label for="name" class="block font-semibold text-dark mb-2">Full Name</label>
-              <input type="text" id="name" name="name" required 
-                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent focus:outline-none"
-                     placeholder="Your name">
+        <div class="contact-methods">
+            <div class="contact-card animate-in">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Call Us</h3>
+                <p>Speak directly with our customer support team during business hours</p>
+                <p style="font-size: 1.5rem; font-weight: 700; color: var(--ameki-blue);">+250 788 123 456</p>
+                <a href="tel:+250788123456" class="btn btn-primary">Call Now</a>
             </div>
             
-            <div>
-              <label for="email" class="block font-semibold text-dark mb-2">Email Address</label>
-              <input type="email" id="email" name="email" required 
-                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent focus:outline-none"
-                     placeholder="your.email@example.com">
+            <div class="contact-card animate-in delay-1">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email Us</h3>
+                <p>Send us your questions and we'll respond within 24 business hours</p>
+                <p style="font-size: 1.1rem; color: var(--ameki-purple);">info@amekicolor.rw</p>
+                <a href="mailto:info@amekicolor.rw" class="btn btn-primary">Send Email</a>
             </div>
             
-            <div>
-              <label for="phone" class="block font-semibold text-dark mb-2">Phone Number</label>
-              <input type="tel" id="phone" name="phone" 
-                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent focus:outline-none"
-                     placeholder="+250 788 000 000">
+            <div class="contact-card animate-in delay-2">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Visit Us</h3>
+                <p>Visit our headquarters or any of our branches across Rwanda</p>
+                <p style="font-size: 1.1rem;">KG 123 St, Kicukiro, Kigali</p>
+                <a href="locations.html" class="btn btn-primary">View Locations</a>
             </div>
-            
-            <div>
-              <label for="subject" class="block font-semibold text-dark mb-2">Subject</label>
-              <select id="subject" name="subject" 
-                      class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent focus:outline-none">
-                <option value="" disabled selected>Select a subject</option>
-                <option value="order">Product Order</option>
-                <option value="support">Technical Support</option>
-                <option value="business">Business Inquiry</option>
-                <option value="feedback">Feedback & Suggestions</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            
-            <div>
-              <label for="message" class="block font-semibold text-dark mb-2">Your Message</label>
-              <textarea id="message" name="message" rows="5" required 
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent focus:outline-none"
-                        placeholder="How can we help you?"></textarea>
-            </div>
-            
-            <button type="submit" class="w-full px-6 py-4 bg-primary text-white font-bold rounded-lg hover:bg-cta transition-colors shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
-              <i class="fas fa-paper-plane"></i> Send Message
-            </button>
-            
-            <div id="form-success" class="hidden py-3 px-4 bg-green-100 text-green-700 rounded-lg text-center font-semibold mt-4">
-              Thank you! Your message has been sent successfully.
-            </div>
-          </form>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FAQ Section -->
-  <section class="container mx-auto py-16 px-4">
-    <div class="text-center mb-16">
-      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4 text-primary relative inline-block">
-        <span class="gradient-underline">Frequently Asked Questions</span>
-      </h2>
-      <p class="text-lg text-dark/80 max-w-2xl mx-auto">
-        Find answers to common questions about our products and services
-      </p>
-    </div>
-    
-    <div class="max-w-3xl mx-auto space-y-6">
-      <!-- FAQ Item 1 -->
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-        <button class="faq-question w-full text-left p-6 font-heading font-bold text-primary flex justify-between items-center">
-          <span>How long does it take to receive my paint order?</span>
-          <i class="fas fa-chevron-down transition-transform"></i>
-        </button>
-        <div class="faq-answer px-6 pb-6 hidden">
-          <p class="text-dark/90">Standard delivery within Kigali takes 1-2 business days. For other regions in Rwanda, delivery typically takes 3-5 business days. Expedited shipping options are available for urgent orders.</p>
+    <!-- Contact Form Section -->
+    <section class="contact-form-section" id="contact-form">
+        <div class="section-title">
+            <h2>Send Us a Message</h2>
+            <p>We'll get back to you as soon as possible</p>
         </div>
-      </div>
-      
-      <!-- FAQ Item 2 -->
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-        <button class="faq-question w-full text-left p-6 font-heading font-bold text-primary flex justify-between items-center">
-          <span>Do you offer color consultation services?</span>
-          <i class="fas fa-chevron-down transition-transform"></i>
-        </button>
-        <div class="faq-answer px-6 pb-6 hidden">
-          <p class="text-dark/90">Yes, we offer professional color consultation services. Our experts can visit your location or provide virtual consultations to help you select the perfect colors for your project. Contact us to schedule a consultation.</p>
-        </div>
-      </div>
-      
-      <!-- FAQ Item 3 -->
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-        <button class="faq-question w-full text-left p-6 font-heading font-bold text-primary flex justify-between items-center">
-          <span>What is your return policy?</span>
-          <i class="fas fa-chevron-down transition-transform"></i>
-        </button>
-        <div class="faq-answer px-6 pb-6 hidden">
-          <p class="text-dark/90">Unopened paint cans in original condition can be returned within 30 days of purchase for a full refund. Custom-mixed paints are non-returnable. For defective products, please contact our customer service for assistance.</p>
-        </div>
-      </div>
-      
-      <!-- FAQ Item 4 -->
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-        <button class="faq-question w-full text-left p-6 font-heading font-bold text-primary flex justify-between items-center">
-          <span>Do you offer commercial discounts?</span>
-          <i class="fas fa-chevron-down transition-transform"></i>
-        </button>
-        <div class="faq-answer px-6 pb-6 hidden">
-          <p class="text-dark/90">Yes, we offer special pricing for contractors, architects, and businesses with volume requirements. Contact our sales team at sales@amekicolor.rw to discuss commercial pricing and partnership opportunities.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-16 bg-gradient-to-r from-primary to-cta">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-white">
-        Ready to Transform Your Space?
-      </h2>
-      <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-        Get expert color consultation and premium paint delivered across Rwanda
-      </p>
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <a href="inquiry.html" class="px-8 py-4 bg-white text-primary font-bold rounded-full shadow-lg hover:bg-accent hover:text-white transition-all duration-300 text-lg">
-          Request a Quote
-        </a>
-        <a href="products.html" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full shadow-lg hover:bg-white/10 transition-all duration-300 text-lg">
-          Browse Products
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-primary text-white py-16">
-    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
-      <div>
-        <div class="flex items-center gap-2 mb-6">
-          <div class="h-10 w-10 rounded-lg bg-white/10 flex items-center justify-center text-white">🎨</div>
-          <span class="font-heading font-bold text-xl">AmekiColor</span>
-        </div>
-        <p class="text-sm mb-6 text-white/80">
-          Rwanda's premier paint manufacturer, delivering vibrant colors and unmatched quality since 2010.
-        </p>
-        <p class="text-sm">&copy; 2024 AmekiColor. All rights reserved.</p>
-      </div>
-      
-      <div>
-        <h3 class="font-heading font-bold mb-4 text-lg">Contact</h3>
-        <ul class="text-sm space-y-3">
-          <li class="flex items-start gap-3">
-            <i class="fas fa-phone-alt mt-1"></i>
-            <div>
-              <div class="font-medium">Sales & Support</div>
-              <div>+250 788 000 000</div>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <i class="fas fa-envelope mt-1"></i>
-            <div>info@amekicolor.rw</div>
-          </li>
-          <li class="flex items-start gap-3">
-            <i class="fas fa-map-marker-alt mt-1"></i>
-            <div>KG 123 St, Kigali, Rwanda</div>
-          </li>
-          <li class="flex items-start gap-3">
-            <i class="fas fa-clock mt-1"></i>
-            <div>
-              <div>Mon-Fri: 8AM - 6PM</div>
-              <div>Sat: 9AM - 4PM</div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      
-      <div>
-        <h3 class="font-heading font-bold mb-4 text-lg">Quick Links</h3>
-        <ul class="text-sm space-y-3">
-          <li><a href="about.html" class="hover:text-accent transition-colors">About Us</a></li>
-          <li><a href="products.html" class="hover:text-accent transition-colors">Products</a></li>
-          <li><a href="visualizer.html" class="hover:text-accent transition-colors">Color Visualizer</a></li>
-          <li><a href="blog.html" class="hover:text-accent transition-colors">Blog</a></li>
-          <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
-          <li><a href="careers.html" class="hover:text-accent transition-colors">Careers</a></li>
-        </ul>
-      </div>
-      
-      <div>
-        <h3 class="font-heading font-bold mb-4 text-lg">Stay Inspired</h3>
-        <p class="text-sm mb-4 text-white/80">
-          Subscribe to our newsletter for color trends, DIY tips, and exclusive offers.
-        </p>
-        <form class="flex flex-col gap-2 mb-6" autocomplete="off" aria-label="Newsletter Subscription">
-          <label for="newsletter-email" class="sr-only">Email address</label>
-          <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Your email" class="rounded-lg px-4 py-3 text-dark focus:outline-none focus:ring-2 focus:ring-accent" required>
-          <button type="submit" class="bg-accent text-dark font-bold rounded-lg px-4 py-3 hover:bg-cta hover:text-white transition-colors flex items-center justify-center gap-2">
-            <i class="fas fa-paper-plane"></i> Subscribe
-          </button>
-        </form>
-        <div class="flex gap-4">
-          <a href="https://facebook.com/amekicolor" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://instagram.com/amekicolor" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://twitter.com/amekicolor" aria-label="Twitter" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://youtube.com/amekicolor" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
-            <i class="fab fa-youtube"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Back to Top Button -->
-  <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Back to top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- Scripts -->
-  <script>
-    // Enhanced GSAP Animations
-    window.addEventListener('DOMContentLoaded', () => {
-      // Register GSAP plugins
-      gsap.registerPlugin(ScrollTrigger);
-      
-      // Initialize particles
-      function initParticles() {
-        const container = document.getElementById('particles-container');
-        const colors = ['#005BAC', '#FFD700', '#E63946', '#3498DB', '#2ECC71'];
         
-        for (let i = 0; i < 30; i++) {
-          const particle = document.createElement('div');
-          particle.classList.add('particle');
-          
-          // Random properties
-          const size = Math.random() * 30 + 10;
-          const color = colors[Math.floor(Math.random() * colors.length)];
-          const left = Math.random() * 100;
-          const top = Math.random() * 100;
-          const duration = Math.random() * 20 + 10;
-          const delay = Math.random() * 5;
-          
-          particle.style.width = `${size}px`;
-          particle.style.height = `${size}px`;
-          particle.style.backgroundColor = color;
-          particle.style.left = `${left}%`;
-          particle.style.top = `${top}%`;
-          
-          // Animate with GSAP
-          gsap.to(particle, {
-            y: '+=100',
-            x: '+=50',
-            rotation: 360,
-            duration: duration,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut',
-            delay: delay
-          });
-          
-          container.appendChild(particle);
-        }
-      }
-      
-      // Mobile nav toggle with animation
-      document.getElementById('nav-toggle').addEventListener('click', function() {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('open');
-      });
-      
-      // Sticky Navbar Shrink on Scroll
-      const navbar = document.getElementById('navbar');
-      gsap.to(navbar, {
-        scrollTrigger: {
-          trigger: 'body',
-          start: 'top -80',
-          end: 99999,
-          toggleClass: {targets: navbar, className: 'shadow-lg py-2'}
-        }
-      });
-      
-      // Back to top button
-      const backToTop = document.getElementById('back-to-top');
-      ScrollTrigger.create({
-        trigger: 'body',
-        start: 'top 20%',
-        onEnter: () => gsap.to(backToTop, { opacity: 1, pointerEvents: 'auto', duration: 0.3 }),
-        onLeaveBack: () => gsap.to(backToTop, { opacity: 0, pointerEvents: 'none', duration: 0.3 })
-      });
-      
-      backToTop.addEventListener('click', () => {
-        gsap.to(window, { scrollTo: 0, duration: 1, ease: 'power2.out' });
-      });
-      
-      // Form submission
-      const contactForm = document.getElementById('contact-form');
-      const formSuccess = document.getElementById('form-success');
-      
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        // Simulate form submission
-        formSuccess.classList.remove('hidden');
-        contactForm.reset();
+        <div class="form-container">
+            <div class="form-info animate-in">
+                <h3>Contact Information</h3>
+                <p>Fill out the form or use the contact details below to reach our team.</p>
+                
+                <ul class="contact-details">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Address</strong>
+                            <p>KG 123 St, Kicukiro District, Kigali, Rwanda</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Phone</strong>
+                            <p>+250 788 123 456</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <p>info@amekicolor.rw</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Working Hours</strong>
+                            <p>Mon-Fri: 8AM - 5PM<br>Sat: 9AM - 1PM</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="contact-form animate-in delay-1">
+                <h3>Get In Touch</h3>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" placeholder="Your email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Your phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" class="form-control" placeholder="Message subject" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <select id="department" class="form-control">
+                            <option value="">Select a department</option>
+                            <option value="sales">Sales & Orders</option>
+                            <option value="support">Technical Support</option>
+                            <option value="b2b">Business & Wholesale</option>
+                            <option value="careers">Careers & Recruitment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message *</label>
+                        <textarea id="message" class="form-control" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Chat Section -->
+    <section class="live-chat">
+        <div class="section-title">
+            <h2 style="-webkit-text-fill-color: white; background: none;">Live Chat Support</h2>
+            <p style="color: rgba(255,255,255,0.8);">Get instant answers to your questions</p>
+        </div>
         
-        // Hide message after 5 seconds
-        setTimeout(() => {
-          formSuccess.classList.add('hidden');
-        }, 5000);
-      });
-      
-      // FAQ accordion
-      const faqQuestions = document.querySelectorAll('.faq-question');
-      faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-          const answer = this.nextElementSibling;
-          const icon = this.querySelector('i');
-          
-          if (answer.classList.contains('hidden')) {
-            answer.classList.remove('hidden');
-            icon.style.transform = 'rotate(180deg)';
-          } else {
-            answer.classList.add('hidden');
-            icon.style.transform = 'rotate(0deg)';
-          }
+        <div class="chat-container">
+            <div class="chat-content animate-in">
+                <h3>Real-Time Assistance</h3>
+                <p>Our support team is available during business hours to answer your questions about products, orders, or technical issues.</p>
+                
+                <ul class="chat-features">
+                    <li>Instant responses to your inquiries</li>
+                    <li>Technical support for product applications</li>
+                    <li>Order status and tracking information</li>
+                    <li>Color matching and consultation</li>
+                </ul>
+                
+                <div class="availability">
+                    <h4>Chat Availability</h4>
+                    <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+                    <p>Saturday: 9:00 AM - 1:00 PM</p>
+                </div>
+            </div>
+            
+            <div class="chat-widget animate-in delay-1">
+                <div class="chat-header">
+                    <div class="chat-header-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="chat-header-text">
+                        <h4>Amekicolor Support</h4>
+                        <p>We're online and ready to help</p>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message received">
+                        Hello! How can we assist you today?
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Type your message...">
+                    <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions about our products and services</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item animate-in">
+                <div class="faq-question">
+                    What is the drying time for Amekicolor paints? 
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Drying times vary based on paint type and environmental conditions. Water-based paints typically dry to touch in 1-2 hours and can be recoated in 4-6 hours. Oil-based paints may take 6-8 hours to dry to touch and 24 hours before recoating. Always check the specific product label for exact drying times.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-in delay-1">
+                <div class="faq-question">
+                    Do you offer color matching services?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we offer professional color matching services at all our retail locations. Bring in your sample, and our experts will match it using our advanced spectrophotometer technology. We can match any color from any brand with over 95% accuracy.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-in delay-2">
+                <div class="faq-question">
+                    What is your warranty policy?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer a 10-year warranty on our exterior paints and a 5-year warranty on interior paints when applied according to our specifications. The warranty covers peeling, blistering, flaking, and excessive fading. Proof of purchase and proper surface preparation documentation are required to make a warranty claim.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-in delay-3">
+                <div class="faq-question">
+                    How do I calculate how much paint I need?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You can use our online paint calculator or follow this formula: Measure the length and height of each wall, multiply to get square meters. Add all wall areas together. Subtract areas for windows and doors. Divide by coverage rate (found on paint can - typically 10-12m² per liter). Multiply by number of coats needed. We recommend adding 10% extra for touch-ups and waste.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-in">
+                <div class="faq-question">
+                    Do you offer professional painting services?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>While we don't provide painting services directly, we maintain a list of certified professional painters who are trained in the proper application of Amekicolor products. Contact our customer service for recommendations in your area, or visit our website to find certified contractors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Callback Section -->
+    <section class="callback-section" id="callback">
+        <div class="section-title">
+            <h2 style="-webkit-text-fill-color: white; background: none;">Request a Callback</h2>
+            <p style="color: rgba(255,255,255,0.8);">Let us call you at your convenience</p>
+        </div>
+        
+        <div class="callback-container">
+            <div class="callback-form animate-in">
+                <div class="form-row-callback">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="Phone Number" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <select class="form-control">
+                        <option value="">Preferred Callback Time</option>
+                        <option value="morning">Morning (8AM-11AM)</option>
+                        <option value="afternoon">Afternoon (1PM-4PM)</option>
+                        <option value="evening">Evening (5PM-7PM)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="What would you like to discuss?" rows="3"></textarea>
+                </div>
+                
+                <button class="btn btn-outline" style="background: white; color: var(--ameki-blue);">
+                    Request Callback
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <div class="logo-icons"><img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/logo_krzkdw.jpg" alt="Logo" width="40" height="40"></div>
+                    <div class="logo-text">Amekicolor</div>
+                </div>
+                <p>Rwanda's premier paint manufacturer since 1982, delivering quality and innovation in every can.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul class="footer-links">
+                    <li><a href="tel:+250788123456"><i class="fas fa-phone"></i> +250 788 123 456</a></li>
+                    <li><a href="mailto:info@amekicolor.rw"><i class="fas fa-envelope"></i> info@amekicolor.rw</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Kicukiro, Kigali</a></li>
+                    <li><a href="#"><i class="fas fa-clock"></i> Mon-Fri: 8AM-5PM</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Subscribe to receive updates on new products and special offers</p>
+                <form class="footer-form">
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your email address">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Amekicolor Rwanda. All rights reserved. | Made with ❤️ in Rwanda by NGOBOKA Alain Beni</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
         });
-      });
-      
-      // Initialize particles
-      initParticles();
-    });
-
-    // Back to Top Button Logic
-    const backToTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        backToTop.classList.remove('opacity-0', 'pointer-events-none');
-        backToTop.classList.add('opacity-100');
-      } else {
-        backToTop.classList.add('opacity-0', 'pointer-events-none');
-        backToTop.classList.remove('opacity-100');
-      }
-    });
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-in');
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Active link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinksList = document.querySelectorAll('.nav-links a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinksList.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current) || 
+                    (current === '' && link.getAttribute('href') === 'contact.html')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will contact you soon.');
+                contactForm.reset();
+            });
+        }
+        
+        // Live chat functionality
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendMessage = document.getElementById('sendMessage');
+        
+        if (sendMessage) {
+            sendMessage.addEventListener('click', function() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    // Add user message
+                    const userMessage = document.createElement('div');
+                    userMessage.className = 'message sent';
+                    userMessage.textContent = message;
+                    chatMessages.appendChild(userMessage);
+                    
+                    // Clear input
+                    chatInput.value = '';
+                    
+                    // Simulate reply after 1 second
+                    setTimeout(() => {
+                        const replies = [
+                            "Thank you for your message! Our support team will respond shortly.",
+                            "I can help you with that. Could you provide more details?",
+                            "For technical support, please provide the product code and the issue you're experiencing.",
+                            "We're checking your inquiry and will respond momentarily."
+                        ];
+                        
+                        const reply = replies[Math.floor(Math.random() * replies.length)];
+                        
+                        const botMessage = document.createElement('div');
+                        botMessage.className = 'message received';
+                        botMessage.textContent = reply;
+                        chatMessages.appendChild(botMessage);
+                        
+                        // Scroll to bottom
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 1000);
+                    
+                    // Scroll to bottom
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            });
+            
+            // Allow pressing Enter to send message
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage.click();
+                }
+            });
+        }
+        
+        // FAQ accordion functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>

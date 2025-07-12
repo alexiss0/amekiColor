@@ -62,966 +62,1305 @@
   </script>
   
   <!-- Font Awesome CDN -->
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
-  
-  <style>
-    :root {
-      --color-primary: #005BAC;
-      --color-accent: #FFD700;
-      --color-cta: #E63946;
-      --color-dark: #222222;
-      --color-background: #FFFFFF;
-    }
-    
-    html { 
-      scroll-behavior: smooth; 
-      overflow-x: hidden;
-    }
-    
-    body { 
-      font-family: 'Open Sans', 'Inter', sans-serif; 
-      background-color: #f8f9fa;
-      overflow-x: hidden;
-    }
-    
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: var(--color-primary);
-      border-radius: 5px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background: #004a8c;
-    }
-    
-    /* Floating animation */
-    @keyframes floating {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0px); }
-    }
-    
-    .floating {
-      animation: floating 6s ease-in-out infinite;
-    }
-    
-    /* Paint stroke effect */
-    .paint-stroke {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .paint-stroke::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(0,91,172,0.2) 100%);
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-      z-index: -1;
-    }
-    
-    /* Gradient Underline */
-    .gradient-underline {
-      position: relative;
-      display: inline-block;
-    }
-    
-    .gradient-underline::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-      border-radius: 2px;
-    }
-    
-    /* Particle Background */
-    .particles-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      overflow: hidden;
-    }
-    
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--color-primary);
-      opacity: 0.3;
-    }
-    
-    /* 3D Card Effect */
-    .card-3d {
-      transform-style: preserve-3d;
-      transition: transform 0.5s ease;
-    }
-    
-    .card-3d:hover {
-      transform: rotateY(10deg) rotateX(5deg);
-    }
-    
-    /* Mobile Menu Animation */
-    .mobile-menu {
-      max-height: 0;
-      transition: max-height 0.5s ease-out;
-      overflow: hidden;
-    }
-    
-    .mobile-menu.open {
-      max-height: 500px;
-      transition: max-height 0.5s ease-in;
-    }
-    
-    /* Product Card */
-    .product-card {
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
-      perspective: 1000px;
-    }
-    
-    .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    }
-    
-    .product-card:hover .product-image {
-      transform: scale(1.05);
-    }
-    
-    .product-image {
-      transition: transform 0.5s ease;
-    }
-    
-    /* Color Swatches */
-    .color-swatch {
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    
-    .color-swatch:hover {
-      transform: scale(1.2);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-    
-    /* Filter Button */
-    .filter-btn {
-      transition: all 0.3s ease;
-    }
-    
-    .filter-btn.active {
-      background: var(--color-primary);
-      color: white;
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-  </style>
-  <!-- Breadcrumb JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://amekicolor.vercel.app/"},
-      {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://amekicolor.vercel.app/products.html"}
-    ]
-  }
-  </script>
-  <meta name="google-site-verification" content="rarEBXQizxlQiH5ly-ThWBWNSCueUN7a0p7KHY0D3IQ" />
-</head>
-<body class="bg-background text-dark min-h-screen flex flex-col overflow-x-hidden">
-  <!-- Navbar with animated paint drip -->
-  <header id="navbar" class="sticky top-0 z-50 bg-white shadow-lg transition-all duration-300">
-    <div class="absolute bottom-0 left-0 w-full h-2 overflow-hidden">
-      <div class="absolute bottom-0 left-0 w-full h-4 bg-gradient-to-r from-primary via-accent to-cta animate-pulse"></div>
-    </div>
-    
-    <nav class="container mx-auto flex items-center justify-between py-4 px-4 lg:px-0" aria-label="Main Navigation">
-      <a href="index.html" class="flex items-center gap-2">
-        <img src="https://via.placeholder.com/150x60?text=AmekiColor+Logo" alt="AmekiColor Logo" class="h-12 w-auto floating" loading="lazy">
-        <span class="font-heading font-bold text-primary text-2xl">AmekiColor</span>
-      </a>
-      
-      <ul class="hidden md:flex gap-8 font-semibold" role="menubar">
-        <li><a href="index.html" class="hover:text-primary relative group" role="menuitem">
-          Home
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a></li>
-        <li><a href="about.html" class="hover:text-primary relative group" role="menuitem">
-          About Us
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a></li>
-        <li><a href="products.html" class="hover:text-primary relative group" role="menuitem">
-          Products
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a></li>
-        <li><a href="visualizer.html" class="hover:text-primary relative group" role="menuitem">
-          Color Visualizer
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a></li>
-        <li><a href="blog.html" class="hover:text-primary relative group" role="menuitem">
-          Blog
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a></li>
-        <li><a href="contact.html" class="hover:text-primary relative group" role="menuitem">
-          Contact
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a></li>
-      </ul>
-      
-      <div class="flex items-center gap-4">
-        <a href="inquiry.html" class="px-6 py-2 bg-primary text-white rounded-full shadow-lg hover:bg-cta hover:scale-105 transition-all duration-300 font-bold focus:outline-none focus:ring-2 focus:ring-accent flex items-center gap-2" role="button">
-          <i class="fas fa-paint-roller"></i> Order Now
-        </a>
-        <button id="nav-toggle" class="md:hidden ml-4 text-2xl" aria-label="Open navigation menu">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-    </nav>
-    
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t">
-      <ul class="flex flex-col gap-4 p-4">
-        <li><a href="index.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Home</a></li>
-        <li><a href="about.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">About Us</a></li>
-        <li><a href="products.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Products</a></li>
-        <li><a href="visualizer.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Color Visualizer</a></li>
-        <li><a href="blog.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Blog</a></li>
-        <li><a href="contact.html" class="hover:text-primary block py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">Contact</a></li>
-        <li><a href="inquiry.html" class="block py-2 px-4 bg-primary text-white rounded-lg text-center font-semibold hover:bg-cta transition-colors">Order Now</a></li>
-      </ul>
-    </div>
-  </header>
-
-  <!-- Products Hero -->
-  <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-    <!-- Particle Background -->
-    <div id="particles-container" class="particles-container"></div>
-    
-    <!-- Floating Elements -->
-    <div class="absolute top-10 left-10 w-16 h-20 bg-cta rounded-lg floating" style="animation-delay: 0s;"></div>
-    <div class="absolute top-20 right-20 w-14 h-18 bg-accent rounded-lg floating" style="animation-delay: 1s;"></div>
-    <div class="absolute bottom-20 left-1/4 w-12 h-16 bg-primary rounded-lg floating" style="animation-delay: 2s;"></div>
-    
-    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
-      <h1 class="font-heading text-4xl md:text-6xl lg:text-7xl font-extrabold text-primary mb-6">
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cta to-accent">Premium Paints</span>
-      </h1>
-      
-      <p class="text-xl md:text-2xl text-dark mb-10 max-w-2xl mx-auto">
-        Discover our vibrant, durable paints engineered for Rwanda's unique climate conditions
-      </p>
-      
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <a href="#products-grid" class="px-8 py-4 bg-cta text-white font-bold rounded-full shadow-lg hover:bg-primary hover:scale-105 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-accent text-lg flex items-center justify-center gap-2">
-          <i class="fas fa-paint-brush"></i> Explore Products
-        </a>
-        <a href="visualizer.html" class="px-8 py-4 bg-white text-primary border-2 border-primary font-bold rounded-full shadow-lg hover:bg-primary/10 hover:scale-105 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-accent text-lg flex items-center justify-center gap-2">
-          <i class="fas fa-vr-cardboard"></i> Try Visualizer
-        </a>
-      </div>
-    </div>
-    
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <div class="w-8 h-12 rounded-full border-2 border-primary flex justify-center p-1">
-        <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Filter Options -->
-  <section class="container mx-auto py-12 px-4 relative">
-    <div class="text-center mb-8">
-      <h2 class="font-heading text-2xl md:text-3xl font-bold text-primary mb-4">
-        Find Your Perfect Paint
-      </h2>
-      <p class="text-lg text-dark/80 max-w-2xl mx-auto">
-        Filter by category to find the right product for your project
-      </p>
-    </div>
-    
-    <div class="flex flex-wrap gap-4 justify-center" aria-label="Filter Products">
-      <button class="filter-btn px-6 py-3 rounded-full font-bold bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent" data-filter="all">
-        <i class="fas fa-layer-group mr-2"></i> All Products
-      </button>
-      <button class="filter-btn px-6 py-3 rounded-full font-bold bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent" data-filter="wall">
-        <i class="fas fa-home mr-2"></i> Wall Paints
-      </button>
-      <button class="filter-btn px-6 py-3 rounded-full font-bold bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent" data-filter="roof">
-        <i class="fas fa-cloud-sun mr-2"></i> Roof Paints
-      </button>
-      <button class="filter-btn px-6 py-3 rounded-full font-bold bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent" data-filter="wood">
-        <i class="fas fa-tree mr-2"></i> Wood Coatings
-      </button>
-      <button class="filter-btn px-6 py-3 rounded-full font-bold bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent" data-filter="metallic">
-        <i class="fas fa-sparkles mr-2"></i> Metallic Paints
-      </button>
-      <button class="filter-btn px-6 py-3 rounded-full font-bold bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent" data-filter="primers">
-        <i class="fas fa-sliders mr-2"></i> Primers
-      </button>
-    </div>
-  </section>
-
-  <!-- Products Grid -->
-  <section id="products-grid" class="container mx-auto py-12 px-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Wall Paints -->
-      <div class="product-card bg-white rounded-2xl shadow-xl overflow-hidden card-3d" data-category="wall">
-        <div class="relative">
-          <div class="h-64 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-            <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center">
-              <i class="fas fa-home text-4xl text-blue-600"></i>
-            </div>
-          </div>
-          <div class="absolute top-4 right-4 bg-accent text-dark px-3 py-1 rounded-full text-sm font-bold">
-            Best Seller
-          </div>
-        </div>
-        <div class="p-6">
-          <div class="flex justify-between items-start mb-4">
-            <h3 class="font-heading text-xl font-bold text-dark">WallMaster Pro</h3>
-            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Premium</span>
-          </div>
-          <p class="text-dark/80 mb-6">Premium interior and exterior wall paints for vibrant, durable finishes.</p>
-          
-          <div class="mb-6">
-            <h4 class="font-bold text-dark mb-2">Available Colors</h4>
-            <div class="flex flex-wrap gap-2">
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #3498DB;" title="Sky Blue"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #2ECC71;" title="Emerald Green"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #F1C40F;" title="Sunshine Yellow"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #E74C3C;" title="Coral Red"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #9B59B6;" title="Royal Purple"></div>
-            </div>
-          </div>
-          
-          <div class="flex justify-between items-center">
-            <span class="font-bold text-xl text-primary">RWF 12,500</span>
-            <button class="add-to-cart-btn px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-cta transition-colors flex items-center gap-2">
-              <i class="fas fa-shopping-cart"></i> Add to Cart
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Roof Paints -->
-      <div class="product-card bg-white rounded-2xl shadow-xl overflow-hidden card-3d" data-category="roof">
-        <div class="relative">
-          <div class="h-64 bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center">
-            <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center">
-              <i class="fas fa-cloud-sun text-4xl text-red-600"></i>
-            </div>
-          </div>
-          <div class="absolute top-4 right-4 bg-accent text-dark px-3 py-1 rounded-full text-sm font-bold">
-            Weatherproof
-          </div>
-        </div>
-        <div class="p-6">
-          <div class="flex justify-between items-start mb-4">
-            <h3 class="font-heading text-xl font-bold text-dark">RoofGuard Elite</h3>
-            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Premium</span>
-          </div>
-          <p class="text-dark/80 mb-6">Weather-resistant roof paints for long-lasting protection and color.</p>
-          
-          <div class="mb-6">
-            <h4 class="font-bold text-dark mb-2">Available Colors</h4>
-            <div class="flex flex-wrap gap-2">
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #34495E;" title="Midnight Blue"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #7F8C8D;" title="Slate Gray"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #C0392B;" title="Brick Red"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #16A085;" title="Forest Green"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #F39C12;" title="Amber Gold"></div>
-            </div>
-          </div>
-          
-          <div class="flex justify-between items-center">
-            <span class="font-bold text-xl text-primary">RWF 14,800</span>
-            <button class="add-to-cart-btn px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-cta transition-colors flex items-center gap-2">
-              <i class="fas fa-shopping-cart"></i> Add to Cart
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Wood Coatings -->
-      <div class="product-card bg-white rounded-2xl shadow-xl overflow-hidden card-3d" data-category="wood">
-        <div class="relative">
-          <div class="h-64 bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center">
-            <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center">
-              <i class="fas fa-tree text-4xl text-amber-700"></i>
-            </div>
-          </div>
-          <div class="absolute top-4 right-4 bg-accent text-dark px-3 py-1 rounded-full text-sm font-bold">
-            Eco-Friendly
-          </div>
-        </div>
-        <div class="p-6">
-          <div class="flex justify-between items-start mb-4">
-            <h3 class="font-heading text-xl font-bold text-dark">WoodLux Finish</h3>
-            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Premium</span>
-          </div>
-          <p class="text-dark/80 mb-6">Protective and decorative coatings for all wood surfaces.</p>
-          
-          <div class="mb-6">
-            <h4 class="font-bold text-dark mb-2">Available Finishes</h4>
-            <div class="flex flex-wrap gap-2">
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #8B4513;" title="Mahogany"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #D2691E;" title="Chestnut"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #A0522D;" title="Sienna"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #CD853F;" title="Golden Oak"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: #D2B48C;" title="Natural Teak"></div>
-            </div>
-          </div>
-          
-          <div class="flex justify-between items-center">
-            <span class="font-bold text-xl text-primary">RWF 15,300</span>
-            <button class="add-to-cart-btn px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-cta transition-colors flex items-center gap-2">
-              <i class="fas fa-shopping-cart"></i> Add to Cart
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Metallic Paints -->
-      <div class="product-card bg-white rounded-2xl shadow-xl overflow-hidden card-3d" data-category="metallic">
-        <div class="relative">
-          <div class="h-64 bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center">
-            <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center">
-              <i class="fas fa-sparkles text-4xl text-gray-700"></i>
-            </div>
-          </div>
-          <div class="absolute top-4 right-4 bg-accent text-dark px-3 py-1 rounded-full text-sm font-bold">
-            Shimmer Effect
-          </div>
-        </div>
-        <div class="p-6">
-          <div class="flex justify-between items-start mb-4">
-            <h3 class="font-heading text-xl font-bold text-dark">MetalShine Pro</h3>
-            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Premium</span>
-          </div>
-          <p class="text-dark/80 mb-6">Shimmering metallic finishes for a modern, elegant look.</p>
-          
-          <div class="mb-6">
-            <h4 class="font-bold text-dark mb-2">Available Finishes</h4>
-            <div class="flex flex-wrap gap-2">
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: linear-gradient(135deg, #bdc3c7, #2c3e50);" title="Silver Steel"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: linear-gradient(135deg, #D4AF37, #A67C00);" title="Gold Luxe"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: linear-gradient(135deg, #cd7f32, #804a00);" title="Bronze Classic"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: linear-gradient(135deg, #b9b9b9, #555555);" title="Graphite"></div>
-              <div class="color-swatch w-8 h-8 rounded-full border-2 border-white shadow" style="background: linear-gradient(135deg, #e5e4e2, #a19d94);" title="Platinum"></div>
-            </div>
-          </div>
-          
-          <div class="flex justify-between items-center">
-            <span class="font-bold text-xl text-primary">RWF 18,900</span>
-            <button class="add-to-cart-btn px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-cta transition-colors flex items-center gap-2">
-              <i class="fas fa-shopping-cart"></i> Add to Cart
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Primers -->
-      <div class="product-card bg-white rounded-2xl shadow-xl overflow-hidden card-3d" data-category="primers">
-        <div class="relative">
-          <div class="h-64 bg-gradient-to-br from-gray-300 to-gray-500 flex items-center justify-center">
-            <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center">
-              <i class="fas fa-sliders text-4xl text-gray-500"></i>
-            </div>
-          </div>
-          <div class="absolute top-4 right-4 bg-accent text-dark px-3 py-1 rounded-full text-sm font-bold">
-            Essential
-          </div>
-        </div>
-        <div class="p-6">
-          <div class="flex justify-between items-start mb-4">
-            <h3 class="font-heading text-xl font-bold text-dark">PrimeSeal Pro</h3>
-            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Professional</span>
-          </div>
-          <p class="text-dark/80 mb-6">High-adhesion primers for perfect paint application on any surface.</p>
-          
-          <div class="mb-6">
-            <h4 class="font-bold text-dark mb-2">Key Features</h4>
-            <ul class="list-disc pl-5 text-sm text-dark/80 space-y-1">
-              <li>Seals and prepares surfaces</li>
-              <li>Improves paint durability</li>
-              <li>Blocks stains and tannins</li>
-              <li>Quick drying formula</li>
-            </ul>
-          </div>
-          
-          <div class="flex justify-between items-center">
-            <span class="font-bold text-xl text-primary">RWF 9,500</span>
-            <button class="add-to-cart-btn px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-cta transition-colors flex items-center gap-2">
-              <i class="fas fa-shopping-cart"></i> Add to Cart
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Special Offer -->
-      <div class="product-card bg-gradient-to-br from-primary to-cta rounded-2xl shadow-xl overflow-hidden card-3d" data-category="all">
-        <div class="relative h-full flex flex-col justify-between">
-          <div class="p-6 text-white">
-            <div class="flex justify-between items-start mb-4">
-              <h3 class="font-heading text-xl font-bold">Complete Home Bundle</h3>
-              <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Special Offer</span>
-            </div>
-            <p class="mb-6">Get everything you need for a complete home painting project at a special discounted price.</p>
+   <style>
+        :root {
+            --ameki-blue: #1a3a8f;
+            --ameki-light-blue: #2d55b7;
+            --ameki-purple: #6a4c93;
+            --ameki-gold: #d4af37;
+            --ameki-light-gold: #f0d87a;
+            --ameki-light: #f8f9fa;
+            --ameki-dark: #0d1b3a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(13, 27, 58, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 30px rgba(13, 27, 58, 0.15);
+            padding: 10px 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ameki-light-gold);
+            font-weight: 700;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(26, 58, 143, 0.3);
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--ameki-dark);
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--ameki-dark);
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--ameki-blue), var(--ameki-purple));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--ameki-blue);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--ameki-blue);
+        }
+        
+        .nav-links a.active:after {
+            width: 100%;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            color: white;
+            box-shadow: 0 10px 20px rgba(26, 58, 143, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(26, 58, 143, 0.4);
+            background: linear-gradient(135deg, var(--ameki-light-blue), var(--ameki-purple));
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--ameki-blue);
+            color: var(--ameki-blue);
+        }
+        
+        .btn-outline:hover {
+            background: var(--ameki-blue);
+            color: white;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--ameki-dark);
+        }
+        
+        /* Hero Section for Products Page */
+        .products-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(13, 27, 58, 0.7), rgba(13, 27, 58, 0.7)), 
+                        url('https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858167/slide2_fh0ko5.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .products-hero-content {
+            max-width: 800px;
+        }
+        
+        .products-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .products-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Product Categories */
+        .categories {
+            padding: 70px 30px;
+            background: var(--ameki-light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--ameki-gold);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 30px auto 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .categories-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .category-btn {
+            padding: 15px 30px;
+            background: white;
+            border-radius: 50px;
+            border: 2px solid #e0e0e0;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background: var(--ameki-blue);
+            color: white;
+            border-color: var(--ameki-blue);
+        }
+        
+        /* Products Section */
+        .products-section {
+            padding: 50px 30px;
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.9), rgba(240, 244, 255, 0.9));
+            position: relative;
+        }
+        
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid rgba(26, 58, 143, 0.1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(26, 58, 143, 0.2);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--ameki-gold);
+            color: var(--ameki-dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+        
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .product-img img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            transition: all 0.5s ease;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-content {
+            padding: 25px;
+        }
+        
+        .product-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--ameki-dark);
+        }
+        
+        .product-content .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--ameki-blue);
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .product-content p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .product-features li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .product-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--ameki-gold);
+            font-weight: bold;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn-cart {
+            background: var(--ameki-light-gold);
+            color: var(--ameki-dark);
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-cart:hover {
+            background: var(--ameki-gold);
+        }
+        
+        /* Product Categories Section */
+        .category-info {
+            padding: 80px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .category-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .category-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .category-card:hover .category-img img {
+            transform: scale(1.1);
+        }
+        
+        .category-content {
+            padding: 25px;
+        }
+        
+        .category-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--ameki-dark);
+        }
+        
+        .category-content p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        /* Technical Info */
+        .technical-info {
+            padding: 80px 30px;
+            background: var(--ameki-dark);
+            color: white;
+        }
+        
+        .technical-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .tech-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .tech-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--ameki-light-gold);
+        }
+        
+        .tech-card ul {
+            list-style: none;
+        }
+        
+        .tech-card ul li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .tech-card ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--ameki-gold);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 30px;
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.95), rgba(240, 244, 255, 0.95));
+        }
+        
+        .testimonial-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(26, 58, 143, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .rating {
+            color: var(--ameki-gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ddd;
+            overflow: hidden;
+        }
+        
+        .client-details h4 {
+            color: var(--ameki-dark);
+            margin-bottom: 5px;
+        }
+        
+        .client-details p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 30px;
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        .cta-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--ameki-dark);
+            color: white;
+            padding: 80px 0 0;
+            position: relative;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--ameki-gold);
+        }
+        
+        .footer-col p {
+            color: #bbb;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
             
-            <ul class="list-disc pl-5 text-white/90 space-y-2 mb-6">
-              <li>WallMaster Pro (5L)</li>
-              <li>RoofGuard Elite (5L)</li>
-              <li>WoodLux Finish (2.5L)</li>
-              <li>PrimeSeal Pro (5L)</li>
-              <li>Professional brush set</li>
-            </ul>
-          </div>
-          
-          <div class="p-6 bg-white/20 backdrop-blur-sm">
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="line-through text-white/70">RWF 60,000</span>
-                <span class="font-bold text-xl text-white block">RWF 52,500</span>
-                <span class="text-accent font-bold">Save 12%</span>
-              </div>
-              <button class="add-to-cart-btn px-4 py-2 bg-white text-primary rounded-lg font-semibold hover:bg-accent transition-colors flex items-center gap-2">
-                <i class="fas fa-gift"></i> Get Bundle
-              </button>
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .products-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .cta-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* Animations */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .logo-icons{
+            width: 4rem;
+            height: 3rem;
+        }
+        .logo-icons img{
+            width: 4rem;
+            height: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="navbar">
+            <div class="logo">
+                <div class="logo-icons"><img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/logo_krzkdw.jpg" alt="Logo" width="40" height="40"></div>
+                <div class="logo-text"><a href="index.html">Amekicolor</a></div>
             </div>
-          </div>
+            
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="products.html" class="active">Products</a>
+                <a href="Location.html">Our Location</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            
+            <a href="order.html" class="btn btn-primary">Order Now</a>
+            
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- Technical Specifications -->
-  <section class="py-20 bg-gradient-to-r from-primary/5 to-accent/5">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4 text-primary relative inline-block">
-          <span class="gradient-underline">Technical Excellence</span>
-        </h2>
-        <p class="text-lg text-dark/80 max-w-2xl mx-auto">
-          Our paints are engineered to perform in Rwanda's unique climate conditions
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <div class="bg-white rounded-2xl shadow-lg p-6">
-          <h3 class="font-heading text-xl font-bold text-primary mb-4">Performance Features</h3>
-          <ul class="space-y-4">
-            <li class="flex items-start gap-3">
-              <i class="fas fa-sun text-accent mt-1"></i>
-              <div>
-                <h4 class="font-bold">UV Resistance</h4>
-                <p class="text-dark/80">Prevents color fading even under intense sunlight</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <i class="fas fa-tint-slash text-accent mt-1"></i>
-              <div>
-                <h4 class="font-bold">Waterproof</h4>
-                <p class="text-dark/80">Repels water and prevents moisture damage</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <i class="fas fa-wind text-accent mt-1"></i>
-              <div>
-                <h4 class="font-bold">Weather Resistance</h4>
-                <p class="text-dark/80">Withstands Rwanda's seasonal weather changes</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <i class="fas fa-broom text-accent mt-1"></i>
-              <div>
-                <h4 class="font-bold">Washable</h4>
-                <p class="text-dark/80">Easy to clean without damaging the finish</p>
-              </div>
-            </li>
-          </ul>
+    <!-- Products Hero Section -->
+    <section class="products-hero">
+        <div class="products-hero-content">
+            <h1>Premium Paints for Every Surface</h1>
+            <p>Discover Rwanda's finest paint collection - expertly crafted for durability, beauty, and protection</p>
+            <a href="#products" class="btn btn-outline">Explore Collection</a>
+        </div>
+    </section>
+
+    <!-- Product Categories -->
+    <section class="categories">
+        <div class="section-title">
+            <h2>Our Paint Categories</h2>
+            <p>Choose the perfect paint for your project from our specialized ranges</p>
         </div>
         
-        <div class="bg-white rounded-2xl shadow-lg p-6">
-          <h3 class="font-heading text-xl font-bold text-primary mb-4">Eco-Friendly Advantages</h3>
-          <ul class="space-y-4">
-            <li class="flex items-start gap-3">
-              <i class="fas fa-leaf text-accent mt-1"></i>
-              <div>
-                <h4 class="font-bold">Low VOC</h4>
-                <p class="text-dark/80">Minimal volatile organic compounds for healthier air</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <i class="fas fa-recycle text-accent mt-1"></i>
-              <div>
-                <h4 class="font-bold">Recyclable Packaging</h4>
-                <p class="text-dark/80">Environmentally responsible containers</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <i class="fas fa-industry text-accent mt-1"></i>
-              <div>
-                <h4 class="font-bold">Sustainable Manufacturing</h4>
-                <p class="text-dark/80">Reduced waste and energy consumption</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <i class="fas fa-seedling text-accent mt-1"></i>
-              <div>
-                <h4 class="font-bold">Plant-Based Ingredients</h4>
-                <p class="text-dark/80">Renewable resources in our formulas</p>
-              </div>
-            </li>
-          </ul>
+        <div class="categories-container">
+            <button class="category-btn active">All Products</button>
+            <button class="category-btn">Interior Paints</button>
+            <button class="category-btn">Exterior Paints</button>
+            <button class="category-btn">Wood Finishes</button>
+            <button class="category-btn">Primers & Sealers</button>
+            <button class="category-btn">Specialty Coatings</button>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA Section -->
-  <section class="py-20 bg-gradient-to-r from-primary to-cta">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-white">
-        Ready to Transform Your Space?
-      </h2>
-      <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-        Get expert advice and premium paints delivered across Rwanda
-      </p>
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <a href="inquiry.html" class="px-8 py-4 bg-white text-primary font-bold rounded-full shadow-lg hover:bg-accent hover:text-white transition-all duration-300 text-lg">
-          Request a Quote
-        </a>
-        <a href="contact.html" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full shadow-lg hover:bg-white/10 transition-all duration-300 text-lg">
-          Find a Store
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-primary text-white py-16">
-    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
-      <div>
-        <div class="flex items-center gap-2 mb-6">
-          <img src="https://via.placeholder.com/150x60?text=AmekiColor+Logo" alt="AmekiColor Logo" class="h-10" loading="lazy">
-          <span class="font-heading font-bold text-xl">AmekiColor</span>
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <div class="section-title">
+            <h2>Featured Products</h2>
+            <p>Explore our best-selling paints with Rwandan craftsmanship</p>
         </div>
-        <p class="text-sm mb-6 text-white/80">
-          Rwanda's premier paint manufacturer, delivering vibrant colors and unmatched quality since 2010.
-        </p>
-        <p class="text-sm">&copy; 2024 AmekiColor. All rights reserved.</p>
-      </div>
-      
-      <div>
-        <h3 class="font-heading font-bold mb-4 text-lg">Contact</h3>
-        <ul class="text-sm space-y-3">
-          <li class="flex items-start gap-3">
-            <i class="fas fa-phone-alt mt-1"></i>
-            <div>
-              <div class="font-medium">Sales & Support</div>
-              <div>+250 788 000 000</div>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <i class="fas fa-envelope mt-1"></i>
-            <div>info@amekicolor.rw</div>
-          </li>
-          <li class="flex items-start gap-3">
-            <i class="fas fa-map-marker-alt mt-1"></i>
-            <div>KG 123 St, Kigali, Rwanda</div>
-          </li>
-          <li class="flex items-start gap-3">
-            <i class="fas fa-clock mt-1"></i>
-            <div>
-              <div>Mon-Fri: 8AM - 6PM</div>
-              <div>Sat: 9AM - 4PM</div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      
-      <div>
-        <h3 class="font-heading font-bold mb-4 text-lg">Quick Links</h3>
-        <ul class="text-sm space-y-3">
-          <li><a href="about.html" class="hover:text-accent transition-colors">About Us</a></li>
-          <li><a href="products.html" class="hover:text-accent transition-colors">Product Catalog</a></li>
-          <li><a href="visualizer.html" class="hover:text-accent transition-colors">Color Visualizer</a></li>
-          <li><a href="blog.html" class="hover:text-accent transition-colors">Inspiration Blog</a></li>
-          <li><a href="contact.html" class="hover:text-accent transition-colors">Contact Us</a></li>
-          <li><a href="careers.html" class="hover:text-accent transition-colors">Careers</a></li>
-        </ul>
-      </div>
-      
-      <div>
-        <h3 class="font-heading font-bold mb-4 text-lg">Stay Inspired</h3>
-        <p class="text-sm mb-4 text-white/80">
-          Subscribe to our newsletter for color trends, DIY tips, and exclusive offers.
-        </p>
-        <form class="flex flex-col gap-2 mb-6" autocomplete="off" aria-label="Newsletter Subscription">
-          <label for="newsletter-email" class="sr-only">Email address</label>
-          <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Your email" class="rounded-lg px-4 py-3 text-dark focus:outline-none focus:ring-2 focus:ring-accent" required>
-          <button type="submit" class="bg-accent text-dark font-bold rounded-lg px-4 py-3 hover:bg-cta hover:text-white transition-colors flex items-center justify-center gap-2">
-            <i class="fas fa-paper-plane"></i> Subscribe
-          </button>
-        </form>
-        <div class="flex gap-4">
-          <a href="https://facebook.com/amekicolor" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://instagram.com/amekicolor" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://twitter.com/amekicolor" aria-label="Twitter" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://youtube.com/amekicolor" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
-            <i class="fab fa-youtube"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Back to Top Button -->
-  <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Back to top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- Scripts -->
-  <script>
-    // Enhanced GSAP Animations
-    window.addEventListener('DOMContentLoaded', () => {
-      // Register GSAP plugins
-      gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
-      
-      // Initialize particles
-      function initParticles() {
-        const container = document.getElementById('particles-container');
-        const colors = ['#005BAC', '#FFD700', '#E63946', '#3498DB', '#2ECC71'];
         
-        for (let i = 0; i < 30; i++) {
-          const particle = document.createElement('div');
-          particle.classList.add('particle');
-          
-          // Random properties
-          const size = Math.random() * 30 + 10;
-          const color = colors[Math.floor(Math.random() * colors.length)];
-          const left = Math.random() * 100;
-          const top = Math.random() * 100;
-          const duration = Math.random() * 20 + 10;
-          const delay = Math.random() * 5;
-          
-          particle.style.width = `${size}px`;
-          particle.style.height = `${size}px`;
-          particle.style.backgroundColor = color;
-          particle.style.left = `${left}%`;
-          particle.style.top = `${top}%`;
-          
-          // Animate with GSAP
-          gsap.to(particle, {
-            y: '+=100',
-            x: '+=50',
-            rotation: 360,
-            duration: duration,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut',
-            delay: delay
-          });
-          
-          container.appendChild(particle);
-        }
-      }
-      
-      // Mobile nav toggle with animation
-      document.getElementById('nav-toggle').addEventListener('click', function() {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('open');
-      });
-      
-      // Sticky Navbar Shrink on Scroll
-      const navbar = document.getElementById('navbar');
-      gsap.to(navbar, {
-        scrollTrigger: {
-          trigger: 'body',
-          start: 'top -80',
-          end: 99999,
-          toggleClass: {targets: navbar, className: 'shadow-lg py-2'}
-        }
-      });
-      
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener('click', function(e) {
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            e.preventDefault();
-            gsap.to(window, { 
-              scrollTo: {
-                y: target,
-                offsetY: 80
-              },
-              duration: 1, 
-              ease: 'power2.out' 
-            });
-          }
-        });
-      });
-      
-      // Back to top button
-      const backToTop = document.getElementById('back-to-top');
-      ScrollTrigger.create({
-        trigger: 'body',
-        start: 'top 20%',
-        onEnter: () => gsap.to(backToTop, { opacity: 1, pointerEvents: 'auto', duration: 0.3 }),
-        onLeaveBack: () => gsap.to(backToTop, { opacity: 0, pointerEvents: 'none', duration: 0.3 })
-      });
-      
-      backToTop.addEventListener('click', () => {
-        gsap.to(window, { scrollTo: 0, duration: 1, ease: 'power2.out' });
-      });
-      
-      // Product filtering
-      const filterBtns = document.querySelectorAll('.filter-btn');
-      const productCards = document.querySelectorAll('.product-card');
-      
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const filter = btn.getAttribute('data-filter');
-          
-          // Update active button
-          filterBtns.forEach(b => b.classList.remove('active', 'bg-primary', 'text-white'));
-          btn.classList.add('active', 'bg-primary', 'text-white');
-          
-          // Filter products
-          productCards.forEach(card => {
-            if (filter === 'all' || card.getAttribute('data-category') === filter) {
-              gsap.to(card, { 
-                opacity: 1, 
-                display: 'block', 
-                duration: 0.5,
-                ease: 'power2.out'
-              });
+        <div class="products-container">
+            <!-- Product 1 -->
+            <div class="product-card animate-in">
+                <div class="product-badge">Best Seller</div>
+                <div class="product-img">
+                    <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/one_guuerj.jpg" alt="Amekicolor Premium Emulsion">
+                </div>
+                <div class="product-content">
+                    <h3>Premium Interior Emulsion</h3>
+                    <span class="price">RWF 25,000</span>
+                    <p>Water-based emulsion for interior walls with excellent coverage and washability</p>
+                    
+                    <ul class="product-features">
+                        <li>Washable & scrub resistant</li>
+                        <li>Low odor & eco-friendly</li>
+                        <li>Excellent coverage</li>
+                        <li>Dries in 2 hours</li>
+                    </ul>
+                    
+                    <div class="product-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i> Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card animate-in delay-1">
+                <div class="product-badge">Weatherproof</div>
+                <div class="product-img">
+                    <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858147/two_jn9ha2.jpg" alt="Amekicolor WeatherShield">
+                </div>
+                <div class="product-content">
+                    <h3>WeatherShield Exterior</h3>
+                    <span class="price">RWF 32,000</span>
+                    <p>Advanced protection against harsh Rwandan weather conditions</p>
+                    
+                    <ul class="product-features">
+                        <li>UV resistant</li>
+                        <li>Mold & mildew resistant</li>
+                        <li>10-year warranty</li>
+                        <li>All climate protection</li>
+                    </ul>
+                    
+                    <div class="product-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i> Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card animate-in delay-2">
+                <div class="product-badge">Eco-Friendly</div>
+                <div class="product-img">
+                    <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858151/three_coespo.jpg" alt="Amekicolor EcoGuard">
+                </div>
+                <div class="product-content">
+                    <h3>EcoGuard Zero VOC</h3>
+                    <span class="price">RWF 28,500</span>
+                    <p>Non-toxic interior paint with zero VOCs for healthier living spaces</p>
+                    
+                    <ul class="product-features">
+                        <li>Zero VOC formula</li>
+                        <li>Child & pet safe</li>
+                        <li>Low odor application</li>
+                        <li>Greenguard certified</li>
+                    </ul>
+                    
+                    <div class="product-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i> Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card animate-in delay-3">
+                <div class="product-badge">New Formula</div>
+                <div class="product-img">
+                    <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858149/four_uccfkr.jpg" alt="Amekicolor WoodShield">
+                </div>
+                <div class="product-content">
+                    <h3>WoodShield Premium Enamel</h3>
+                    <span class="price">RWF 35,000</span>
+                    <p>High-gloss finish for wood surfaces with superior protection</p>
+                    
+                    <ul class="product-features">
+                        <li>Hard-wearing finish</li>
+                        <li>Scratch resistant</li>
+                        <li>Moisture protection</li>
+                        <li>Rich gloss retention</li>
+                    </ul>
+                    
+                    <div class="product-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i> Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 5 -->
+            <div class="product-card animate-in">
+                <div class="product-badge">Quick Dry</div>
+                <div class="product-img">
+                    <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858147/five_nwgp3d.jpg" alt="Amekicolor PrimerPro">
+                </div>
+                <div class="product-content">
+                    <h3>PrimerPro All-Surface</h3>
+                    <span class="price">RWF 18,000</span>
+                    <p>Universal primer for all surfaces ensuring perfect paint adhesion</p>
+                    
+                    <ul class="product-features">
+                        <li>Seals porous surfaces</li>
+                        <li>Blocks stains</li>
+                        <li>Improves coverage</li>
+                        <li>Dries in 30 minutes</li>
+                    </ul>
+                    
+                    <div class="product-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i> Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card animate-in delay-1">
+                <div class="product-badge">Anti-Bacterial</div>
+                <div class="product-img">
+                    <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858149/six_pums4d.jpg" alt="Amekicolor HealthGuard">
+                </div>
+                <div class="product-content">
+                    <h3>HealthGuard Hospital Grade</h3>
+                    <span class="price">RWF 38,000</span>
+                    <p>Specialized coating for healthcare and high-hygiene environments</p>
+                    
+                    <ul class="product-features">
+                        <li>99.9% bacteria reduction</li>
+                        <li>Easy to clean</li>
+                        <li>Chemical resistant</li>
+                        <li>Durable finish</li>
+                    </ul>
+                    
+                    <div class="product-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i> Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories Detail -->
+    <section class="category-info">
+        <div class="section-title">
+            <h2>Specialized Paint Ranges</h2>
+            <p>Find the perfect solution for every surface and application</p>
+        </div>
+        
+        <div class="category-grid">
+            <div class="category-card animate-in">
+                <div class="category-img">
+                    <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/makings_n5wajj.jpg" alt="Interior Paints">
+                </div>
+                <div class="category-content">
+                    <h3>Interior Paints</h3>
+                    <p>Transform your indoor spaces with our premium interior paints designed for beauty, durability, and easy maintenance.</p>
+                    <a href="#" class="btn btn-outline">View Collection</a>
+                </div>
+            </div>
+            
+            <div class="category-card animate-in delay-1">
+                <div class="category-img">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Exterior Paints">
+                </div>
+                <div class="category-content">
+                    <h3>Exterior Paints</h3>
+                    <p>Protect and beautify your home's exterior with our weather-resistant coatings specially formulated for Rwanda's climate.</p>
+                    <a href="#" class="btn btn-outline">View Collection</a>
+                </div>
+            </div>
+            
+            <div class="category-card animate-in delay-2">
+                <div class="category-img">
+                    <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80" alt="Wood Finishes">
+                </div>
+                <div class="category-content">
+                    <h3>Wood Finishes</h3>
+                    <p>Enhance and protect wood surfaces with our premium stains, varnishes, and enamels for lasting beauty.</p>
+                    <a href="#" class="btn btn-outline">View Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Information -->
+    <section class="technical-info">
+        <div class="section-title">
+            <h2 style="-webkit-text-fill-color: white; background: none;">Technical Information</h2>
+            <p style="color: rgba(255,255,255,0.8);">Professional guidance for perfect results</p>
+        </div>
+        
+        <div class="technical-container">
+            <div class="tech-grid">
+                <div class="tech-card animate-in">
+                    <h3>Surface Preparation</h3>
+                    <ul>
+                        <li>Clean surface thoroughly before application</li>
+                        <li>Repair cracks and imperfections</li>
+                        <li>Sand glossy surfaces for better adhesion</li>
+                        <li>Apply primer to porous surfaces</li>
+                        <li>Ensure surface is dry and dust-free</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-card animate-in delay-1">
+                    <h3>Application Guide</h3>
+                    <ul>
+                        <li>Stir paint thoroughly before use</li>
+                        <li>Apply at temperatures between 10°C-35°C</li>
+                        <li>Maintain 50-70% humidity for best results</li>
+                        <li>Apply 2 coats for optimal coverage</li>
+                        <li>Allow 4-6 hours drying between coats</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-card animate-in delay-2">
+                    <h3>Coverage Calculator</h3>
+                    <ul>
+                        <li>Premium Emulsion: 12m² per liter</li>
+                        <li>WeatherShield: 10m² per liter</li>
+                        <li>WoodShield: 14m² per liter</li>
+                        <li>PrimerPro: 15m² per liter</li>
+                        <li>HealthGuard: 8m² per liter</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-title">
+            <h2>Customer Testimonials</h2>
+            <p>See what our customers say about Amekicolor products</p>
+        </div>
+        
+        <div class="testimonial-container">
+            <div class="testimonial-card animate-in">
+                <div class="testimonial-content">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"I used Amekicolor's Premium Emulsion for my entire house. The coverage was excellent, and the colors are still vibrant after 3 years. Highly recommend!"</p>
+                    <div class="client-info">
+                        <div class="client-avatar"></div>
+                        <div class="client-details">
+                            <h4>Alexis Uwimana</h4>
+                            <p>Homeowner, Kigali</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card animate-in delay-1">
+                <div class="testimonial-content">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"As a contractor, I trust Amekicolor for all my projects. Their WeatherShield exterior paint withstands our climate better than imported brands at half the price."</p>
+                    <div class="client-info">
+                        <div class="client-avatar"></div>
+                        <div class="client-details">
+                            <h4>David Niyomugabo</h4>
+                            <p>Construction Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card animate-in delay-2">
+                <div class="testimonial-content">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The EcoGuard Zero VOC paint is amazing! No smell at all, and it was safe for my newborn's nursery. Beautiful finish and easy to apply."</p>
+                    <div class="client-info">
+                        <div class="client-avatar"></div>
+                        <div class="client-details">
+                            <h4>Grace Mukamana</h4>
+                            <p>Interior Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="order">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Space?</h2>
+            <p>Get expert advice and premium paints delivered across Rwanda</p>
+            
+            <div class="cta-btns">
+                <a href="contact.html" class="btn btn-outline">Request Color Consultation</a>
+                <a href="tel:+250788123456" class="btn btn-primary">Call: +250 788 123 456</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <div class="logo-icons"><img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/logo_krzkdw.jpg" alt="Logo" width="40" height="40"></div>
+                    <div class="logo-text"><a href="index.html">Amekicolor</a></div>
+                </div>
+                <p>Rwanda's premier paint manufacturer since 1982, delivering quality and innovation in every can.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="gallery.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Our Products</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Interior Paints</a></li>
+                    <li><a href="#">Exterior Paints</a></li>
+                    <li><a href="#">Wood Finishes</a></li>
+                    <li><a href="#">Primers & Sealers</a></li>
+                    <li><a href="#">Specialty Coatings</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>Kicukiro, Kigali, Rwanda</p>
+                <p>+250 788 123 456</p>
+                <p>info@amekicolor.rw</p>
+                <p>Mon-Fri: 8AM - 5PM<br>Sat: 9AM - 1PM</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Amekicolor Rwanda. All rights reserved. | Made with ❤️ in Rwanda by NGOBOKA Alain Beni</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
             } else {
-              gsap.to(card, { 
-                opacity: 0, 
-                display: 'none', 
-                duration: 0.3,
-                ease: 'power2.out'
-              });
+                header.classList.remove('header-scrolled');
             }
-          });
         });
-      });
-      
-      // Product card animations
-      gsap.utils.toArray('.product-card').forEach((card, i) => {
-        gsap.from(card, {
-          opacity: 0,
-          y: 50,
-          duration: 0.8,
-          delay: i * 0.1,
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 90%',
-            toggleActions: 'play none none none'
-          }
-        });
-      });
-      
-      // Add to cart animation
-      document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-          const productCard = this.closest('.product-card');
-          
-          // Create a floating paint can
-          const paintCan = document.createElement('div');
-          paintCan.classList.add('w-8', 'h-10', 'bg-primary', 'absolute', 'rounded-lg');
-          paintCan.style.top = this.getBoundingClientRect().top + 'px';
-          paintCan.style.left = this.getBoundingClientRect().left + 'px';
-          paintCan.style.zIndex = '1000';
-          document.body.appendChild(paintCan);
-          
-          // Animate to cart icon in nav
-          const cartIcon = document.querySelector('.fa-paint-roller').closest('a');
-          const cartIconRect = cartIcon.getBoundingClientRect();
-          
-          gsap.to(paintCan, {
-            x: cartIconRect.left - this.getBoundingClientRect().left,
-            y: cartIconRect.top - this.getBoundingClientRect().top,
-            scale: 0.5,
-            duration: 1,
-            ease: 'power2.out',
-            onComplete: () => {
-              paintCan.remove();
-              
-              // Add cart animation effect
-              gsap.to(cartIcon, {
-                y: -10,
-                duration: 0.2,
-                repeat: 3,
-                yoyo: true,
-                ease: 'power1.inOut'
-              });
-            }
-          });
-          
-          // Show success message
-          const successMsg = document.createElement('div');
-          successMsg.textContent = 'Added to cart!';
-          successMsg.classList.add('fixed', 'top-20', 'right-4', 'bg-accent', 'text-dark', 'px-4', 'py-2', 'rounded-lg', 'font-bold', 'shadow-lg', 'z-50');
-          document.body.appendChild(successMsg);
-          
-          setTimeout(() => {
-            gsap.to(successMsg, {
-              opacity: 0,
-              y: -20,
-              duration: 0.5,
-              onComplete: () => successMsg.remove()
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-in');
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('visible');
+                }
             });
-          }, 2000);
+        }
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-      });
-      
-      // Initialize particles
-      initParticles();
-    });
-
-    // Back to Top Button Logic
-    const backToTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        backToTop.classList.remove('opacity-0', 'pointer-events-none');
-        backToTop.classList.add('opacity-100');
-      } else {
-        backToTop.classList.add('opacity-0', 'pointer-events-none');
-        backToTop.classList.remove('opacity-100');
-      }
-    });
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
+        
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Active link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinksList = document.querySelectorAll('.nav-links a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinksList.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current) || 
+                    (current === '' && link.getAttribute('href') === 'products.html')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Category filtering
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+        
+        // Buy Now buttons
+        const buyButtons = document.querySelectorAll('.btn-primary');
+        buyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const product = this.closest('.product-card');
+                const productName = product.querySelector('h3').textContent;
+                
+                // Show confirmation message
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                }, 2000);
+                
+                // In a real app, you would add to cart here
+                console.log(`Added ${productName} to cart`);
+            });
+        });
+    </script>
 </body>
 </html>

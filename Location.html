@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locations - Amekicolor Rwanda</title>
+    <meta name="description" content="Find AmekiColor branches and distributors across Rwanda. Visit our showrooms in Kigali, Gasabo, Kicukiro, and more." />
+    <meta name="keywords" content="AmekiColor locations, paint stores Rwanda, Kigali paint shop, find AmekiColor" />
+    <meta name="author" content="NGOBOKA Alain Beni" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="AmekiColor - Rwanda’s Trusted Paint Brand" />
+    <meta property="og:description" content="Explore eco-friendly, high-quality paints for homes and businesses with AmekiColor." />
+    <meta property="og:image" content="https://amekicolor.netlify.app/images/amekicolor-preview.jpg" />
+    <meta property="og:url" content="https://amekicolor.netlify.app" />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://amekicolor.netlify.app/location" />
+    <link rel="shortcut icon" href="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/logo_krzkdw.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ameki-blue: #1a3a8f;
+            --ameki-light-blue: #2d55b7;
+            --ameki-purple: #6a4c93;
+            --ameki-gold: #d4af37;
+            --ameki-light-gold: #f0d87a;
+            --ameki-light: #f8f9fa;
+            --ameki-dark: #0d1b3a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(13, 27, 58, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 30px rgba(13, 27, 58, 0.15);
+            padding: 10px 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ameki-light-gold);
+            font-weight: 700;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(26, 58, 143, 0.3);
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--ameki-dark);
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--ameki-dark);
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--ameki-blue), var(--ameki-purple));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--ameki-blue);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--ameki-blue);
+        }
+        
+        .nav-links a.active:after {
+            width: 100%;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            color: white;
+            box-shadow: 0 10px 20px rgba(26, 58, 143, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(26, 58, 143, 0.4);
+            background: linear-gradient(135deg, var(--ameki-light-blue), var(--ameki-purple));
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--ameki-blue);
+            color: var(--ameki-blue);
+        }
+        
+        .btn-outline:hover {
+            background: var(--ameki-blue);
+            color: white;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--ameki-dark);
+        }
+        
+        /* Hero Section for Location Page */
+        .location-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(13, 27, 58, 0.7), rgba(13, 27, 58, 0.7)), 
+                        url('https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858154/slide1_ebedcs.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .location-hero-content {
+            max-width: 800px;
+        }
+        
+        .location-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .location-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Location Sections */
+        section {
+            padding: 100px 30px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--ameki-gold);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 30px auto 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Main Location */
+        .main-location {
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.9), rgba(240, 244, 255, 0.9));
+        }
+        
+        .location-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            height: 450px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .location-info {
+            padding: 30px;
+        }
+        
+        .location-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--ameki-dark);
+        }
+        
+        .location-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .location-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            min-width: 40px;
+            color: var(--ameki-blue);
+        }
+        
+        .location-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .location-text p {
+            color: #555;
+        }
+        
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .hours-table td {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .hours-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .hours-table td:last-child {
+            text-align: right;
+            font-weight: 500;
+        }
+        
+        /* Branch Locations */
+        .branch-locations {
+            background: white;
+        }
+        
+        .branches-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .branch-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .branch-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(26, 58, 143, 0.15);
+        }
+        
+        .branch-map {
+            height: 250px;
+            background: #eee;
+        }
+        
+        .branch-content {
+            padding: 30px;
+        }
+        
+        .branch-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--ameki-dark);
+        }
+        
+        .branch-content .branch-address {
+            color: #555;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .branch-contact {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .branch-contact li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Visit Us Section */
+        .visit-us {
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            color: white;
+        }
+        
+        .visit-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .visit-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            height: 400px;
+        }
+        
+        .visit-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .visit-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .visit-content p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        /* Distributors Section */
+        .distributors {
+            background: var(--ameki-light);
+        }
+        
+        .distributors-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .distributor-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .distributor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(26, 58, 143, 0.15);
+        }
+        
+        .distributor-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 8px 20px rgba(26, 58, 143, 0.2);
+        }
+        
+        .distributor-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--ameki-dark);
+        }
+        
+        .distributor-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--ameki-dark);
+            color: white;
+            padding: 80px 0 0;
+            position: relative;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--ameki-gold);
+        }
+        
+        .footer-col p {
+            color: #bbb;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .location-container,
+            .visit-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                height: 350px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .location-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+        }
+        
+        /* Animations */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .logo-icons{
+            width: 4rem;
+            height: 3rem;
+        }
+        .logo-icons img{
+            width: 4rem;
+            height: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="navbar">
+            <div class="logo">
+                <div class="logo-icons"><img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/logo_krzkdw.jpg" alt="Logo" width="40" height="40"></div>
+                <div class="logo-text"><a href="index.html">Amekicolor</a></div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="products.html">Products</a>
+                <a href="locations.html" class="active">Locations</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            
+            <a href="order.html" class="btn btn-primary">Order Now</a>
+            
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Location Hero Section -->
+    <section class="location-hero">
+        <div class="location-hero-content">
+            <h1>Find Amekicolor Near You</h1>
+            <p>Visit our locations across Rwanda for premium paint products and expert advice</p>
+            <a href="#locations" class="btn btn-outline">View Locations</a>
+        </div>
+    </section>
+
+    <!-- Main Location Section -->
+    <section class="main-location" id="locations">
+        <div class="section-title">
+            <h2>Our Headquarters</h2>
+            <p>The heart of Amekicolor operations in Rwanda since 1982</p>
+        </div>
+        
+        <div class="location-container">
+            <div class="map-container animate-in">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.490757207149!2d30.11927091475868!3d-1.953889998573531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca76b6e7a5d19%3A0x4f4f00f5a5a5a5a5!2sKicukiro%2C%20Kigali%2C%20Rwanda!5e0!3m2!1sen!2sus!4v1651234567890!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            
+            <div class="location-info animate-in delay-1">
+                <h3>Amekicolor Headquarters</h3>
+                
+                <div class="location-detail">
+                    <div class="location-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="location-text">
+                        <h4>Address</h4>
+                        <p>KG 123 St, Kicukiro District<br>Kigali, Rwanda</p>
+                    </div>
+                </div>
+                
+                <div class="location-detail">
+                    <div class="location-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="location-text">
+                        <h4>Phone</h4>
+                        <p>+250 788 123 456</p>
+                    </div>
+                </div>
+                
+                <div class="location-detail">
+                    <div class="location-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="location-text">
+                        <h4>Email</h4>
+                        <p>info@amekicolor.rw</p>
+                    </div>
+                </div>
+                
+                <div class="location-detail">
+                    <div class="location-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="location-text">
+                        <h4>Operating Hours</h4>
+                        <table class="hours-table">
+                            <tr>
+                                <td>Monday - Friday</td>
+                                <td>8:00 AM - 6:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td>Saturday</td>
+                                <td>9:00 AM - 4:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td>Sunday</td>
+                                <td>Closed</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <a href="https://maps.google.com?q=Amekicolor+Kigali" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-directions"></i> Get Directions
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branch Locations Section -->
+    <section class="branch-locations">
+        <div class="section-title">
+            <h2>Our Branch Locations</h2>
+            <p>Find Amekicolor stores and distribution centers across Rwanda</p>
+        </div>
+        
+        <div class="branches-container">
+            <!-- Branch 1 -->
+            <div class="branch-card animate-in">
+                <div class="branch-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.490757207149!2d30.11927091475868!3d-1.953889998573531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca76b6e7a5d19%3A0x4f4f00f5a5a5a5a5!2sKicukiro%2C%20Kigali%2C%20Rwanda!5e0!3m2!1sen!2sus!4v1651234567890!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="branch-content">
+                    <h3>Kigali City Branch</h3>
+                    <div class="branch-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>KN 45 St, Nyarugenge District, Kigali</span>
+                    </div>
+                    
+                    <ul class="branch-contact">
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+250 788 234 567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>kigali@amekicolor.rw</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Sat: 8:30 AM - 5:30 PM</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="https://maps.google.com?q=Amekicolor+Kigali+City" target="_blank" class="btn btn-outline">
+                        <i class="fas fa-map"></i> View on Map
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Branch 2 -->
+            <div class="branch-card animate-in delay-1">
+                <div class="branch-map">
+                    <iframe src="https://www.google.com/mens/embed?pb=!1m18!1m12!1m3!1d3988.123456789012!2d29.98765432109876!3d-2.345678901234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMsKwMjAnNDQuNSJTIDI5wrA1OScxNS42IkU!5e0!3m2!1sen!2sus!4v1651234567890!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="branch-content">
+                    <h3>Huye District Branch</h3>
+                    <div class="branch-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Road, Huye Town, Southern Province</span>
+                    </div>
+                    
+                    <ul class="branch-contact">
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+250 788 345 678</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>huye@amekicolor.rw</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Sat: 8:00 AM - 5:00 PM</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="https://maps.google.com?q=Amekicolor+Huye" target="_blank" class="btn btn-outline">
+                        <i class="fas fa-map"></i> View on Map
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Branch 3 -->
+            <div class="branch-card animate-in delay-2">
+                <div class="branch-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.654321098765!2d30.45678901234567!3d-1.2345678901234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTQnMDQuOCJTIDMwwrAyNyc1OC45IkU!5e0!3m2!1sen!2sus!4v1651234567890!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="branch-content">
+                    <h3>Musanze Branch</h3>
+                    <div class="branch-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>KG 78 St, Musanze Town, Northern Province</span>
+                    </div>
+                    
+                    <ul class="branch-contact">
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+250 788 456 789</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>musanze@amekicolor.rw</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Sat: 8:00 AM - 5:00 PM</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="https://maps.google.com?q=Amekicolor+Musanze" target="_blank" class="btn btn-outline">
+                        <i class="fas fa-map"></i> View on Map
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Us Section -->
+    <section class="visit-us">
+        <div class="visit-container">
+            <div class="visit-image animate-in">
+                <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/makings_n5wajj.jpg" alt="Amekicolor Store Interior">
+            </div>
+            
+            <div class="visit-content animate-in delay-1">
+                <h3>Visit Our Flagship Store</h3>
+                <p>Experience the full range of Amekicolor products at our flagship store in Kigali. Our knowledgeable staff will help you find the perfect paint solutions for your project.</p>
+                <p>At our store, you can:</p>
+                
+                <ul style="list-style: none; margin: 20px 0;">
+                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
+                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--ameki-light-gold);"></i>
+                        Explore our complete product range
+                    </li>
+                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
+                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--ameki-light-gold);"></i>
+                        Get expert color consultation
+                    </li>
+                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
+                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--ameki-light-gold);"></i>
+                        See actual paint samples
+                    </li>
+                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
+                        <i class="fas fa-check" style="position: absolute; left: 0; color: var(--ameki-light-gold);"></i>
+                        Access professional painting advice
+                    </li>
+                </ul>
+                
+                <a href="#locations" class="btn btn-outline" style="color: white; border-color: white;">
+                    <i class="fas fa-store"></i> Visit Our Store
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Distributors Section -->
+    <section class="distributors">
+        <div class="section-title">
+            <h2>Authorized Distributors</h2>
+            <p>Find Amekicolor products at these trusted retail partners across Rwanda</p>
+        </div>
+        
+        <div class="distributors-container">
+            <div class="distributor-card animate-in">
+                <div class="distributor-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>Kigali Home Center</h3>
+                <p>KG 200 Ave, Kigali<br>+250 788 111 222</p>
+                <a href="#" class="btn btn-outline">View Location</a>
+            </div>
+            
+            <div class="distributor-card animate-in delay-1">
+                <div class="distributor-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Rwanda Builders Mart</h3>
+                <p>KN 45 St, Kigali<br>+250 788 333 444</p>
+                <a href="#" class="btn btn-outline">View Location</a>
+            </div>
+            
+            <div class="distributor-card animate-in delay-2">
+                <div class="distributor-icon">
+                    <i class="fas fa-warehouse"></i>
+                </div>
+                <h3>Eastern Province Hardware</h3>
+                <p>Main Road, Rwamagana<br>+250 788 555 666</p>
+                <a href="#" class="btn btn-outline">View Location</a>
+            </div>
+            
+            <div class="distributor-card animate-in delay-3">
+                <div class="distributor-icon">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h3>Western Paint Supplies</h3>
+                <p>KG 78 St, Rubavu<br>+250 788 777 888</p>
+                <a href="#" class="btn btn-outline">View Location</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <div class="logo-icons"><img src="./logo.PNG" alt="Logo" width="40" height="40"></div>
+                    <div class="logo-text">Amekicolor</div>
+                </div>
+                <p>Rwanda's premier paint manufacturer since 1982, delivering quality and innovation in every can.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Our Locations</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Kigali Headquarters</a></li>
+                    <li><a href="#">Kigali City Branch</a></li>
+                    <li><a href="#">Huye Branch</a></li>
+                    <li><a href="#">Musanze Branch</a></li>
+                    <li><a href="#">All Locations</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>Kicukiro, Kigali, Rwanda</p>
+                <p>+250 788 123 456</p>
+                <p>info@amekicolor.rw</p>
+                <p>Mon-Fri: 8AM - 5PM<br>Sat: 9AM - 1PM</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Amekicolor Rwanda. All rights reserved. | Made with ❤️ in Rwanda by NGOBOKA Alain Beni</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-in');
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Active link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinksList = document.querySelectorAll('.nav-links a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinksList.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current) || 
+                    (current === '' && link.getAttribute('href') === 'locations.html')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

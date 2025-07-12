@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Products - Amekicolor Rwanda</title>
+    <meta name="description" content="Place your paint order online with AmekiColor. Fast, easy ordering for high-quality, eco-friendly paints delivered to your location in Rwanda." />
+    <meta name="keywords" content="order paint Rwanda, AmekiColor order, buy paint online, Kigali paint delivery" />
+    <meta name="author" content="NGOBOKA Alain Beni" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="AmekiColor - Rwanda’s Trusted Paint Brand" />
+    <meta property="og:description" content="Explore eco-friendly, high-quality paints for homes and businesses with AmekiColor." />
+    <meta property="og:image" content="https://amekicolor.netlify.app/images/amekicolor-preview.jpg" />
+    <meta property="og:url" content="https://amekicolor.netlify.app" />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://amekicolor.netlify.app/order" />
+    <link rel="shortcut icon" href="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/logo_krzkdw.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ameki-blue: #1a3a8f;
+            --ameki-light-blue: #2d55b7;
+            --ameki-purple: #6a4c93;
+            --ameki-gold: #d4af37;
+            --ameki-light-gold: #f0d87a;
+            --ameki-light: #f8f9fa;
+            --ameki-dark: #0d1b3a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(13, 27, 58, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 30px rgba(13, 27, 58, 0.15);
+            padding: 10px 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ameki-light-gold);
+            font-weight: 700;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(26, 58, 143, 0.3);
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--ameki-dark);
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--ameki-dark);
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--ameki-blue), var(--ameki-purple));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--ameki-blue);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--ameki-blue);
+        }
+        
+        .nav-links a.active:after {
+            width: 100%;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            color: white;
+            box-shadow: 0 10px 20px rgba(26, 58, 143, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(26, 58, 143, 0.4);
+            background: linear-gradient(135deg, var(--ameki-light-blue), var(--ameki-purple));
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--ameki-blue);
+            color: var(--ameki-blue);
+        }
+        
+        .btn-outline:hover {
+            background: var(--ameki-blue);
+            color: white;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--ameki-dark);
+        }
+        
+        /* Order Hero Section */
+        .order-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(13, 27, 58, 0.7), rgba(13, 27, 58, 0.7)), 
+                        url('https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858160/slide3_fhkml2.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .order-hero-content {
+            max-width: 800px;
+        }
+        
+        .order-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .order-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Order Process */
+        .order-process {
+            padding: 60px 30px;
+            background: white;
+        }
+        
+        .process-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .process-container:before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: #eee;
+            z-index: 1;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            width: 25%;
+        }
+        
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 5px 15px rgba(26, 58, 143, 0.3);
+        }
+        
+        .step-icon.active {
+            background: var(--ameki-gold);
+            transform: scale(1.1);
+        }
+        
+        .process-step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Order Sections */
+        section {
+            padding: 80px 30px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--ameki-gold);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 30px auto 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Product Selection */
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid rgba(26, 58, 143, 0.1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(26, 58, 143, 0.2);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--ameki-gold);
+            color: var(--ameki-dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .product-img img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            transition: all 0.5s ease;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-content {
+            padding: 25px;
+        }
+        
+        .product-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--ameki-dark);
+        }
+        
+        .product-content .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ameki-blue);
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .product-content p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            min-height: 60px;
+            font-size: 0.95rem;
+        }
+        
+        .product-quantity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background: #f1f1f1;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quantity-btn:hover {
+            background: var(--ameki-blue);
+            color: white;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            border: none;
+            font-size: 1.2rem;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* Cart Summary */
+        .cart-section {
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.9), rgba(240, 244, 255, 0.9));
+        }
+        
+        .cart-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        
+        .cart-items {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-header h3 {
+            font-size: 1.8rem;
+            color: var(--ameki-dark);
+        }
+        
+        .cart-item {
+            display: flex;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+        
+        .cart-item-img {
+            width: 100px;
+            height: 100px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+        
+        .cart-item-img img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-details h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item-price {
+            font-weight: 600;
+            color: var(--ameki-blue);
+            margin-bottom: 10px;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remove-item {
+            color: #ff4d4d;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: 15px;
+        }
+        
+        .cart-summary {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            align-self: flex-start;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .cart-summary h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            color: var(--ameki-dark);
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ameki-dark);
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* Checkout Form */
+        .checkout-section {
+            background: white;
+        }
+        
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .checkout-form {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .checkout-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--ameki-dark);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--ameki-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 58, 143, 0.2);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .payment-methods {
+            margin-top: 30px;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--ameki-blue);
+        }
+        
+        .payment-method.selected {
+            border-color: var(--ameki-blue);
+            background: rgba(26, 58, 143, 0.05);
+        }
+        
+        .payment-method input {
+            margin-right: 15px;
+        }
+        
+        .payment-icon {
+            margin-right: 15px;
+            font-size: 24px;
+            color: #666;
+        }
+        
+        .order-summary {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            align-self: flex-start;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .order-summary h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--ameki-dark);
+        }
+        
+        .order-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* Confirmation */
+        .confirmation-section {
+            background: linear-gradient(135deg, var(--ameki-blue), var(--ameki-purple));
+            color: white;
+            text-align: center;
+            padding: 100px 30px;
+        }
+        
+        .confirmation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            color: var(--ameki-dark);
+        }
+        
+        .confirmation-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--ameki-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 40px;
+        }
+        
+        .confirmation-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation-container p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .order-details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .order-details h3 {
+            margin-bottom: 20px;
+            color: var(--ameki-blue);
+        }
+        
+        .detail-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            width: 150px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--ameki-dark);
+            color: white;
+            padding: 80px 0 0;
+            position: relative;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--ameki-gold);
+        }
+        
+        .footer-col p {
+            color: #bbb;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .cart-container,
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-step {
+                width: 23%;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .order-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+            
+            .process-container {
+                flex-wrap: wrap;
+            }
+            
+            .process-container:before {
+                display: none;
+            }
+            
+            .process-step {
+                width: 50%;
+                margin-bottom: 30px;
+            }
+        }
+        
+        /* Animations */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .logo-icons{
+            width: 4rem;
+            height: 3rem;
+        }
+        .logo-icons img{
+            width: 4rem;
+            height: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="navbar">
+            <div class="logo">
+                <div class="logo-icons"><img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/logo_krzkdw.jpg" alt="Logo" width="40" height="40"></div>
+                <div class="logo-text"><a href="index.html">Amekicolor</a></div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="products.html">Products</a>
+                <a href="Location.html">Locations</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            
+            <a href="cart.html" class="btn btn-primary">
+                <i class="fas fa-shopping-cart"></i> Cart (3)
+            </a>
+            
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Order Hero Section -->
+    <section class="order-hero">
+        <div class="order-hero-content">
+            <h1>Order Premium Paints</h1>
+            <p>Transform your spaces with Rwanda's finest paint products</p>
+            <a href="#products" class="btn btn-outline">Browse Products</a>
+        </div>
+    </section>
+
+    <!-- Order Process -->
+    <section class="order-process">
+        <div class="process-container">
+            <div class="process-step">
+                <div class="step-icon active">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h3>Select Products</h3>
+                <p>Choose your paint solutions</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-list"></i>
+                </div>
+                <h3>Review Order</h3>
+                <p>Check your cart items</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3>Delivery Info</h3>
+                <p>Enter shipping details</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h3>Confirmation</h3>
+                <p>Complete your order</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Selection -->
+    <section id="products">
+        <div class="section-title">
+            <h2>Our Paint Collection</h2>
+            <p>Select from our premium range of paints</p>
+        </div>
+        
+        <div class="products-container">
+            <!-- Product 1 -->
+            <div class="product-card animate-in">
+                <div class="product-badge">Best Seller</div>
+                <div class="product-img">
+                    <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/one_guuerj.jpg" alt="Premium Emulsion">
+                </div>
+                <div class="product-content">
+                    <h3>Premium Interior Emulsion</h3>
+                    <span class="price">RWF 25,000</span>
+                    <p>Water-based emulsion for interior walls with excellent coverage and washability.</p>
+                    
+                    <div class="product-quantity">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    
+                    <button class="btn btn-primary add-to-cart">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card animate-in delay-1">
+                <div class="product-badge">Weatherproof</div>
+                <div class="product-img">
+                    <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858147/two_jn9ha2.jpg" alt="WeatherShield">
+                </div>
+                <div class="product-content">
+                    <h3>WeatherShield Exterior</h3>
+                    <span class="price">RWF 32,000</span>
+                    <p>Advanced protection against harsh Rwandan weather conditions.</p>
+                    
+                    <div class="product-quantity">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    
+                    <button class="btn btn-primary add-to-cart">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card animate-in delay-2">
+                <div class="product-badge">Eco-Friendly</div>
+                <div class="product-img">
+                    <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858151/three_coespo.jpg" alt="EcoGuard">
+                </div>
+                <div class="product-content">
+                    <h3>EcoGuard Zero VOC</h3>
+                    <span class="price">RWF 28,500</span>
+                    <p>Non-toxic interior paint with zero VOCs for healthier living spaces.</p>
+                    
+                    <div class="product-quantity">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    
+                    <button class="btn btn-primary add-to-cart">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card animate-in delay-3">
+                <div class="product-badge">New Formula</div>
+                <div class="product-img">
+                    <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858149/four_uccfkr.jpg" alt="WoodShield">
+                </div>
+                <div class="product-content">
+                    <h3>WoodShield Premium Enamel</h3>
+                    <span class="price">RWF 35,000</span>
+                    <p>High-gloss finish for wood surfaces with superior protection.</p>
+                    
+                    <div class="product-quantity">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    
+                    <button class="btn btn-primary add-to-cart">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Summary -->
+    <section class="cart-section">
+        <div class="section-title">
+            <h2>Your Order Summary</h2>
+            <p>Review your items before checkout</p>
+        </div>
+        
+        <div class="cart-container">
+            <div class="cart-items">
+                <div class="cart-header">
+                    <h3>Your Cart (3 items)</h3>
+                    <button class="btn btn-outline">Continue Shopping</button>
+                </div>
+                
+                <div class="cart-item">
+                    <div class="cart-item-img">
+                        <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/one_guuerj.jpg" alt="Premium Emulsion">
+                    </div>
+                    <div class="cart-item-details">
+                        <h4>Premium Interior Emulsion</h4>
+                        <div class="cart-item-price">RWF 25,000</div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" class="quantity-input" value="2" min="1">
+                            <button class="quantity-btn plus">+</button>
+                            <button class="remove-item"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-item">
+                    <div class="cart-item-img">
+                        <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858147/two_jn9ha2.jpg" alt="WeatherShield">
+                    </div>
+                    <div class="cart-item-details">
+                        <h4>WeatherShield Exterior</h4>
+                        <div class="cart-item-price">RWF 32,000</div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" class="quantity-input" value="1" min="1">
+                            <button class="quantity-btn plus">+</button>
+                            <button class="remove-item"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-item">
+                    <div class="cart-item-img">
+                        <img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858151/three_coespo.jpg" alt="EcoGuard">
+                    </div>
+                    <div class="cart-item-details">
+                        <h4>EcoGuard Zero VOC</h4>
+                        <div class="cart-item-price">RWF 28,500</div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" class="quantity-input" value="1" min="1">
+                            <button class="quantity-btn plus">+</button>
+                            <button class="remove-item"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                
+                <div class="summary-item">
+                    <span>Subtotal (3 items)</span>
+                    <span>RWF 110,500</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span>Shipping</span>
+                    <span>RWF 8,000</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span>Tax (18%)</span>
+                    <span>RWF 19,890</span>
+                </div>
+                
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span>RWF 138,390</span>
+                </div>
+                
+                <button class="btn btn-primary checkout-btn">
+                    Proceed to Checkout <i class="fas fa-arrow-right"></i>
+                </button>
+                
+                <div style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+                    <p><i class="fas fa-lock"></i> Secure Payment</p>
+                    <p><i class="fas fa-truck"></i> Delivery in 2-4 business days</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Form -->
+    <section class="checkout-section">
+        <div class="section-title">
+            <h2>Complete Your Order</h2>
+            <p>Enter your delivery and payment information</p>
+        </div>
+        
+        <div class="checkout-container">
+            <div class="checkout-form">
+                <h3>Delivery Information</h3>
+                
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Delivery Address *</label>
+                        <textarea id="address" class="form-control" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="district">District *</label>
+                            <select id="district" class="form-control" required>
+                                <option value="">Select District</option>
+                                <option value="kigali">Kigali</option>
+                                <option value="northern">Northern Province</option>
+                                <option value="southern">Southern Province</option>
+                                <option value="eastern">Eastern Province</option>
+                                <option value="western">Western Province</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <h3>Payment Method</h3>
+                        
+                        <div class="payment-method selected">
+                            <input type="radio" name="payment" id="creditCard" checked>
+                            <div class="payment-icon">
+                                <i class="far fa-credit-card"></i>
+                            </div>
+                            <label for="creditCard">Credit/Debit Card</label>
+                        </div>
+                        
+                        <div class="payment-method">
+                            <input type="radio" name="payment" id="mobileMoney">
+                            <div class="payment-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <label for="mobileMoney">Mobile Money</label>
+                        </div>
+                        
+                        <div class="payment-method">
+                            <input type="radio" name="payment" id="cash">
+                            <div class="payment-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <label for="cash">Cash on Delivery</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 30px;">
+                        Place Order
+                    </button>
+                </form>
+            </div>
+            
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                
+                <div class="order-items">
+                    <div class="order-item">
+                        <span>Premium Interior Emulsion × 2</span>
+                        <span>RWF 50,000</span>
+                    </div>
+                    <div class="order-item">
+                        <span>WeatherShield Exterior × 1</span>
+                        <span>RWF 32,000</span>
+                    </div>
+                    <div class="order-item">
+                        <span>EcoGuard Zero VOC × 1</span>
+                        <span>RWF 28,500</span>
+                    </div>
+                </div>
+                
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span>RWF 110,500</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span>Shipping</span>
+                    <span>RWF 8,000</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span>Tax</span>
+                    <span>RWF 19,890</span>
+                </div>
+                
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span>RWF 138,390</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Confirmation -->
+    <section class="confirmation-section">
+        <div class="confirmation-container">
+            <div class="confirmation-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2>Order Confirmed!</h2>
+            <p>Thank you for your order. Your paints will be prepared for delivery.</p>
+            
+            <div class="order-details">
+                <h3>Order #AMEK2023-4567</h3>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Order Date:</div>
+                    <div>October 15, 2023</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Estimated Delivery:</div>
+                    <div>October 18-20, 2023</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Delivery Address:</div>
+                    <div>KG 456 St, Kicukiro District, Kigali</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Payment Method:</div>
+                    <div>Mobile Money (MTN)</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Total Amount:</div>
+                    <div style="font-weight: 700; color: var(--ameki-blue);">RWF 138,390</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <a href="products.html" class="btn btn-outline">Continue Shopping</a>
+                <a href="index.html" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <div class="logo-icons"><img src="https://res.cloudinary.com/dvuc0dnoc/image/upload/v1751858148/logo_krzkdw.jpg" alt="Logo" width="40" height="40"></div>
+                    <div class="logo-text">Amekicolor</div>
+                </div>
+                <p>Rwanda's premier paint manufacturer since 1982, delivering quality and innovation in every can.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Customer Support</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Returns Policy</a></li>
+                    <li><a href="#">Delivery Information</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>Kicukiro, Kigali, Rwanda</p>
+                <p>+250 788 123 456</p>
+                <p>orders@amekicolor.rw</p>
+                <p>Mon-Fri: 8AM - 5PM<br>Sat: 9AM - 1PM</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Amekicolor Rwanda. All rights reserved. | Made with ❤️ in Rwanda by NGOBOKA Alain Beni</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-in');
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Quantity buttons functionality
+        const quantityBtns = document.querySelectorAll('.quantity-btn');
+        quantityBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const input = this.parentElement.querySelector('.quantity-input');
+                let value = parseInt(input.value);
+                
+                if (this.classList.contains('plus')) {
+                    value++;
+                } else if (this.classList.contains('minus') && value > 1) {
+                    value--;
+                }
+                
+                input.value = value;
+            });
+        });
+        
+        // Add to cart functionality
+        const addToCartBtns = document.querySelectorAll('.add-to-cart');
+        addToCartBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('h3').textContent;
+                const quantity = parseInt(productCard.querySelector('.quantity-input').value);
+                
+                // Animation effect
+                this.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
+                this.classList.add('btn-success');
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-cart-plus"></i> Add to Cart';
+                    this.classList.remove('btn-success');
+                }, 2000);
+                
+                // In a real app, you would add to cart here
+                console.log(`Added ${quantity} of ${productName} to cart`);
+            });
+        });
+        
+        // Payment method selection
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', function() {
+                paymentMethods.forEach(m => m.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+        
+        // Form submission
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (this.id === 'checkoutForm') {
+                    // Scroll to confirmation
+                    document.querySelector('.confirmation-section').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    alert('Thank you for your order!');
+                }
+            });
+        });
+        
+        // Remove item from cart
+        const removeBtns = document.querySelectorAll('.remove-item');
+        removeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const cartItem = this.closest('.cart-item');
+                cartItem.style.opacity = '0';
+                
+                setTimeout(() => {
+                    cartItem.remove();
+                    // Update cart summary would go here
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
